@@ -5,6 +5,6 @@ export const AboutPage = () => ({
     m('.row', [
       m('h1', 'About'),
       m('h1', 'Attribution'),
-      m('ul.collection', [m('li.collection-item', 'Logo: ideation by Vytautas Alech from the Noun Project.')]),
+      m('ul.collection', [m('li.collection-item', 'Logo: Group class by Fiki Ahmadi from the Noun Project.')]),
     ]),
 });

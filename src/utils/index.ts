@@ -14,6 +14,8 @@ export const uuid4 = () => {
   });
 };
 
+export const capitalizeFirstLetter = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 /**
  * Create a unique ID
  * @see https://stackoverflow.com/a/2117523/319711
@@ -106,12 +108,12 @@ export const deepCopy = <T>(target: T): T => {
  */
 export const titleAndDescriptionFilter = (filterValue: string) => {
   filterValue = filterValue.toLowerCase();
-  return (content: { title: string; description: string }) =>
+  return (content: { title?: string; desc?: string }) =>
     !filterValue ||
     !content.title ||
     content.title.toLowerCase().indexOf(filterValue) >= 0 ||
-    (content.description &&
-      content.description.toLowerCase().indexOf(filterValue) >= 0);
+    (content.desc &&
+      content.desc.toLowerCase().indexOf(filterValue) >= 0);
 };
 
 /**

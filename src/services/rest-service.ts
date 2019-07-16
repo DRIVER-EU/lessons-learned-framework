@@ -1,14 +1,14 @@
 import m from 'mithril';
+import { AppState } from '../models/app-state';
 import { TopicNames } from '../models/channels';
 import { IChannelDefinition, messageBus } from './message-bus-service';
-import { AppState } from '../models/app-state';
 
 const log = console.log;
 const error = console.error;
 const withCredentials = false;
 
 // export class RestService<T extends IBaseModel> {
-export class RestService<T extends { id?: string | number }> {
+export class RestService<T extends { $loki?: number }> {
   protected current: T = {} as T;
   protected list: T[] = [];
   protected baseUrl: string;
@@ -28,7 +28,7 @@ export class RestService<T extends { id?: string | number }> {
   }
 
   public save(item: T, fd?: FormData) {
-    return item.id ? this.update(item, fd) : this.create(item, fd);
+    return item.$loki ? this.update(item, fd) : this.create(item, fd);
   }
 
   public async create(item: T, fd?: FormData) {
@@ -52,7 +52,7 @@ export class RestService<T extends { id?: string | number }> {
       console.debug('put');
       await m.request({
         method: 'PUT',
-        url: this.baseUrl + item.id,
+        url: this.baseUrl + item.$loki,
         body: fd || item,
         withCredentials,
       }).catch(e => console.error(e));
@@ -65,7 +65,7 @@ export class RestService<T extends { id?: string | number }> {
     }
   }
 
-  public async delete(id = this.current.id) {
+  public async delete(id = this.current.$loki) {
     try {
       await m.request<T>({
         method: 'DELETE',
@@ -79,40 +79,13 @@ export class RestService<T extends { id?: string | number }> {
     }
   }
 
-  /*
-    There must be a generic file upload function: when uploading a file, it will allow you to set an alias (no spaces).
-    This alias can be used as a link, e.g. you could create an alias image1, and use it in a markdown file as follows:
-    ![My image]({{image1}}).
-   */
-
-  // public uploadFiles(
-  //   fl: FileList | undefined,
-  //   cb: (item: { filename: string; size: number; mimetype: string; data: Blob }) => void
-  // ) {
-  //   if (!fl || fl.length === 0) {
-  //     return;
-  //   }
-  //   log(`Uploading files...`);
-  //   // tslint:disable-next-line:prefer-for-of
-  //   for (let i = 0; i < fl.length; i++) {
-  //     const file = fl[i];
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       const data = reader.result as ArrayBuffer;
-  //       const item = { filename: file.name, size: file.size, mimetype: file.type, data: new Blob([data]) };
-  //       cb(item);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
-
   public unload() {
     if (this.current) {
       this.new();
     }
   }
 
-  public async load(id?: string) {
+  public async load(id?: number | string) {
     const result = await m
       .request<T>({
         method: 'GET',
@@ -189,11 +162,11 @@ export class RestService<T extends { id?: string | number }> {
   }
 
   private updateItemInList(item: T) {
-    this.setList(this.list.map(i => (i.id === item.id ? item : i)));
+    this.setList(this.list.map(i => (i.$loki === item.$loki ? item : i)));
   }
 
   private removeItemFromList(id?: string | number) {
-    this.setList([...this.list.filter(i => i.id !== id)]);
+    this.setList([...this.list.filter(i => i.$loki !== id)]);
   }
 
   // private createBaseUrl(): string {

@@ -1,12 +1,16 @@
 import m, { ComponentTypes, RouteDefs } from 'mithril';
 import { AboutPage } from '../components/about/about-page';
 import { HomePage } from '../components/home/home-page';
+import { LessonsForm } from '../components/home/lessons-form';
+import { LessonsList } from '../components/home/lessons-list';
 import { Layout } from '../components/layout';
 import { IDashboard } from '../models/dashboard';
 
 export const enum Dashboards {
   HOME = 'HOME',
   ABOUT = 'ABOUT',
+  EDIT = 'EDIT',
+  SEARCH = 'SEARCH',
 }
 
 class DashboardService {
@@ -39,7 +43,9 @@ class DashboardService {
   public get routingTable() {
     return this.dashboards.reduce(
       (p, c) => {
-        p[c.route] = { render: () => m(this.layout, m(c.component)) };
+        p[c.route] = c.hasNavBar === false
+          ? { render: () => m(c.component) }
+          : { render: () => m(this.layout, m(c.component)) };
         return p;
       },
       {} as RouteDefs,
@@ -51,11 +57,28 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
   {
     id: Dashboards.HOME,
     default: true,
+    hasNavBar: false,
     title: 'HOME',
     icon: 'home',
     route: '/home',
     visible: true,
     component: HomePage,
+  },
+  {
+    id: Dashboards.SEARCH,
+    title: 'SEARCH',
+    icon: 'search',
+    route: '/search',
+    visible: true,
+    component: LessonsList,
+  },
+  {
+    id: Dashboards.EDIT,
+    title: 'EDIT',
+    icon: 'edit',
+    route: '/edit',
+    visible: true,
+    component: LessonsForm,
   },
   {
     id: Dashboards.ABOUT,

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./public ./.cache",
-    "start": "concurrently \"npm run serve\" \"parcel index.html --out-dir ./public\"",
+    "start": "concurrently \"npm run serve\" \"parcel watch index.html --out-dir ./public\"",
     "build:domain": "npm run clean && parcel build index.html --out-dir ../../docs --public-url https://erikvullings.github.io/mithril-materialized",
     "link": "npm link mithril-ui-form",
     "serve": "rest-easy-loki",
@@ -36,20 +36,21 @@
   },
   "homepage": "https://github.com/DRIVER-EU/lessons-learned-framework#readme",
   "dependencies": {
-    "rest-easy-loki": "^0.2.0",
-    "materialize-css": "^1.0.0",
-    "material-icons": "^0.3.1",
-    "mithril": "v2.0.0-rc.7",
-    "mithril-materialized": "^0.13.15",
-    "mithril-ui-form": "^0.0.1",
     "leaflet": "^1.5.1",
     "leaflet-draw": "^1.0.4",
-    "slimdown-js": "0.1.4"
+    "material-icons": "^0.3.1",
+    "materialize-css": "^1.0.0",
+    "mithril": "v2.0.0-rc.7",
+    "mithril-leaflet": "^0.1.5",
+    "mithril-materialized": "^0.13.15",
+    "mithril-ui-form": "^0.1.2",
+    "rest-easy-loki": "^0.2.0"
   },
   "devDependencies": {
-    "concurrently": "^4.1.1",
+    "@types/lokijs": "^1.5.2",
     "@types/mithril": "github:MithrilJS/mithril.d.ts#v2",
     "autoprefixer": "^9.6.1",
+    "concurrently": "^4.1.1",
     "cssnano": "^4.1.10",
     "parcel-bundler": "^1.12.3",
     "rimraf": "^2.6.3",

@@ -1,102 +1,76 @@
 import m from 'mithril';
-import { Button, TextArea, TextInput, FileInput, ModalPanel } from 'mithril-materialized';
-import { TrialSvc, dashboardSvc } from '../../services';
-import { ITrial, deepCopy, deepEqual } from 'trial-manager-models';
-import { AppState } from '../../models';
+import { Button, Collection, CollectionMode, ModalPanel } from 'mithril-materialized';
+import { LayoutForm } from 'mithril-ui-form';
+import { ILesson } from '../../models';
+import { LessonsSvc } from '../../services';
+import { llf } from '../../template/llf';
+import { capitalizeFirstLetter, deepCopy, deepEqual } from '../../utils';
 
 const log = console.log;
+
 const close = async (e?: UIEvent) => {
   log('closing...');
-  await TrialSvc.unload();
   m.route.set('/');
   if (e) {
     e.preventDefault();
   }
 };
 
-export const TrialForm = () => {
+export const LessonsForm = () => {
   const state = {
-    trial: {} as ITrial,
+    lesson: {} as Partial<ILesson>,
+    isValid: false,
+    form: llf,
+    error: '',
+    /** Relevant context for the Form, can be used with show/disabling */
+    context: {
+      admin: true,
+    },
+    section: '',
   };
+
   const onsubmit = async (e: MouseEvent) => {
     log('submitting...');
     e.preventDefault();
-    if (state.trial) {
-      await TrialSvc.saveTrial(state.trial);
-      state.trial = deepCopy(TrialSvc.getCurrent());
+    if (state.lesson) {
+      await LessonsSvc.save(state.lesson);
+      state.lesson = deepCopy(LessonsSvc.getCurrent());
     }
-  };
-  const upload = (file: FileList) => {
-    if (!file || file.length < 1) {
-      return console.warn('File is undefined');
-    }
-    const body = new FormData();
-    body.append('file', file[0]);
-
-    m.request({
-      method: 'POST',
-      url: `${AppState.apiService()}/repo/upload`,
-      body,
-    }).then(() => setTimeout(() => m.route.set(dashboardSvc.defaultRoute), 500));
   };
 
   return {
     oninit: () => {
       log('On INIT');
       log(state);
-      const trial = TrialSvc.getCurrent();
-      state.trial = deepCopy(trial);
+      const lesson = LessonsSvc.getCurrent();
+      state.lesson = lesson ? deepCopy(lesson) : ({} as ILesson);
     },
+
     view: () => {
-      const { trial } = state;
-      const hasChanged = !deepEqual(trial, TrialSvc.getCurrent());
+      const { lesson, form, context } = state;
+      const hasChanged = !deepEqual(lesson, LessonsSvc.getCurrent());
+      const sections = form
+        .filter(c => c.type === 'section')
+        .map(c => ({ id: c.id, title: c.label || capitalizeFirstLetter(c.id), onclick: () => (state.section = c.id) }));
+      const section = state.section || sections[0].id;
       return m('.row', [
-        m('.col.s12', [
-          m('h5', trial.id ? 'Trial' : 'Create new Trial'),
-          m(
-            '.col.s6.l8',
-            m(TextInput, {
-              id: 'title',
-              initialValue: trial.title,
-              onchange: (v: string) => (trial.title = v),
-              label: 'Title',
-              iconName: 'title',
-            })
-          ),
-          m(
-            '.col.s6.l4',
-            m(TextInput, {
-              id: 'id',
-              initialValue: trial.id,
-              label: 'ID',
-              iconName: 'label',
-              disabled: true,
-            })
-          ),
-          m(
-            '.col.s12',
-            m(TextArea, {
-              id: 'desc',
-              initialValue: trial.description,
-              onchange: (v: string) => (trial.description = v),
-              label: 'Description',
-              iconName: 'description',
-            })
-          ),
-          trial.id
-            ? undefined
-            : m(
-                '.row',
-                m('.col.s12', [
-                  m('h5', 'Upload an existing trial'),
-                  m(FileInput, {
-                    placeholder: 'Upload an existing Trial',
-                    accept: ['.sqlite3', '.sqlite'],
-                    style: 'margin-bottom: 20px',
-                    onchange: upload,
-                  }),
-                ])
-              ),
+        m(
+          '.col.s12.m3',
+          m(Collection, {
+            header: 'Content',
+            mode: CollectionMode.LINKS,
+            items: sections,
+          }),
+        ),
+        m('.col.s12.m9', [
+          m(LayoutForm, {
+            form,
+            obj: lesson,
+            onchange: () => console.log(JSON.stringify(lesson, null, 2)),
+            context,
+            section,
+          }),
+
           m(
             '.row',
             m('.col.s12.buttons', [
@@ -104,7 +78,7 @@ export const TrialForm = () => {
                 label: 'Undo',
                 iconName: 'undo',
                 class: `green ${hasChanged ? '' : 'disabled'}`,
-                onclick: () => (state.trial = deepCopy(TrialSvc.getCurrent())),
+                onclick: () => (state.lesson = deepCopy(LessonsSvc.getCurrent())),
               }),
               ' ',
               m(Button, {
@@ -121,24 +95,24 @@ export const TrialForm = () => {
               }),
               ' ',
               m(Button, {
-                modalId: 'delete-trial',
+                modalId: 'delete-lesson',
                 label: 'Delete',
                 iconName: 'delete',
                 class: 'red',
               }),
-            ])
+            ]),
           ),
         ]),
         m(ModalPanel, {
-          id: 'delete-trial',
-          title: `Delete trial`,
-          description: `Do you really want to delete this Trial - there is no way back?`,
+          id: 'delete-lesson',
+          title: 'Delete lesson',
+          description: 'Do you really want to delete this Lesson - there is no way back?',
           options: { opacity: 0.7 },
           buttons: [
             {
               label: 'Delete',
               onclick: async () => {
-                TrialSvc.delete(trial.id);
+                LessonsSvc.delete(lesson.$loki);
                 close();
               },
             },

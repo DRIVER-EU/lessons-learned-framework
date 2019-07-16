@@ -8,7 +8,7 @@ const getRootUrl = () => {
 };
 
 /** During development, use this URL to access the server. */
-const apiDevService = 'http://localhost:3210';
+const apiDevService = 'http://localhost:3000';
 
 /** Application state */
 export const AppState = {

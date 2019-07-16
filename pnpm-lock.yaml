@@ -4,11 +4,12 @@ dependencies:
   material-icons: 0.3.1
   materialize-css: 1.0.0
   mithril: 2.0.0-rc.7
+  mithril-leaflet: 0.1.5_be5a922f2197643b432c227253324a58
   mithril-materialized: 0.13.15_be902d871469af8c33de672f67680634
-  mithril-ui-form: 0.0.1
+  mithril-ui-form: 0.1.2_63a7f76569e613eadfdcfbf591d0cd2f
   rest-easy-loki: 0.2.0
-  slimdown-js: 0.1.4
 devDependencies:
+  '@types/lokijs': 1.5.2
   '@types/mithril': github.com/MithrilJS/mithril.d.ts/b5a1d389c2e83bdc6351c2d1cb3d909674644af1
   autoprefixer: 9.6.1
   concurrently: 4.1.1
@@ -852,6 +853,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-dIhM5t8lRP0oWe2HF8MuPvdd1TpPTjhDMAqemcq6oIZQCBQTovhBAdTQ5L5veJB4pdQChadmHuxtB0YzqvfU3Q==
+  /@types/lokijs/1.5.2:
+    dev: true
+    resolution:
+      integrity: sha512-ZF14v1P1Bjbw8VJRu+p4WS9V926CAOjWF4yq23QmSBWRPe0/GXlUKzSxjP1fi/xi8nrq6zr9ECo8Z/8KsRqroQ==
   /@types/node/12.6.2:
     dev: false
     resolution:
@@ -3469,13 +3474,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
-  /marked/0.5.2:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    hasBin: true
-    resolution:
-      integrity: sha512-fdZvBa7/vSQIZCi4uuwo2N3q+7jJURpMVCcbaX0S1Mg65WZ5ilXvC67MviJAsdjqqgD+CEq4RKo5AYGgINkVAA==
   /material-icons/0.3.1:
     dev: false
     resolution:
@@ -3611,12 +3609,18 @@ packages:
     dev: true
     resolution:
       integrity: sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
-  /mithril-materialized/0.1.10:
+  /mithril-leaflet/0.1.5_be5a922f2197643b432c227253324a58:
     dependencies:
-      materialize-css: 1.0.0
+      leaflet: 1.5.1
+      leaflet-draw: 1.0.4
+      mithril: 2.0.0-rc.7
     dev: false
+    peerDependencies:
+      leaflet: ^1.5.1
+      leaflet-draw: ^1.0.4
+      mithril: ^2.0.0-rc.6
     resolution:
-      integrity: sha512-6iO5gErcEgYCY34L1Vysw/+uPBlYbdg80Ja3Y/3qQx1jQYjd+HRx+ORHwvBUJxTrJ0tK4l/vNjaFv1TIXa4BpA==
+      integrity: sha512-W4WBPw+kHOW43UmhwHoMCrFGc0mgXnfmpvxhmVcKLkBOyFJBuPxr+N0HZkIvqgdAZmM6uTGjxJ4zSdd8HjH2yw==
   /mithril-materialized/0.13.15_be902d871469af8c33de672f67680634:
     dependencies:
       materialize-css: 1.0.0
@@ -3627,14 +3631,25 @@ packages:
       mithril: ^2.0.0-rc.7
     resolution:
       integrity: sha512-y71hU6dSk88dMa4Z2WCxk60JfN08NlNBq6kW8vk4NzXwHiwj5jWaoBN4ErSivzUzUzTCSZetpXEUPKbmYCIF7Q==
-  /mithril-ui-form/0.0.1:
+  /mithril-ui-form/0.1.2_63a7f76569e613eadfdcfbf591d0cd2f:
     dependencies:
-      marked: 0.5.2
+      leaflet: 1.5.1
+      leaflet-draw: 1.0.4
+      materialize-css: 1.0.0
       mithril: 2.0.0-rc.7
-      mithril-materialized: 0.1.10
+      mithril-leaflet: 0.1.5_be5a922f2197643b432c227253324a58
+      mithril-materialized: 0.13.15_be902d871469af8c33de672f67680634
+      slimdown-js: 0.1.4
     dev: false
+    peerDependencies:
+      leaflet: ^1.5.1
+      leaflet-draw: ^1.0.4
+      materialize-css: ^1.0.0
+      mithril: ^2.0.0-rc.7
+      mithril-leaflet: 0.1.5
+      mithril-materialized: ^0.13.15
     resolution:
-      integrity: sha512-wWBv52WJs96drBzt7M7v4lwKRb2/zmdqc+iLzS17WvxYYveJ1MIhS9+bgMTmNuhkPHGEmPG6PBpQqXuREdl6uw==
+      integrity: sha512-/O/IeeiajVHJxMdBKxvHDXAkC0H+ma+f4y+hX7iY+ysiqnZjOqy8OU+GcHUMLfvtpYIq7c0W5YWFrspoMw2VXg==
   /mithril/2.0.0-rc.7:
     dev: false
     hasBin: true
@@ -6018,6 +6033,7 @@ packages:
       tarball: 'https://codeload.github.com/MithrilJS/mithril.d.ts/tar.gz/b5a1d389c2e83bdc6351c2d1cb3d909674644af1'
     version: 1.2.0
 specifiers:
+  '@types/lokijs': ^1.5.2
   '@types/mithril': 'github:MithrilJS/mithril.d.ts#v2'
   autoprefixer: ^9.6.1
   concurrently: ^4.1.1
@@ -6027,10 +6043,10 @@ specifiers:
   material-icons: ^0.3.1
   materialize-css: ^1.0.0
   mithril: v2.0.0-rc.7
+  mithril-leaflet: ^0.1.5
   mithril-materialized: ^0.13.15
-  mithril-ui-form: ^0.0.1
+  mithril-ui-form: ^0.1.2
   parcel-bundler: ^1.12.3
   rest-easy-loki: ^0.2.0
   rimraf: ^2.6.3
-  slimdown-js: 0.1.4
   typescript: ^3.5.3

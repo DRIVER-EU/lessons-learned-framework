@@ -3,6 +3,7 @@ import { ComponentTypes } from 'mithril';
 export interface IDashboard {
   id: string;
   default?: boolean;
+  hasNavBar?: boolean;
   title: string;
   icon?: string;
   route: string;
