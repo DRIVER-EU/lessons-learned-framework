@@ -2,6 +2,28 @@
   height: 500px;
 }
 
+/* Set theme color */
+.btn,
+.btn-floating,
+.page-footer,
+.nav-wrapper,
+.statusbar,
+.nav-content {
+  background-color: #ef6c00;
+}
+.input-field,
+.input-field > label,
+.input-field > .material-icons,
+.dropdown-content > li > a,
+.secondary-content > .material-icons {
+  color: #ef6c00;
+}
+.tabs.tabs-transparent .tab a,
+nav ul a {
+  /* font-weight: bold; */
+  color: black;
+}
+
 /* styles for '...' */
 .block-with-text {
   /* hide text if it more than N lines  */
