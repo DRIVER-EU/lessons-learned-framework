@@ -33,10 +33,15 @@ class DashboardService {
     return dashboard ? dashboard.route : this.dashboards[0].route;
   }
 
-  public switchTo(dashboardId: Dashboards) {
+  public route(dashboardId: Dashboards) {
+    const dashboard = this.dashboards.filter(d => d.id === dashboardId).shift();
+    return dashboard ? dashboard.route : this.defaultRoute;
+  }
+
+  public switchTo(dashboardId: Dashboards, params?: { [key: string]: string | number | undefined }) {
     const dashboard = this.dashboards.filter(d => d.id === dashboardId).shift();
     if (dashboard) {
-      m.route.set(dashboard.route);
+      m.route.set(dashboard.route, params ? { params } : undefined);
     }
   }
 
@@ -76,8 +81,8 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     id: Dashboards.EDIT,
     title: 'EDIT',
     icon: 'edit',
-    route: '/edit',
-    visible: true,
+    route: '/edit/:id',
+    visible: false,
     component: LessonsForm,
   },
   {

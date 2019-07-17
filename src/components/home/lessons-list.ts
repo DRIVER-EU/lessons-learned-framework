@@ -43,15 +43,14 @@ export const LessonsList = () => {
             m('.col.s6.m4.l3', [
               m(
                 '.card.hoverable',
-                m('.card-content', { style: 'height: 150px' }, [
+                m('.card-content', { style: 'height: 150px;' }, [
                   m(
-                    'a[href=#].card-title',
+                    m.route.Link,
                     {
-                      onclick: async () => {
-                        console.log('Set scenario to ' + lesson.title);
-                        await LessonsSvc.load(lesson.$loki);
-                        dashboardSvc.switchTo(Dashboards.EDIT);
-                      },
+                      className: 'card-title',
+                      // href: dashboardSvc.route(Dashboards.EDIT),
+                      // options: { id: lesson.$loki },
+                      href: `/edit/${lesson.$loki}`,
                     },
                     lesson.title || 'Untitled'
                   ),

@@ -5,6 +5,7 @@ import { ILesson } from '../../models';
 import { LessonsSvc } from '../../services';
 import { llf } from '../../template/llf';
 import { capitalizeFirstLetter, deepCopy, deepEqual } from '../../utils';
+import { CircularSpinner } from '../ui/preloader';
 
 const log = console.log;
 
@@ -19,6 +20,7 @@ const close = async (e?: UIEvent) => {
 export const LessonsForm = () => {
   const state = {
     lesson: {} as Partial<ILesson>,
+    loaded: false,
     isValid: false,
     form: llf,
     error: '',
@@ -40,14 +42,20 @@ export const LessonsForm = () => {
 
   return {
     oninit: () => {
-      log('On INIT');
-      log(state);
-      const lesson = LessonsSvc.getCurrent();
-      state.lesson = lesson ? deepCopy(lesson) : ({} as ILesson);
+      return new Promise(async (resolve, reject) => {
+        const lesson = await LessonsSvc.load(m.route.param('id')).catch(r => reject(r));
+        state.lesson = lesson ? deepCopy(lesson) : ({} as ILesson);
+        state.loaded = true;
+        resolve();
+      });
     },
 
     view: () => {
-      const { lesson, form, context } = state;
+      const { lesson, form, context, loaded } = state;
+      if (!loaded) {
+        return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
+      }
+      log(lesson);
       const hasChanged = !deepEqual(lesson, LessonsSvc.getCurrent());
       const sections = form
         .filter(c => c.type === 'section')
@@ -60,7 +68,7 @@ export const LessonsForm = () => {
             header: 'Content',
             mode: CollectionMode.LINKS,
             items: sections,
-          }),
+          })
         ),
         m('.col.s12.m9', [
           m(LayoutForm, {
@@ -74,13 +82,13 @@ export const LessonsForm = () => {
           m(
             '.row',
             m('.col.s12.buttons', [
-              m(Button, {
-                label: 'Undo',
-                iconName: 'undo',
-                class: `green ${hasChanged ? '' : 'disabled'}`,
-                onclick: () => (state.lesson = deepCopy(LessonsSvc.getCurrent())),
-              }),
-              ' ',
+              // m(Button, {
+              //   label: 'Undo',
+              //   iconName: 'undo',
+              //   class: `green ${hasChanged ? '' : 'disabled'}`,
+              //   onclick: () => (state.lesson = deepCopy(LessonsSvc.getCurrent())),
+              // }),
+              // ' ',
               m(Button, {
                 label: 'Save',
                 iconName: 'save',
@@ -100,7 +108,7 @@ export const LessonsForm = () => {
                 iconName: 'delete',
                 class: 'red',
               }),
-            ]),
+            ])
           ),
         ]),
         m(ModalPanel, {
