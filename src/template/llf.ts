@@ -680,6 +680,7 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   {
     id: 'eventPhase',
     type: 'select',
+    multiple: true,
     label: 'Concerned phase of the disaster management cycle:',
     className: 'col s12 m6',
     options: [
