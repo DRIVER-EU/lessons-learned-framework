@@ -6,7 +6,7 @@ import logo from '../../assets/logo_white.svg';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 
 export const HomePage = () => ({
-  view: () =>
+  view: () => [
     m('.row', [
       m(
         'nav.orange.darken-3',
@@ -28,7 +28,7 @@ export const HomePage = () => ({
             label: 'Get started',
             onclick: () => dashboardSvc.switchTo(Dashboards.SEARCH),
           })
-        ),
+        )
       ),
       m(Parallax, { src: background }),
       m(
@@ -36,6 +36,7 @@ export const HomePage = () => ({
         m('.row.container.center', [
           m(SlimdownView, {
             md:
+              '## Learn and share\n' +
               'The lessons learned library (L3) is a repository for lessons gathered during an incident, trial or exercise.',
           }),
           m('.row', [
@@ -67,4 +68,19 @@ export const HomePage = () => ({
         ])
       ),
     ]),
+    m(
+      'footer.page-footer.orange.darken-3',
+      { style: 'heigth: 75px; padding: 5px 0;' },
+      m(
+        '.container',
+        m(
+          '.white-text',
+          `This project has received funding from the European Union’s Seventh Framework Programme
+      for research, technological development and demonstration under grant agreement n° 607798.
+      The information and views set out in this presentation are those of the author(s) and do
+      not necessarily reflect the official opinion of the European Union.`
+        )
+      )
+    ),
+  ],
 });
