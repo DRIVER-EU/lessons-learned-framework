@@ -1,14 +1,16 @@
 import m, { ComponentTypes, RouteDefs } from 'mithril';
 import { AboutPage } from '../components/about/about-page';
+import { EventForm } from '../components/edit/event-form';
+import { EventsList } from '../components/home/events-list';
 import { HomePage } from '../components/home/home-page';
-import { LessonsForm } from '../components/home/lessons-form';
-import { LessonsList } from '../components/home/lessons-list';
 import { Layout } from '../components/layout';
+import { EventView } from '../components/show/event-view';
 import { IDashboard } from '../models/dashboard';
 
 export const enum Dashboards {
   HOME = 'HOME',
   ABOUT = 'ABOUT',
+  READ = 'SHOW',
   EDIT = 'EDIT',
   SEARCH = 'SEARCH',
 }
@@ -41,7 +43,8 @@ class DashboardService {
   public switchTo(dashboardId: Dashboards, params?: { [key: string]: string | number | undefined }) {
     const dashboard = this.dashboards.filter(d => d.id === dashboardId).shift();
     if (dashboard) {
-      m.route.set(dashboard.route, params ? { params } : undefined);
+      console.log(dashboard.route);
+      m.route.set(dashboard.route, params ? params : undefined);
     }
   }
 
@@ -75,7 +78,15 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     icon: 'search',
     route: '/search',
     visible: true,
-    component: LessonsList,
+    component: EventsList,
+  },
+  {
+    id: Dashboards.READ,
+    title: 'READ',
+    icon: 'note',
+    route: '/read/:id',
+    visible: false,
+    component: EventView,
   },
   {
     id: Dashboards.EDIT,
@@ -83,7 +94,7 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     icon: 'edit',
     route: '/edit/:id',
     visible: false,
-    component: LessonsForm,
+    component: EventForm,
   },
   {
     id: Dashboards.ABOUT,

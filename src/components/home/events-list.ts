@@ -3,7 +3,7 @@ import { Icon, RoundIconButton, TextInput } from 'mithril-materialized';
 import { IEvent } from '../../models';
 import { AppState } from '../../models/app-state';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
-import { EventsSvc } from '../../services/lessons-service';
+import { EventsSvc } from '../../services/events-service';
 import { titleAndDescriptionFilter } from '../../utils';
 
 export const EventsList = () => {
