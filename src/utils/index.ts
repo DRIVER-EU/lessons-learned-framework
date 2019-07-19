@@ -1,3 +1,5 @@
+import { Form, IInputField } from 'mithril-ui-form';
+
 /**
  * Create a GUID
  * @see https://stackoverflow.com/a/2117523/319711
@@ -50,12 +52,7 @@ export const toLetters = (num: number): string => {
  * @param {number} [step=1]
  * @returns
  */
-export const range = (
-  from: number,
-  to: number,
-  count: number = to - from + 1,
-  step: number = 1
-) => {
+export const range = (from: number, to: number, count: number = to - from + 1, step: number = 1) => {
   // See here: http://stackoverflow.com/questions/3746725/create-a-javascript-array-containing-1-n
   // let a = Array.apply(null, {length: n}).map(Function.call, Math.random);
   const a: number[] = new Array(count);
@@ -112,8 +109,7 @@ export const titleAndDescriptionFilter = (filterValue: string) => {
     !filterValue ||
     !content.title ||
     content.title.toLowerCase().indexOf(filterValue) >= 0 ||
-    (content.desc &&
-      content.desc.toLowerCase().indexOf(filterValue) >= 0);
+    (content.desc && content.desc.toLowerCase().indexOf(filterValue) >= 0);
 };
 
 /**
@@ -128,15 +124,11 @@ export const unCamelCase = (str?: string) =>
         .replace(/^./, char => char.toUpperCase()) // uppercase the first character
     : '';
 
-export const deepEqual = <T extends { [key: string]: any }>(
-  x?: T,
-  y?: T
-): boolean => {
+export const deepEqual = <T extends { [key: string]: any }>(x?: T, y?: T): boolean => {
   const tx = typeof x;
   const ty = typeof y;
   return x && y && tx === 'object' && tx === ty
-    ? Object.keys(x).length === Object.keys(y).length &&
-        Object.keys(x).every(key => deepEqual(x[key], y[key]))
+    ? Object.keys(x).length === Object.keys(y).length && Object.keys(x).every(key => deepEqual(x[key], y[key]))
     : x === y;
 };
 
@@ -149,5 +141,50 @@ export const deepEqual = <T extends { [key: string]: any }>(
 /** Remove paragraphs <p> and </p> and the beginning and end of a string. */
 export const removeParagraphs = (s: string) => s.replace(/<\/?p>/g, '');
 
-export const removeHtml = (s: string) =>
-  s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/gm, '').replace(/&quot;/gi, '"');
+export const removeHtml = (s: string) => s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/gm, '').replace(/&quot;/gi, '"');
+
+/** Create a resolver that translates an ID and value (or values) to a human readable representation  */
+export const labelResolver = (form: Form) => {
+  const createDict = (ff: IInputField[], label = '') => {
+    const d = ff
+      .filter(f => f.type !== 'section')
+      .reduce(
+        (acc, cur) => {
+          const fieldId = (label ? `${label}.` : '') + cur.id;
+          const type = cur.type || (cur.options && cur.options.length > 0 ? 'select' : 'text');
+          if (typeof type === 'string') {
+            acc[fieldId] = cur;
+          } else {
+            acc = { ...acc, ...createDict(type, fieldId) };
+          }
+          return acc;
+        },
+        {} as { [key: string]: IInputField }
+      );
+    return d;
+  };
+  const dict = createDict(form);
+  return (id: string, value: string | string[]) => {
+    if (!dict.hasOwnProperty(id)) {
+      return value;
+    }
+    const ff = dict[id];
+    const values = value instanceof Array ? value.filter(v => v !== null && v !== undefined) : [value];
+    const type = ff.type || (ff.options ? 'options' : 'none');
+    switch (type) {
+      default:
+        return value;
+      case 'radio':
+      case 'select':
+      case 'options':
+        return values
+          .map(v =>
+            ff
+              .options!.filter(o => o.id === v)
+              .map(o => o.label || capitalizeFirstLetter(o.id))
+              .shift()
+          )
+          .join(', ');
+    }
+  };
+};
