@@ -86,6 +86,9 @@ export class RestService<T extends { $loki?: number }> {
   }
 
   public async load(id?: number | string) {
+    if (this.current && this.current.$loki === id) {
+      return this.current;
+    }
     const result = await m
       .request<T>({
         method: 'GET',
