@@ -8,17 +8,23 @@ export interface ILokiObj {
   };
 }
 
-export interface ILesson extends ILokiObj {
+export interface IEvent extends ILokiObj {
   title: string;
   desc: string;
   /** GeoJSON area definition */
-  area: { [key: string]: any };
+  location: { [key: string]: any };
   categories: string[]; // TODO Allow the user to specify defaults
-  created: Date;
-  edited: Date;
+  startDate: Date;
+  endDate: Date;
+  incidentTypes: string[];
+  incidentCategory: string[];
+  eventType: string;
+  areaType: string;
+  eventPhase: string[];
   editors: IEditor[];
   sources?: ISource[];
   lessons?: Array<{ title: string; status: string; [key: string]: any }>;
+  [key: string]: any;
 }
 
 interface IEditor {

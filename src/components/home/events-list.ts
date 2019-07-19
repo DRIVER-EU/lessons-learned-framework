@@ -1,31 +1,32 @@
 import m from 'mithril';
 import { Icon, RoundIconButton, TextInput } from 'mithril-materialized';
+import { IEvent } from '../../models';
 import { AppState } from '../../models/app-state';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
-import { LessonsSvc } from '../../services/lessons-service';
+import { EventsSvc } from '../../services/lessons-service';
 import { titleAndDescriptionFilter } from '../../utils';
 
-export const LessonsList = () => {
+export const EventsList = () => {
   const state = {
     filterValue: '',
   } as {
     filterValue: string;
   };
   return {
-    oninit: () => LessonsSvc.loadList(),
+    oninit: () => EventsSvc.loadList(),
     view: () => {
-      const lessons = LessonsSvc.getList();
+      const events = EventsSvc.getList() || [] as IEvent[];
       const query = titleAndDescriptionFilter(state.filterValue);
-      const filteredLessons = lessons.filter(query);
-      return m('.scenario-list', [
+      const filteredEvents = events.filter(query);
+      return m('.events-list', [
         m('.row', [
           m(RoundIconButton, {
             iconName: 'add',
             class: 'green input-field right btn-medium',
             style: 'margin: 1em 1em 0 0;',
             onclick: () => {
-              LessonsSvc.new({ title: 'New lesson' });
-              dashboardSvc.switchTo(Dashboards.EDIT);
+              EventsSvc.new({ title: 'New event' });
+              dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
             },
           }),
           m(TextInput, {
@@ -39,8 +40,8 @@ export const LessonsList = () => {
         ]),
         m(
           '.row.sb.large',
-          filteredLessons.map(lesson =>
-            m('.col.s6.m4.l3', [
+          filteredEvents.map(lesson =>
+            m('.col.s6.l4', [
               m(
                 '.card.hoverable',
                 m('.card-content', { style: 'height: 150px;' }, [
@@ -48,9 +49,7 @@ export const LessonsList = () => {
                     m.route.Link,
                     {
                       className: 'card-title',
-                      // href: dashboardSvc.route(Dashboards.EDIT),
-                      // options: { id: lesson.$loki },
-                      href: `/edit/${lesson.$loki}`,
+                      href: dashboardSvc.route(Dashboards.READ).replace(':id', `${lesson.$loki}`),
                     },
                     lesson.title || 'Untitled'
                   ),

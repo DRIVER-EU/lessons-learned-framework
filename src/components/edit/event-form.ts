@@ -1,8 +1,9 @@
 import m from 'mithril';
-import { Button, Collection, CollectionMode, ModalPanel } from 'mithril-materialized';
+import { Button, Collection, CollectionMode, FlatButton, ModalPanel } from 'mithril-materialized';
 import { LayoutForm } from 'mithril-ui-form';
-import { ILesson } from '../../models';
-import { LessonsSvc } from '../../services';
+import { IEvent } from '../../models';
+import { EventsSvc } from '../../services';
+import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { llf } from '../../template/llf';
 import { capitalizeFirstLetter, deepCopy, deepEqual } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
@@ -17,9 +18,9 @@ const close = async (e?: UIEvent) => {
   }
 };
 
-export const LessonsForm = () => {
+export const EventForm = () => {
   const state = {
-    lesson: {} as Partial<ILesson>,
+    event: {} as Partial<IEvent>,
     loaded: false,
     isValid: false,
     form: llf,
@@ -34,29 +35,29 @@ export const LessonsForm = () => {
   const onsubmit = async (e: MouseEvent) => {
     log('submitting...');
     e.preventDefault();
-    if (state.lesson) {
-      await LessonsSvc.save(state.lesson);
-      state.lesson = deepCopy(LessonsSvc.getCurrent());
+    if (state.event) {
+      await EventsSvc.save(state.event);
+      state.event = deepCopy(EventsSvc.getCurrent());
     }
   };
 
   return {
     oninit: () => {
       return new Promise(async (resolve, reject) => {
-        const lesson = await LessonsSvc.load(m.route.param('id')).catch(r => reject(r));
-        state.lesson = lesson ? deepCopy(lesson) : ({} as ILesson);
+        const lesson = await EventsSvc.load(m.route.param('id')).catch(r => reject(r));
+        state.event = lesson ? deepCopy(lesson) : ({} as IEvent);
         state.loaded = true;
         resolve();
       });
     },
 
     view: () => {
-      const { lesson, form, context, loaded } = state;
+      const { event, form, context, loaded } = state;
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }
-      log(lesson);
-      const hasChanged = !deepEqual(lesson, LessonsSvc.getCurrent());
+      log(event);
+      const hasChanged = !deepEqual(event, EventsSvc.getCurrent());
       const sections = form
         .filter(c => c.type === 'section')
         .map(c => ({ id: c.id, title: c.label || capitalizeFirstLetter(c.id), onclick: () => (state.section = c.id) }));
@@ -71,10 +72,19 @@ export const LessonsForm = () => {
           })
         ),
         m('.col.s12.m9', [
+          m(
+            '.col.s12',
+            m(FlatButton, {
+              label: 'Show document',
+              iconName: 'visibility',
+              className: 'right',
+              onclick: () => dashboardSvc.switchTo(Dashboards.READ, { id: event.$loki }),
+            })
+          ),
           m(LayoutForm, {
             form,
-            obj: lesson,
-            onchange: () => console.log(JSON.stringify(lesson, null, 2)),
+            obj: event,
+            onchange: () => console.log(JSON.stringify(event, null, 2)),
             context,
             section,
           }),
@@ -120,7 +130,7 @@ export const LessonsForm = () => {
             {
               label: 'Delete',
               onclick: async () => {
-                LessonsSvc.delete(lesson.$loki);
+                EventsSvc.delete(event.$loki);
                 close();
               },
             },
