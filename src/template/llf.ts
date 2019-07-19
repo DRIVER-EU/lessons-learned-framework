@@ -83,7 +83,7 @@ const countries = [
   },
   {
     id: 'netherlands',
-    label: 'Netherlands',
+    label: 'The Netherlands',
   },
   {
     id: 'poland',
@@ -142,126 +142,126 @@ const incidentTypes = [
   {
     id: 'earthquake',
     label: 'Earthquake',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'eruption',
     label: 'Volcanic eruption',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'movement',
     label: 'Mass movement',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'storm',
     label: 'Storm',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'tornado',
     label: 'Tornado',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'cold',
     label: 'Extreme cold',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'heat',
     label: 'Extreme heat',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'drought',
     label: 'Drought',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'wildfire',
     label: 'Wildfire',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'river',
     label: 'River flood',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'flash',
     label: 'Flash flood',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'coastal',
     label: 'Coastal flood',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'landslide',
     label: 'Landslide',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'epidemics',
     label: 'Epidemics / Pandemics',
     show: [
-      'applicability = general',
-      'applicability = natural',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = natural',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'infestation',
     label: 'Insect infestation',
     show: [
-      'applicability = general',
-      'applicability = natural',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = natural',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'animal',
     label: 'Animal stampede',
     show: [
-      'applicability = general',
-      'applicability = natural',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = natural',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'asteroids',
     label: 'Asteroids',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'meteoroids',
     label: 'Meteoroids / Comets',
-    show: ['applicability = general', 'applicability = natural', 'applicability = nattech'],
+    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'chemical',
     label: 'Chemical spill',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'explosion',
     label: 'Explosion',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
@@ -276,131 +276,131 @@ const incidentTypes = [
     id: 'nuclear',
     label: 'Nuclear accident',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'aircrash',
     label: 'Air crash',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'roadaccident',
     label: 'Road accident',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'railaccident',
     label: 'Rail accident',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'wateraccident',
     label: 'Accident on water',
     show: [
-      'applicability = general',
-      'applicability = natural',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = natural',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'infra',
     label: 'Collapse of infra',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'drinkingwater',
     label: 'Drinking water failure',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'energy_failure',
     label: 'Energy failure',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'ict_failure',
     label: 'Telecom/ICT failure',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'bomb',
     label: 'Bomb attack',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'cbrn',
     label: 'CBRN attack',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'cyber_attack',
     label: 'Cyber attack',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
   {
     id: 'cyber_crime',
     label: 'Cyber crime',
     show: [
-      'applicability = general',
-      'applicability = technological',
-      'applicability = nattech',
-      'applicability = intentional',
+      'incidentCategory = general',
+      'incidentCategory = technological',
+      'incidentCategory = nattech',
+      'incidentCategory = intentional',
     ],
   },
 ];
@@ -589,7 +589,7 @@ export const templateInfo = {
   showTemplateSelector: true,
 };
 
-const source = [
+const publicationType = [
   {
     id: 'title',
     label: 'English title',
@@ -605,15 +605,15 @@ const source = [
     icon: 'title',
     className: 'col s6',
   },
-  { id: 'author', type: 'text', label: 'First author and/or organisation', icon: 'person', className: 'col s6' },
+  { id: 'author', type: 'text', label: 'First author and/or organisation', icon: 'person', className: 'col s9' },
   { id: 'yearOfPublication', type: 'number', min: 1900, max: 2100, label: 'Year of publication', className: 'col s3' },
-  { id: 'language', label: 'Language', type: 'select', value: 'en', options: languages, className: 'col s3' },
   { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s6' },
+  { id: 'language', label: 'Language', type: 'select', value: 'en', options: languages, className: 'col s3' },
   {
     id: 'dissemination',
     required: true,
     label: 'Dissemination level',
-    // type: 'select',
+    type: 'select',
     className: 'col s3',
     options: [
       {
@@ -640,11 +640,34 @@ const source = [
   },
 ] as Form;
 
+const incidentCategories = [
+  {
+    id: 'general',
+    label: 'Incidents in general',
+  },
+  {
+    id: 'natural',
+    label: 'Natural incidents',
+  },
+  {
+    id: 'technological',
+    label: 'Technological incidents',
+  },
+  {
+    id: 'nattech',
+    label: 'Natural and Technological incidents',
+  },
+  {
+    id: 'attacks',
+    label: 'Intentional incidents / Attacks',
+  },
+];
+
 export const llf: Form = [
   { id: 'general information', type: 'section' },
   {
     type: 'md',
-    value: `#### Questionnaire
+    value: `#### Event description
 
 This questionnaire allows you to capture the lessons that you've learned while dealing with an  incident or after running a specific event or trial.
 
@@ -659,6 +682,12 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     maxLength: 70,
     required: true,
     className: 'col s12',
+  },
+  {
+    id: 'desc',
+    label: 'Additional info',
+    type: 'textarea',
+    maxLength: 400,
   },
   {
     id: 'eventType',
@@ -755,320 +784,14 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     id: 'incidentCategory',
     label: 'Incident category',
     className: 'col s12 m6',
-    options: [
-      {
-        id: 'general',
-        label: 'Incidents in general',
-      },
-      {
-        id: 'natural',
-        label: 'Natural incidents',
-      },
-      {
-        id: 'technological',
-        label: 'Technological incidents',
-      },
-      {
-        id: 'nattech',
-        label: 'Natural and Technological incidents',
-      },
-      {
-        id: 'attacks',
-        label: 'Intentional incidents / Attacks',
-      },
-    ],
+    options: incidentCategories,
   },
   {
-    id: 'incidentType',
+    id: 'incidentTypes',
     label: 'Select all the incident types that apply:',
-    checkboxClass: 'col s12 m6 l4',
+    checkboxClass: 'col s12 m6 xl4',
     type: 'options',
-    options: [
-      {
-        id: 'earthquake',
-        label: 'Earthquake',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'eruption',
-        label: 'Volcanic eruption',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'movement',
-        label: 'Mass movement',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'storm',
-        label: 'Storm',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'tornado',
-        label: 'Tornado',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'cold',
-        label: 'Extreme cold',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'heat',
-        label: 'Extreme heat',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'drought',
-        label: 'Drought',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'wildfire',
-        label: 'Wildfire',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'river',
-        label: 'River flood',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'flash',
-        label: 'Flash flood',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'coastal',
-        label: 'Coastal flood',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'landslide',
-        label: 'Landslide',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'epidemics',
-        label: 'Epidemics/Pandemics',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-        ],
-      },
-      {
-        id: 'infestation',
-        label: 'Insect infestation',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-        ],
-      },
-      {
-        id: 'animal',
-        label: 'Animal stampede',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'asteroids',
-        label: 'Asteroids',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'meteoroids',
-        label: 'Meteoroids / Comets',
-        show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-      },
-      {
-        id: 'chemical',
-        label: 'Chemical spill',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'explosion',
-        label: 'Explosion',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'fire',
-        label: 'Fire',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'gas',
-        label: 'Gas leak',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'nuclear',
-        label: 'Nuclear accident',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'aircrash',
-        label: 'Air crash',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'roadaccident',
-        label: 'Road accident',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'railaccident',
-        label: 'Rail accident',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'wateraccident',
-        label: 'Accident on water',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-        ],
-      },
-      {
-        id: 'infra',
-        label: 'Collapse of infra',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'drinkingwater',
-        label: 'Drinking water failure',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'energy_failure',
-        label: 'Energy failure',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'ict_failure',
-        label: 'Telecom/ICT failure',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = natural',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'bomb',
-        label: 'Bomb attack',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'cbrn',
-        label: 'CBRN attack',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'cyber_attack',
-        label: 'Cyber attack',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-      {
-        id: 'cyber_crime',
-        label: 'Cyber crime',
-        show: [
-          'incidentCategory = general',
-          'incidentCategory = nattech',
-          'incidentCategory = nattech',
-          'incidentCategory = attacks',
-          'incidentCategory = technological',
-        ],
-      },
-    ],
-  },
-  {
-    id: 'desc',
-    label: 'Additional info',
-    type: 'textarea',
-    maxLength: 400,
+    options: incidentTypes,
   },
 
   { id: 'editors', type: 'section' },
@@ -1105,10 +828,10 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   { id: 'sources', type: 'section' },
   { type: 'md', value: '#### Sources of information' },
   {
-    id: 'sources',
+    id: 'publications',
     label: 'Publications',
     repeat: true,
-    type: source,
+    type: publicationType,
   },
   {
     id: 'multimedia',
@@ -1429,32 +1152,11 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         maxLength: 200,
       },
       {
-        id: 'applicability',
+        id: 'incidentCategory',
         type: 'select',
         label: 'Applicability of the lesson',
         className: 'col s6 m4',
-        options: [
-          {
-            id: 'general',
-            label: 'Incidents in general',
-          },
-          {
-            id: 'natural',
-            label: 'Natural incidents',
-          },
-          {
-            id: 'technological',
-            label: 'Technological incidents',
-          },
-          {
-            id: 'nattech',
-            label: 'Natural and Technological incidents',
-          },
-          {
-            id: 'intentional',
-            label: 'Intentional incidents / attacks',
-          },
-        ],
+        options: incidentCategories,
       },
       {
         id: 'scale',
@@ -1486,7 +1188,7 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         type: 'select',
         multiple: true,
         newLine: true,
-        className: 'col s12 m6 l4',
+        className: 'col s12 m6 xl4',
         options: incidentTypes,
       },
       {
@@ -1726,21 +1428,21 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         id: 'logistics',
         label: 'Logistics',
         type: 'select',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: qualityLevels,
       },
       {
         id: 'sourceFighting',
         type: 'select',
         label: 'Source fighting',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: qualityLevels,
       },
       {
         id: 'volunteers',
         label: 'Volunteer management',
         type: 'select',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: qualityLevels,
       },
       {
@@ -1846,50 +1548,50 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
       {
         id: 'logistics_improvements',
         label: 'Logistics',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       {
         id: 'source_fighting_improvements',
         label: 'Source fighting',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       {
         id: 'volunteers_improvements',
         label: 'Volunteer management',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       { type: 'md', label: '##### Societal impact of incidents' },
       {
         id: 'victimsImprovements',
         label: 'Numbers of victims/casualties',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       {
         id: 'materialDamageImprovements',
         label: 'Material damage',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       {
         id: 'ciLossImprovements',
         label: 'Loss of (critical) infrastructure services',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       {
         id: 'socEcoDisruptionImprovements',
         label: 'Social / Economic disruption',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       {
         id: 'environmentalDegradationImprovements',
         label: 'Environmental degradation',
-        className: 'col s6 m3 l2',
+        className: 'col s6 m4 xl3',
         options: improvementLevels,
       },
       {
