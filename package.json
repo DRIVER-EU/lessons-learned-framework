@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf ./public ./.cache",
     "start": "concurrently \"npm run serve\" \"parcel watch index.html --out-dir ./public\"",
-    "build:domain": "npm run clean && parcel build index.html --out-dir ./public\"",
+    "build:domain": "npm run clean && parcel build index.html --out-dir ./public",
     "link": "npm link mithril-ui-form",
     "serve": "rest-easy-loki"
   },

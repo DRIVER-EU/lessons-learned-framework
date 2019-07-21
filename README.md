@@ -8,6 +8,16 @@ Install all dependencies, start the database service and run parcel to bundle yo
 
 ```bash
 npm i
+npm build:domain
+npm run serve
+```
+
+## Development
+
+As above, but now run `parcel` in watch mode.
+
+```bash
+npm i
 npm start
 ```
 
