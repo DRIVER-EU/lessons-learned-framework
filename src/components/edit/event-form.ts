@@ -1,11 +1,11 @@
 import m from 'mithril';
 import { Button, Collection, CollectionMode, FlatButton, ModalPanel } from 'mithril-materialized';
-import { LayoutForm } from 'mithril-ui-form';
+import { deepCopy, LayoutForm } from 'mithril-ui-form';
 import { IEvent } from '../../models';
 import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { llf } from '../../template/llf';
-import { capitalizeFirstLetter, deepCopy, deepEqual } from '../../utils';
+import { capitalizeFirstLetter, deepEqual } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
 
 const log = console.log;

@@ -1,11 +1,11 @@
 import m, { FactoryComponent } from 'mithril';
 import { FlatButton } from 'mithril-materialized';
-import { SlimdownView } from 'mithril-ui-form';
-import { IEvent } from '../../models';
+import { deepCopy, labelResolver, SlimdownView } from 'mithril-ui-form';
+import { IEvent, IPublication } from '../../models';
 import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { llf } from '../../template/llf';
-import { deepCopy, labelResolver } from '../../utils';
+import { formatOptional } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
 
 export const EventView: FactoryComponent = () => {
@@ -31,6 +31,21 @@ export const EventView: FactoryComponent = () => {
               }`
           )
           .join(', ')}</i></p>`
+      : '';
+  };
+
+  const showSources = (event: Partial<IEvent>) => {
+    const { resolver } = state;
+    const { publications } = event;
+
+    const formatPublication = (p: IPublication) =>
+      `${p.title}${formatOptional(
+        true,
+        p.orgTitle,
+        p.language === 'other' ? p.otherLanguage : resolver('publications.language', p.language) as string
+      )}`;
+    return publications
+      ? publications.map((p, i) => `${i + 1}. ${formatPublication(p)}`).join('\n')
       : '';
   };
 
@@ -66,7 +81,9 @@ export const EventView: FactoryComponent = () => {
 
 ${showEditors(event)}
 
-${desc}.
+${desc}
+
+${showSources(event)}
       `;
       return [
         m(
