@@ -43,8 +43,8 @@
     "mithril": "v2.0.0-rc.9",
     "mithril-leaflet": "^0.1.5",
     "mithril-materialized": "^0.13.15",
-    "mithril-ui-form": "^0.1.2",
-    "rest-easy-loki": "^0.2.0"
+    "mithril-ui-form": "^0.2.0",
+    "rest-easy-loki": "^0.3.0"
   },
   "devDependencies": {
     "@types/lokijs": "^1.5.2",

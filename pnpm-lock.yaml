@@ -6,8 +6,8 @@ dependencies:
   mithril: 2.0.0-rc.9
   mithril-leaflet: 0.1.5_6109a46a2054ccfa5aa5e3d50319c0f2
   mithril-materialized: 0.13.15_3a8dc4996238756404e319081bae2e89
-  mithril-ui-form: 0.1.2_c70f5199b6b7df002ca073c0321481dd
-  rest-easy-loki: 0.2.0
+  mithril-ui-form: 0.2.0_c70f5199b6b7df002ca073c0321481dd
+  rest-easy-loki: 0.3.0
 devDependencies:
   '@types/lokijs': 1.5.2
   '@types/mithril': github.com/MithrilJS/mithril.d.ts/5308c5b290725517c50832c157d4e8c60abf064c
@@ -849,7 +849,7 @@ packages:
   /@types/formidable/1.0.31:
     dependencies:
       '@types/events': 3.0.0
-      '@types/node': 12.6.2
+      '@types/node': 12.6.8
     dev: false
     resolution:
       integrity: sha512-dIhM5t8lRP0oWe2HF8MuPvdd1TpPTjhDMAqemcq6oIZQCBQTovhBAdTQ5L5veJB4pdQChadmHuxtB0YzqvfU3Q==
@@ -857,10 +857,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ZF14v1P1Bjbw8VJRu+p4WS9V926CAOjWF4yq23QmSBWRPe0/GXlUKzSxjP1fi/xi8nrq6zr9ECo8Z/8KsRqroQ==
-  /@types/node/12.6.2:
+  /@types/node/12.6.8:
     dev: false
     resolution:
-      integrity: sha512-gojym4tX0FWeV2gsW4Xmzo5wxGjXGm550oVUII7f7G5o4BV6c7DBdiG1RRQd+y1bvqRyYtPfMK85UM95vsapqQ==
+      integrity: sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
   /@types/q/1.5.2:
     dev: true
     resolution:
@@ -3631,7 +3631,7 @@ packages:
       mithril: ^2.0.0-rc.7
     resolution:
       integrity: sha512-y71hU6dSk88dMa4Z2WCxk60JfN08NlNBq6kW8vk4NzXwHiwj5jWaoBN4ErSivzUzUzTCSZetpXEUPKbmYCIF7Q==
-  /mithril-ui-form/0.1.2_c70f5199b6b7df002ca073c0321481dd:
+  /mithril-ui-form/0.2.0_c70f5199b6b7df002ca073c0321481dd:
     dependencies:
       leaflet: 1.5.1
       leaflet-draw: 1.0.4
@@ -3649,7 +3649,7 @@ packages:
       mithril-leaflet: 0.1.5
       mithril-materialized: ^0.13.15
     resolution:
-      integrity: sha512-/O/IeeiajVHJxMdBKxvHDXAkC0H+ma+f4y+hX7iY+ysiqnZjOqy8OU+GcHUMLfvtpYIq7c0W5YWFrspoMw2VXg==
+      integrity: sha512-94+TLZMLIfZnUrHIRQVPHoZ9Bv8p9z8bp5vZYQffxg4K7YHnF4mNyyfFCk38Q7zJI8cSdC7BuZF7xvtxo7T//Q==
   /mithril/2.0.0-rc.9:
     dev: false
     hasBin: true
@@ -4982,7 +4982,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vIpgF6wfuJOZI7KKKSP+HmiKggadPQAdsp5HiC1mvqnfp0gF1vdwgBWZIdrVft9pgqoMFQN+R7BSWZiBxx+BBw==
-  /rest-easy-loki/0.2.0:
+  /rest-easy-loki/0.3.0:
     dependencies:
       koa: 2.7.0
       koa-body: 4.1.0
@@ -4992,7 +4992,7 @@ packages:
     dev: false
     hasBin: true
     resolution:
-      integrity: sha512-Ab26oS1GgiEN53ahyWHOYQKah9FPXVNtTj39lp+7fekIqTJjpPrUqbtsmXnwwWWB75Db7JSQMKSieJ0oCClqSw==
+      integrity: sha512-+bzf9vyrwVnC9wJPJCv0bncrxZmx5UdDEYdCpIUO05umsItbSThVWb1Zh4r5FKCZ23QkCJ2/F/11elhlsevlcQ==
   /restore-cursor/2.0.0:
     dependencies:
       onetime: 2.0.1
@@ -6029,6 +6029,7 @@ packages:
     dev: true
     name: '@types/mithril'
     resolution:
+      registry: 'https://registry.npmjs.org/'
       tarball: 'https://codeload.github.com/MithrilJS/mithril.d.ts/tar.gz/5308c5b290725517c50832c157d4e8c60abf064c'
     version: 1.2.3
 specifiers:
@@ -6044,8 +6045,8 @@ specifiers:
   mithril: v2.0.0-rc.9
   mithril-leaflet: ^0.1.5
   mithril-materialized: ^0.13.15
-  mithril-ui-form: ^0.1.2
+  mithril-ui-form: ^0.2.0
   parcel-bundler: ^1.12.3
-  rest-easy-loki: ^0.2.0
+  rest-easy-loki: ^0.3.0
   rimraf: ^2.6.3
   typescript: ^3.5.3
