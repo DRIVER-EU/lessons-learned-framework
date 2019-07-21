@@ -1,5 +1,3 @@
-import { Form, IInputField } from 'mithril-ui-form';
-
 /**
  * Create a GUID
  * @see https://stackoverflow.com/a/2117523/319711
@@ -16,8 +14,6 @@ export const uuid4 = () => {
   });
 };
 
-export const capitalizeFirstLetter = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-
 /**
  * Create a unique ID
  * @see https://stackoverflow.com/a/2117523/319711
@@ -33,6 +29,8 @@ export const uniqueId = () => {
     return v.toString(16);
   });
 };
+
+export const capitalizeFirstLetter = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export const toLetters = (num: number): string => {
   const mod = num % 26;
@@ -64,39 +62,6 @@ export const range = (from: number, to: number, count: number = to - from + 1, s
     a[i] = x0 + i * step;
   }
   return a;
-};
-
-/**
- * Deep copy function for TypeScript.
- * @param T Generic type of target/copied value.
- * @param target Target value to be copied.
- * @see Source project, ts-deepcopy https://github.com/ykdr2017/ts-deepcopy
- * @see Code pen https://codepen.io/erikvullings/pen/ejyBYg
- */
-export const deepCopy = <T>(target: T): T => {
-  if (target === null) {
-    return target;
-  }
-  if (target instanceof Date) {
-    return new Date(target.getTime()) as any;
-  }
-  if (target instanceof Array) {
-    const cpy = [] as any[];
-    (target as any[]).forEach(v => {
-      cpy.push(v);
-    });
-    return cpy.map((n: any) => deepCopy<any>(n)) as any;
-  }
-  if (typeof target === 'object' && target !== {}) {
-    const cpy = { ...(target as { [key: string]: any }) } as {
-      [key: string]: any;
-    };
-    Object.keys(cpy).forEach(k => {
-      cpy[k] = deepCopy<any>(cpy[k]);
-    });
-    return cpy as T;
-  }
-  return target;
 };
 
 /**
@@ -143,48 +108,7 @@ export const removeParagraphs = (s: string) => s.replace(/<\/?p>/g, '');
 
 export const removeHtml = (s: string) => s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/gm, '').replace(/&quot;/gi, '"');
 
-/** Create a resolver that translates an ID and value (or values) to a human readable representation  */
-export const labelResolver = (form: Form) => {
-  const createDict = (ff: IInputField[], label = '') => {
-    const d = ff
-      .filter(f => f.type !== 'section')
-      .reduce(
-        (acc, cur) => {
-          const fieldId = (label ? `${label}.` : '') + cur.id;
-          const type = cur.type || (cur.options && cur.options.length > 0 ? 'select' : 'text');
-          if (typeof type === 'string') {
-            acc[fieldId] = cur;
-          } else {
-            acc = { ...acc, ...createDict(type, fieldId) };
-          }
-          return acc;
-        },
-        {} as { [key: string]: IInputField }
-      );
-    return d;
-  };
-  const dict = createDict(form);
-  return (id: string, value: string | string[]) => {
-    if (!dict.hasOwnProperty(id)) {
-      return value;
-    }
-    const ff = dict[id];
-    const values = value instanceof Array ? value.filter(v => v !== null && v !== undefined) : [value];
-    const type = ff.type || (ff.options ? 'options' : 'none');
-    switch (type) {
-      default:
-        return value;
-      case 'radio':
-      case 'select':
-      case 'options':
-        return values
-          .map(v =>
-            ff
-              .options!.filter(o => o.id === v)
-              .map(o => o.label || capitalizeFirstLetter(o.id))
-              .shift()
-          )
-          .join(', ');
-    }
-  };
+export const formatOptional = (brackets: boolean, ...items: Array<string | number | undefined>) => {
+  const f = items.filter(i => typeof i !== 'undefined' && i !== '');
+  return f.length === 0 ? '' : brackets ? ` (${f.join(', ')})` : ' ' + f.join(', ');
 };
