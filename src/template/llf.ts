@@ -663,6 +663,17 @@ const incidentCategories = [
   },
 ];
 
+export const eventTypes = [
+  { id: 'risk', label: 'Risk analysis' },
+  { id: 'action', label: 'Preventive action' },
+  { id: 'incident' },
+  { id: 'disaster' },
+  { id: 'training' },
+  { id: 'live_excercise', label: 'Live exercise' },
+  { id: 'ttx', label: 'Table top exercise' },
+  { id: 'excercise' },
+  { id: 'test' },
+];
 export const llf: Form = [
   { id: 'general information', type: 'section' },
   {
@@ -691,26 +702,17 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   },
   {
     id: 'eventType',
+    label: 'Event type',
     type: 'select',
     multiple: true,
     className: 'col s12 m6',
-    options: [
-      { id: 'risk', label: 'Risk analysis' },
-      { id: 'action', label: 'Preventive action' },
-      { id: 'incident' },
-      { id: 'disaster' },
-      { id: 'training' },
-      { id: 'live_excercise', label: 'Live exercise' },
-      { id: 'ttx', label: 'Table top exercise' },
-      { id: 'excercise' },
-      { id: 'test' },
-    ],
+    options: eventTypes,
   },
   {
     id: 'eventPhase',
     type: 'select',
     multiple: true,
-    label: 'Concerned phase of the disaster management cycle:',
+    label: 'Relevant disaster management phase(s):',
     className: 'col s12 m6',
     options: [
       {
