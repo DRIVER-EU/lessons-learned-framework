@@ -22,7 +22,8 @@ export interface IEvent extends ILokiObj {
   areaType: string;
   eventPhase: string[];
   editors: IEditor[];
-  sources?: ISource[];
+  publications: IPublication[];
+  multimedia: IMultimedia[];
   lessons?: Array<{ title: string; status: string; [key: string]: any }>;
   [key: string]: any;
 }
@@ -34,7 +35,19 @@ interface IEditor {
   country: string;
 }
 
-interface ISource {
+export interface IPublication {
   title: string;
-  url: string;
+  orgTitle?: string;
+  author?: string;
+  yearOfPublication?: number;
+  url?: string;
+  language?: string;
+  dissemination?: string;
+  otherLanguage?: string;
+}
+
+export interface IMultimedia {
+  desc?: string;
+  owner?: string;
+  url?: string;
 }
