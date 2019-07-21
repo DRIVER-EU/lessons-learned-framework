@@ -6,13 +6,9 @@
   "scripts": {
     "clean": "rimraf ./public ./.cache",
     "start": "concurrently \"npm run serve\" \"parcel watch index.html --out-dir ./public\"",
-    "build:domain": "npm run clean && parcel build index.html --out-dir ../../docs --public-url https://erikvullings.github.io/mithril-materialized",
+    "build:domain": "npm run clean && parcel build index.html --out-dir ./public\"",
     "link": "npm link mithril-ui-form",
-    "serve": "rest-easy-loki",
-    "dry-run": "npm publish --dry-run",
-    "patch-release": "npm run clean && npm run build && npm version patch --force -m \"Patch release\" && npm publish && git push --follow-tags",
-    "minor-release": "npm run clean && npm run build && npm version minor --force -m \"Minor release\" && npm publish && git push --follow-tags",
-    "major-release": "npm run clean && npm run build && npm version major --force -m \"Major release\" && npm publish && git push --follow-tags"
+    "serve": "rest-easy-loki"
   },
   "repository": {
     "type": "git",
