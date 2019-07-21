@@ -1,20 +1,24 @@
 import m from 'mithril';
-import { Icon, RoundIconButton, TextInput } from 'mithril-materialized';
+import { Icon, RoundIconButton, Select, TextInput } from 'mithril-materialized';
 import { IEvent } from '../../models';
 import { AppState } from '../../models/app-state';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { EventsSvc } from '../../services/events-service';
-import { titleAndDescriptionFilter } from '../../utils';
+import { eventTypes } from '../../template/llf';
+import { capitalizeFirstLetter, titleAndDescriptionFilter } from '../../utils';
 
 export const EventsList = () => {
   const state = {
     filterValue: '',
+    filter: []
   } as {
+    filter: Array<string | number>;
     filterValue: string;
   };
   return {
     oninit: () => EventsSvc.loadList(),
     view: () => {
+      const { filter } = state;
       const events = EventsSvc.getList() || [] as IEvent[];
       const query = titleAndDescriptionFilter(state.filterValue);
       const filteredEvents = events.filter(query);
@@ -35,7 +39,17 @@ export const EventsList = () => {
             iconName: 'filter_list',
             onkeyup: (_: KeyboardEvent, v?: string) => (state.filterValue = v ? v : ''),
             style: 'margin-right:100px',
-            className: 'right',
+            className: 'col s4',
+          }),
+          m(Select, {
+            placeholder: 'Pick one or more',
+            label: 'Event type',
+            inline: true,
+            multiple: true,
+            checkedId: filter,
+            options: eventTypes.map(o => ({ label: capitalizeFirstLetter(o.id), ...o })),
+            onchange: f => state.filter = f,
+            className: 'col s4'
           }),
         ]),
         m(
