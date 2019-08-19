@@ -808,41 +808,45 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         id: 'name',
         label: 'Name',
         type: 'text',
-        className: 'col s8',
+        className: 'col s6',
         iconName: 'title',
         required: true,
-        description: '_Name of the editor or analist._',
       },
-      { id: 'organisation', type: 'text', className: 'col s4' },
+      { id: 'organisation', type: 'text', className: 'col s6' },
       { id: 'country', type: 'select', options: countries, className: 'col s6' },
       { id: 'lastEdit', label: 'Last edit on', type: 'date', className: 'col s6' },
+      {
+        id: 'info',
+        label: 'Description of provided input',
+        type: 'textarea',
+      },
     ],
   },
-  {
-    id: 'info',
-    label: 'Additional info',
-    type: 'textarea',
-    maxLength: 500,
-    description: `_Free space for additional notes by the evaluators (max. 4 lines / 400 characters)._`,
-  },
   { id: 'created', label: 'Created "{{event}}" event on:', type: 'date', required: true },
-  { id: 'edited', type: 'date', required: true },
   { id: 'sources', type: 'section' },
   { type: 'md', value: '#### Sources of information' },
   {
     id: 'publications',
-    label: 'Publications',
+    label: 'Add Publications',
     repeat: true,
     type: publicationType,
   },
   {
     id: 'multimedia',
-    label: 'Multimedia sources',
+    label: 'Add Multimedia sources',
     repeat: true,
     type: [
       { id: 'desc', label: 'Short description', type: 'textarea' },
       { id: 'owner', label: 'Owner', type: 'text', className: 'col s6' },
-      { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s6' },
+      {
+        id: 'yearOfPublication',
+        type: 'number',
+        min: 1900,
+        max: 2100,
+        label: 'Year of publication',
+        className: 'col s6',
+      },
+      { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s12' },
     ],
   },
   { id: 'geo', type: 'section', label: 'Geographic scale' },
@@ -938,9 +942,8 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   },
   {
     id: 'members',
-    repeat: true,
     label: 'Involved EU member state',
-    type: [{ id: 'country', type: 'select', className: 'col s6', options: countries }],
+    type: [{ id: 'country', type: 'options', className: 'col s6', options: countries }],
   },
   {
     id: 'memberInfo',
@@ -1014,7 +1017,7 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   { type: 'md', value: '#### Organisations that were involved in executing CM functions' },
   {
     id: 'organisations',
-    label: 'Organisation',
+    label: 'Add Organisation',
     repeat: true,
     type: [
       {
@@ -1094,19 +1097,12 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         className: 'col s12 m4',
         options: countries,
       },
+      {
+        id: 'info',
+        label: 'Role during the event',
+        type: 'textarea',
+      },
     ],
-  },
-  {
-    id: 'additionalOrganisations',
-    label: 'Other involved organisations (if any)',
-    type: 'textarea',
-  },
-  {
-    id: 'organisationInvolvement',
-    label: 'Evaluated event',
-    description: 'Text describing the evaluated event, challenges, problems, roles of the involved organisations:',
-    type: 'textarea',
-    maxLength: 1000,
   },
   { id: 'lessons', type: 'section', label: 'Lessons' },
   { type: 'md', value: '#### Lessons' },
@@ -1118,33 +1114,6 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
       {
         id: 'title',
         type: 'text',
-        className: 'col s9',
-      },
-      {
-        id: 'status',
-        label: 'Status of the lesson',
-        type: 'select',
-        className: 'col s3',
-        options: [
-          {
-            id: 'identified',
-            label: 'Identified',
-          },
-          {
-            id: 'learned',
-            label: 'Learned',
-          },
-          {
-            id: 'implemented',
-            label: 'Implemented',
-          },
-        ],
-      },
-      {
-        id: 'explanation',
-        label: 'Explanation of the status',
-        type: 'textarea',
-        maxLength: 200,
       },
       {
         id: 'futureDev',
