@@ -37,7 +37,7 @@ export const HomePage = () => ({
           m(SlimdownView, {
             md:
               '## Learn and share\n' +
-              'The lessons learned library (L3) is a repository for lessons gathered during an incident, trial or exercise.',
+              'The Lessons Learned Library (L3) is a repository for lessons gathered during an incident, trial or exercise.',
           }),
           m('.row', [
             m(
