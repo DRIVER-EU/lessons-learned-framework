@@ -664,16 +664,13 @@ const incidentCategories = [
 ];
 
 export const eventTypes = [
-  { id: 'risk', label: 'Risk analysis' },
-  { id: 'action', label: 'Preventive action' },
+  { id: 'disaster', label: 'Crisis or disaster' },
   { id: 'incident' },
-  { id: 'disaster' },
-  { id: 'training' },
-  { id: 'live_excercise', label: 'Live exercise' },
-  { id: 'ttx', label: 'Table top exercise' },
-  { id: 'excercise' },
-  { id: 'test' },
+  { id: 'action', label: 'Preventive activity' },
+  { id: 'test', label: 'Test or trial' },
+  { id: 'training', label: 'Training or exercise' },
 ];
+
 export const llf: Form = [
   { id: 'general information', type: 'section' },
   {
@@ -692,7 +689,14 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     type: 'text',
     maxLength: 70,
     required: true,
-    className: 'col s12',
+    className: 'col s12 m8',
+  },
+  {
+    id: 'eventType',
+    label: 'Event type',
+    type: 'select',
+    className: 'col s12 m4',
+    options: eventTypes,
   },
   {
     id: 'desc',
@@ -700,43 +704,35 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     type: 'textarea',
     maxLength: 400,
   },
-  {
-    id: 'eventType',
-    label: 'Event type',
-    type: 'select',
-    multiple: true,
-    className: 'col s12 m6',
-    options: eventTypes,
-  },
-  {
-    id: 'eventPhase',
-    type: 'select',
-    multiple: true,
-    label: 'Relevant disaster management phase(s):',
-    className: 'col s12 m6',
-    options: [
-      {
-        id: 'risk_assessment',
-        label: 'Risk assessment',
-      },
-      {
-        id: 'mi',
-        label: 'Mitigation & Prevention',
-      },
-      {
-        id: 'preparedness',
-        label: 'Preparedness',
-      },
-      {
-        id: 'response',
-        label: 'Response',
-      },
-      {
-        id: 'recovery',
-        label: 'Recovery',
-      },
-    ],
-  },
+  // {
+  //   id: 'eventPhase',
+  //   type: 'select',
+  //   multiple: true,
+  //   label: 'Relevant disaster management phase(s):',
+  //   className: 'col s12 m6',
+  //   options: [
+  //     {
+  //       id: 'risk_assessment',
+  //       label: 'Risk assessment',
+  //     },
+  //     {
+  //       id: 'mi',
+  //       label: 'Mitigation & Prevention',
+  //     },
+  //     {
+  //       id: 'preparedness',
+  //       label: 'Preparedness',
+  //     },
+  //     {
+  //       id: 'response',
+  //       label: 'Response',
+  //     },
+  //     {
+  //       id: 'recovery',
+  //       label: 'Recovery',
+  //     },
+  //   ],
+  // },
   {
     id: 'startDate',
     type: 'date',
@@ -749,106 +745,56 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     label: 'End date of the event',
     className: 'col s12 m6',
   },
-  { id: 'location', type: 'map', className: 'col s12' },
-  {
-    id: 'areaType',
-    type: 'select',
-    label: 'Type of area:',
-    className: 'col s12 m6',
-    options: [
-      {
-        id: 'mixed',
-        label: 'Mixed',
-      },
-      {
-        id: 'centre',
-        label: 'City/town centre',
-      },
-      {
-        id: 'residential',
-        label: 'Residential area',
-      },
-      {
-        id: 'industrial',
-        label: 'Industrial area',
-      },
-      {
-        id: 'countryside',
-        label: 'Countryside',
-      },
-      {
-        id: 'water',
-        label: 'Water',
-      },
-    ],
-  },
-  {
-    id: 'incidentCategory',
-    label: 'Incident category',
-    className: 'col s12 m6',
-    options: incidentCategories,
-  },
-  {
-    id: 'incidentTypes',
-    label: 'Select all the incident types that apply:',
-    checkboxClass: 'col s12 m6 xl4',
-    type: 'options',
-    options: incidentTypes,
-  },
+  // {
+  //   id: 'areaType',
+  //   type: 'select',
+  //   label: 'Type of area:',
+  //   className: 'col s12 m6',
+  //   options: [
+  //     {
+  //       id: 'mixed',
+  //       label: 'Mixed',
+  //     },
+  //     {
+  //       id: 'centre',
+  //       label: 'City/town centre',
+  //     },
+  //     {
+  //       id: 'residential',
+  //       label: 'Residential area',
+  //     },
+  //     {
+  //       id: 'industrial',
+  //       label: 'Industrial area',
+  //     },
+  //     {
+  //       id: 'countryside',
+  //       label: 'Countryside',
+  //     },
+  //     {
+  //       id: 'water',
+  //       label: 'Water',
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 'incidentCategory',
+  //   label: 'Incident category',
+  //   className: 'col s12 m6',
+  //   options: incidentCategories,
+  // },
+  // {
+  //   id: 'incidentTypes',
+  //   label: 'Select all the incident types that apply:',
+  //   checkboxClass: 'col s12 m6 xl4',
+  //   type: 'options',
+  //   options: incidentTypes,
+  // },
 
-  { id: 'editors', type: 'section' },
-  { type: 'md', value: '#### Editors' },
-  {
-    id: 'editors',
-    label: 'Editors',
-    className: 'col s12',
-    repeat: true,
-    type: [
-      {
-        id: 'name',
-        label: 'Name',
-        type: 'text',
-        className: 'col s6',
-        iconName: 'title',
-        required: true,
-      },
-      { id: 'organisation', type: 'text', className: 'col s6' },
-      { id: 'country', type: 'select', options: countries, className: 'col s6' },
-      { id: 'lastEdit', label: 'Last edit on', type: 'date', className: 'col s6' },
-      {
-        id: 'info',
-        label: 'Description of provided input',
-        type: 'textarea',
-      },
-    ],
-  },
-  { id: 'created', label: 'Created "{{event}}" event on:', type: 'date', required: true },
-  { id: 'sources', type: 'section' },
-  { type: 'md', value: '#### Sources of information' },
-  {
-    id: 'publications',
-    label: 'Add Publications',
-    repeat: true,
-    type: publicationType,
-  },
-  {
-    id: 'multimedia',
-    label: 'Add Multimedia sources',
-    repeat: true,
-    type: [
-      { id: 'desc', label: 'Short description', type: 'textarea' },
-      { id: 'owner', label: 'Owner', type: 'text', className: 'col s6' },
-      {
-        id: 'yearOfPublication',
-        type: 'number',
-        min: 1900,
-        max: 2100,
-        label: 'Year of publication',
-        className: 'col s6',
-      },
-      { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s12' },
-    ],
-  },
+  // Incident characteristics
+  { id: 'characteristics', type: 'section', label: 'Incident characteristics' },
+
+  // SCALE
   { id: 'geo', type: 'section', label: 'Geographic scale' },
   { type: 'md', value: '#### Geographical scale of the event' },
   {
@@ -875,6 +821,7 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
       },
     ],
   },
+  { id: 'location', type: 'map', className: 'col s12' },
   {
     id: 'international',
     label: 'International dimension',
@@ -1013,7 +960,9 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     label: 'Other involved critical infrastructure or societal sectors (if any)',
     type: 'textarea',
   },
-  { id: 'organisations', type: 'section', label: 'Organisations' },
+
+  // Involved organisations
+  { id: 'organisations', type: 'section', label: 'Involved organisations' },
   { type: 'md', value: '#### Organisations that were involved in executing CM functions' },
   {
     id: 'organisations',
@@ -1104,6 +1053,11 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
       },
     ],
   },
+
+  // Impact & Challenges
+  { id: 'impact', type: 'section', label: 'Impact & Challenges' },
+
+  // LESSONS
   { id: 'lessons', type: 'section', label: 'Lessons' },
   { type: 'md', value: '#### Lessons' },
   {
@@ -1596,6 +1550,59 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         maxLength: 120,
         className: 'col s6 m8 l9',
       },
+    ],
+  },
+  { id: 'editors', type: 'section' },
+  { type: 'md', value: '#### Editors' },
+  {
+    id: 'editors',
+    label: 'Editors',
+    className: 'col s12',
+    repeat: true,
+    type: [
+      {
+        id: 'name',
+        label: 'Name',
+        type: 'text',
+        className: 'col s6',
+        iconName: 'title',
+        required: true,
+      },
+      { id: 'organisation', type: 'text', className: 'col s6' },
+      { id: 'country', type: 'select', options: countries, className: 'col s6' },
+      { id: 'lastEdit', label: 'Last edit on', type: 'date', className: 'col s6' },
+      {
+        id: 'info',
+        label: 'Description of provided input',
+        type: 'textarea',
+      },
+    ],
+  },
+  { id: 'created', label: 'Created "{{event}}" event on:', type: 'date', required: true },
+  { id: 'sources', type: 'section' },
+  { type: 'md', value: '#### Sources of information' },
+  {
+    id: 'publications',
+    label: 'Add Publications',
+    repeat: true,
+    type: publicationType,
+  },
+  {
+    id: 'multimedia',
+    label: 'Add Multimedia sources',
+    repeat: true,
+    type: [
+      { id: 'desc', label: 'Short description', type: 'textarea' },
+      { id: 'owner', label: 'Owner', type: 'text', className: 'col s6' },
+      {
+        id: 'yearOfPublication',
+        type: 'number',
+        min: 1900,
+        max: 2100,
+        label: 'Year of publication',
+        className: 'col s6',
+      },
+      { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s12' },
     ],
   },
 ] as Form;
