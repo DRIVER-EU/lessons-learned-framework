@@ -63,20 +63,10 @@ class DashboardService {
 
 export const dashboardSvc: DashboardService = new DashboardService(Layout, [
   {
-    id: Dashboards.HOME,
-    default: true,
-    hasNavBar: false,
+    id: Dashboards.SEARCH,
     title: 'HOME',
     icon: 'home',
     route: '/home',
-    visible: true,
-    component: HomePage,
-  },
-  {
-    id: Dashboards.SEARCH,
-    title: 'SEARCH',
-    icon: 'search',
-    route: '/search',
     visible: true,
     component: EventsList,
   },
@@ -103,5 +93,14 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     route: '/about',
     visible: true,
     component: AboutPage,
+  },
+  {
+    id: Dashboards.HOME,
+    default: true,
+    hasNavBar: false,
+    title: 'WELCOME',
+    route: '/welcome',
+    visible: false,
+    component: HomePage,
   },
 ]);

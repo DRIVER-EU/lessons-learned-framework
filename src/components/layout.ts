@@ -42,6 +42,6 @@ export const Layout = () => ({
           ),
         ])
       ),
-      m('.container', m('.row', vnode.children)),
+      m('.container', vnode.children),
     ]),
 });
