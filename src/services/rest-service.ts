@@ -117,37 +117,10 @@ export class RestService<T extends { $loki?: number }> {
     }
   }
 
-  public async loadListInScenario(id: string) {
-    const result = await m
-      .request<T[]>({
-        method: 'GET',
-        url: this.baseUrl + `scenario/${id}`,
-        withCredentials,
-      });
-    // log(JSON.stringify(result, null, 2));
-    log('loadListInScenario...');
-    this.setList(result);
-    return this.list;
-  }
-
   public new(item?: T) {
     this.setCurrent(item || ({} as T));
     return this.current;
   }
-
-  // protected async getAssets(id = this.current.id) {
-  //   return m
-  //     .request<IAsset[]>({
-  //       method: 'GET',
-  //       url: this.baseUrl + id + '/assets',
-  //       withCredentials,
-  //     })
-  //     .then(result => {
-  //       log(`Got assets.`);
-  //       return result;
-  //     })
-  //     .catch(err => error(err));
-  // }
 
   private setCurrent(value: T) {
     const old = this.current;
