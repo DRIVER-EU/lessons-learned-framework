@@ -60,7 +60,12 @@ export const EventForm = () => {
       const hasChanged = !deepEqual(event, EventsSvc.getCurrent());
       const sections = form
         .filter(c => c.type === 'section')
-        .map(c => ({ id: c.id, title: c.label || capitalizeFirstLetter(c.id), onclick: () => (state.section = c.id) }));
+        .map(c => ({
+          style: 'cursor: pointer;',
+          id: c.id,
+          title: c.label || capitalizeFirstLetter(c.id),
+          onclick: () => (state.section = c.id),
+        }));
       const section = state.section || sections[0].id;
       return m('.row', [
         m(
