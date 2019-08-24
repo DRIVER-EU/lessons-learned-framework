@@ -702,6 +702,357 @@ const cmFunctions = [
   },
 ].sort(sortByLabel);
 
+const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: `cmFunctions = ${f.id}` }));
+
+const lessonForm = [
+  { type: 'md', value: '##### Observations' },
+  { type: 'md', value: 'Description of positive or negative observations, experiences, etc.' },
+  {
+    id: 'cmFunctions',
+    type: 'options',
+    multiple: true,
+    label: 'Applicable Crisis Management functions (up to 4)',
+    className: 'col s12',
+    checkboxClass: 'col s6 m4',
+    options: preSelectedCmFunctions,
+  },
+
+  { type: 'md', value: '##### Improvement aspects' },
+  { type: 'md', value: '##### Expectations' },
+  {
+    id: 'title',
+    type: 'text',
+  },
+  {
+    id: 'futureDev',
+    label: 'Future development',
+    type: 'textarea',
+    newLine: true,
+    maxLength: 200,
+  },
+  {
+    id: 'incidentCategory',
+    type: 'select',
+    label: 'Applicability of the lesson',
+    className: 'col s6 m4',
+    options: incidentCategories,
+  },
+  {
+    id: 'scale',
+    label: 'Geographical scale of interest',
+    type: 'select',
+    className: 'col s6 m4',
+    options: [
+      {
+        id: 'regional',
+        label: 'Regional',
+      },
+      {
+        id: 'national',
+        label: 'National',
+      },
+      {
+        id: 'panEurope',
+        label: 'Pan-Europe',
+      },
+      {
+        id: 'global',
+        label: 'Global',
+      },
+    ],
+  },
+  {
+    id: 'incidentTypes',
+    label: 'Select all the incident types that apply (up to 4):',
+    type: 'select',
+    multiple: true,
+    newLine: true,
+    className: 'col s12 m6 xl4',
+    options: incidentTypes,
+  },
+  {
+    id: 'cmSectors',
+    type: 'select',
+    multiple: true,
+    label: 'Applicable Crisis Management sectors (up to 4)',
+    className: 'col s12',
+    options: [
+      {
+        id: 'firebrigade',
+        label: 'Firebrigade/Civil Prot.',
+      },
+      {
+        id: 'police_military',
+        label: 'Police / Military',
+      },
+      {
+        id: 'medical_services',
+        label: 'Medical services',
+      },
+      {
+        id: 'search_and_rescue',
+        label: 'Search and Rescue',
+      },
+      {
+        id: 'coastguard',
+        label: 'Coastguard',
+      },
+      {
+        id: 'ngo_volunteer_org.',
+        label: 'NGO / Volunteer org.',
+      },
+      {
+        id: 'monitoring_institutes',
+        label: 'Monitoring institutes',
+      },
+      {
+        id: 'public_services',
+        label: 'Public services',
+      },
+      {
+        id: 'critical_infrastructures',
+        label: 'Critical Infrastructures',
+      },
+      {
+        id: 'command_centres',
+        label: 'Command centres',
+      },
+      {
+        id: 'policy_authorities',
+        label: 'Policy / Authorities',
+      },
+      {
+        id: 'international_agency',
+        label: 'International agency',
+      },
+      {
+        id: 'other',
+        label: 'Other',
+      },
+    ],
+  },
+  {
+    id: 'cips',
+    type: 'select',
+    multiple: true,
+    label: 'Applicable Critical Infrastructures (up to 4)',
+    className: 'col s12',
+    options: cips,
+  },
+  {
+    id: 'interests',
+    type: 'select',
+    multiple: true,
+    label: 'Aspects of interest (up to 4)',
+    className: 'col s6 m3',
+    options: [
+      {
+        id: 'personnel',
+        label: 'Personnel',
+      },
+      {
+        id: 'equipment/tools',
+        label: 'Equipment/Tools',
+      },
+      {
+        id: 'ict',
+        label: 'ICT',
+      },
+      {
+        id: 'fixed assets',
+        label: 'Fixed assets',
+      },
+      {
+        id: 'organisation',
+        label: 'Organisation',
+      },
+      {
+        id: 'procedures',
+        label: 'Procedures',
+      },
+    ],
+  },
+  {
+    id: 'observationBrief',
+    type: 'textarea',
+    label: 'Short description of the underlying observations',
+    description: '_Describe the observation that leads/has led to the lesson._',
+    maxLength: 300,
+  },
+  {
+    id: 'observationDetails',
+    type: 'textarea',
+    label: 'Detailed description of the underlying observations',
+    description: '_Describe the observation in detail that leads/has led to the lesson._',
+    maxLength: 1000,
+  },
+  {
+    type: 'md',
+    value: 'Performance of the Crisis Management function',
+  },
+  {
+    id: 'logistics',
+    label: 'Logistics',
+    type: 'select',
+    className: 'col s6 m4 xl3',
+    options: qualityLevels,
+  },
+  {
+    id: 'sourceFighting',
+    type: 'select',
+    label: 'Source fighting',
+    className: 'col s6 m4 xl3',
+    options: qualityLevels,
+  },
+  {
+    id: 'volunteers',
+    label: 'Volunteer management',
+    type: 'select',
+    className: 'col s6 m4 xl3',
+    options: qualityLevels,
+  },
+  {
+    type: 'md',
+    label: '##### Other consequences',
+  },
+  {
+    id: 'responderHealtAndSafety',
+    label: 'Responder health and safety',
+    type: 'select',
+    className: 'col s6 m4 l3',
+    options: qualityLevels,
+  },
+  {
+    id: 'respondersExplanation',
+    label: 'Explanation',
+    type: 'textarea',
+    maxLength: 150,
+    className: 'col s6 m8 l9',
+  },
+  {
+    id: 'costs',
+    label: 'Costs concerned CM functions',
+    type: 'select',
+    className: 'col s6 m4 l3',
+    options: impactLevels,
+  },
+  {
+    id: 'costs',
+    label: 'Absolute costs',
+    className: 'col s6 m4 l3',
+    type: 'select',
+    options: costLevels,
+  },
+  {
+    id: 'costsExplanation',
+    label: 'Explanation of costs',
+    type: 'textarea',
+    maxLength: 120,
+    className: 'col s12 m4 l6',
+  },
+  {
+    type: 'md',
+    label: '##### Lesson, including its potential expected effect',
+  },
+  {
+    id: 'lessonBriefDescription',
+    label: 'Brief description of the lesson',
+    type: 'textarea',
+    maxLength: 300,
+  },
+  {
+    id: 'lessonDetailedDescription',
+    label: 'Detailed description of the lesson',
+    type: 'textarea',
+    maxLength: 1000,
+  },
+  {
+    type: 'md',
+    label: `##### Performance of the Crisis Management function
+
+        _Estimated or expected potential impact of the lesson once implemented._`,
+  },
+  {
+    id: 'logistics_improvements',
+    label: 'Logistics',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  {
+    id: 'source_fighting_improvements',
+    label: 'Source fighting',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  {
+    id: 'volunteers_improvements',
+    label: 'Volunteer management',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  { type: 'md', label: '##### Societal impact of incidents' },
+  {
+    id: 'victimsImprovements',
+    label: 'Numbers of victims/casualties',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  {
+    id: 'materialDamageImprovements',
+    label: 'Material damage',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  {
+    id: 'ciLossImprovements',
+    label: 'Loss of (critical) infrastructure services',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  {
+    id: 'socEcoDisruptionImprovements',
+    label: 'Social / Economic disruption',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  {
+    id: 'environmentalDegradationImprovements',
+    label: 'Environmental degradation',
+    className: 'col s6 m4 xl3',
+    options: improvementLevels,
+  },
+  {
+    type: 'md',
+    label: '##### Other consequences',
+  },
+  {
+    id: 'responderHealthAndSafetyIimprovements',
+    type: 'select',
+    label: 'Responder health and safety',
+    className: 'col s6 m4 l3',
+    options: improvementLevels,
+  },
+  {
+    id: 'respondersImprovements',
+    label: 'Explanation',
+    type: 'textarea',
+    maxLength: 150,
+    className: 'col s6 m8 l9',
+  },
+  {
+    id: 'costsImprovements',
+    label: 'Costs concerned CM functions',
+    className: 'col s6 m4 l3',
+    options: improvementLevels,
+  },
+  {
+    id: 'costsImprovementsExplanation',
+    label: 'Explanation',
+    type: 'textarea',
+    maxLength: 120,
+    className: 'col s6 m8 l9',
+  },
+];
 export const llf: Form = [
   { id: 'general information', type: 'section' },
   {
@@ -1076,35 +1427,35 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     id: 'victims',
     type: 'select',
     label: 'Numbers of victims / casualties',
-    className: 'col s6 m4',
+    className: 'col s6 xl4',
     options: impactLevels,
   },
   {
     id: 'materialDamage',
     type: 'select',
     label: 'Material damage',
-    className: 'col s6 m4',
+    className: 'col s6 xl4',
     options: impactLevels,
   },
   {
     id: 'ci_loss',
     type: 'select',
     label: 'Loss of (critical) infrastructure services',
-    className: 'col s6 m4',
+    className: 'col s6 xl4',
     options: impactLevels,
   },
   {
     id: 'soc_eco_disruption',
     label: 'Social / economical disruption',
     type: 'select',
-    className: 'col s6 m4',
+    className: 'col s6 xl4',
     options: impactLevels,
   },
   {
     id: 'environmental_degradation',
     label: 'Environmental degradation',
     type: 'select',
-    className: 'col s6 m4',
+    className: 'col s6 xl4',
     options: impactLevels,
   },
   {
@@ -1119,7 +1470,7 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     multiple: true,
     label: 'Applicable Crisis Management functions (up to 4)',
     className: 'col s12',
-    checkboxClass: 'col s6 m4',
+    checkboxClass: 'col s6 xl4',
     options: cmFunctions,
   },
   {
@@ -1131,346 +1482,15 @@ Description of the (potential) impact of the incident(s) on society, expressed i
   // LESSONS
   { id: 'lessons', type: 'section', label: 'Lessons' },
   { type: 'md', value: '#### Lessons' },
+  { type: 'md', value: 'Lessons can be added to the event by pressing the + sign.' },
+
   {
     id: 'lessons',
     label: 'Lesson',
     repeat: true,
-    type: [
-      {
-        id: 'title',
-        type: 'text',
-      },
-      {
-        id: 'futureDev',
-        label: 'Future development',
-        type: 'textarea',
-        newLine: true,
-        maxLength: 200,
-      },
-      {
-        id: 'incidentCategory',
-        type: 'select',
-        label: 'Applicability of the lesson',
-        className: 'col s6 m4',
-        options: incidentCategories,
-      },
-      {
-        id: 'scale',
-        label: 'Geographical scale of interest',
-        type: 'select',
-        className: 'col s6 m4',
-        options: [
-          {
-            id: 'regional',
-            label: 'Regional',
-          },
-          {
-            id: 'national',
-            label: 'National',
-          },
-          {
-            id: 'panEurope',
-            label: 'Pan-Europe',
-          },
-          {
-            id: 'global',
-            label: 'Global',
-          },
-        ],
-      },
-      {
-        id: 'incidentTypes',
-        label: 'Select all the incident types that apply (up to 4):',
-        type: 'select',
-        multiple: true,
-        newLine: true,
-        className: 'col s12 m6 xl4',
-        options: incidentTypes,
-      },
-      {
-        id: 'cmSectors',
-        type: 'select',
-        multiple: true,
-        label: 'Applicable Crisis Management sectors (up to 4)',
-        className: 'col s12',
-        options: [
-          {
-            id: 'firebrigade',
-            label: 'Firebrigade/Civil Prot.',
-          },
-          {
-            id: 'police_military',
-            label: 'Police / Military',
-          },
-          {
-            id: 'medical_services',
-            label: 'Medical services',
-          },
-          {
-            id: 'search_and_rescue',
-            label: 'Search and Rescue',
-          },
-          {
-            id: 'coastguard',
-            label: 'Coastguard',
-          },
-          {
-            id: 'ngo_volunteer_org.',
-            label: 'NGO / Volunteer org.',
-          },
-          {
-            id: 'monitoring_institutes',
-            label: 'Monitoring institutes',
-          },
-          {
-            id: 'public_services',
-            label: 'Public services',
-          },
-          {
-            id: 'critical_infrastructures',
-            label: 'Critical Infrastructures',
-          },
-          {
-            id: 'command_centres',
-            label: 'Command centres',
-          },
-          {
-            id: 'policy_authorities',
-            label: 'Policy / Authorities',
-          },
-          {
-            id: 'international_agency',
-            label: 'International agency',
-          },
-          {
-            id: 'other',
-            label: 'Other',
-          },
-        ],
-      },
-      {
-        id: 'cips',
-        type: 'select',
-        multiple: true,
-        label: 'Applicable Critical Infrastructures (up to 4)',
-        className: 'col s12',
-        options: cips,
-      },
-      {
-        id: 'interests',
-        type: 'select',
-        multiple: true,
-        label: 'Aspects of interest (up to 4)',
-        className: 'col s6 m3',
-        options: [
-          {
-            id: 'personnel',
-            label: 'Personnel',
-          },
-          {
-            id: 'equipment/tools',
-            label: 'Equipment/Tools',
-          },
-          {
-            id: 'ict',
-            label: 'ICT',
-          },
-          {
-            id: 'fixed assets',
-            label: 'Fixed assets',
-          },
-          {
-            id: 'organisation',
-            label: 'Organisation',
-          },
-          {
-            id: 'procedures',
-            label: 'Procedures',
-          },
-        ],
-      },
-      {
-        id: 'observationBrief',
-        type: 'textarea',
-        label: 'Short description of the underlying observations',
-        description: '_Describe the observation that leads/has led to the lesson._',
-        maxLength: 300,
-      },
-      {
-        id: 'observationDetails',
-        type: 'textarea',
-        label: 'Detailed description of the underlying observations',
-        description: '_Describe the observation in detail that leads/has led to the lesson._',
-        maxLength: 1000,
-      },
-      {
-        type: 'md',
-        value: 'Performance of the Crisis Management function',
-      },
-      {
-        id: 'logistics',
-        label: 'Logistics',
-        type: 'select',
-        className: 'col s6 m4 xl3',
-        options: qualityLevels,
-      },
-      {
-        id: 'sourceFighting',
-        type: 'select',
-        label: 'Source fighting',
-        className: 'col s6 m4 xl3',
-        options: qualityLevels,
-      },
-      {
-        id: 'volunteers',
-        label: 'Volunteer management',
-        type: 'select',
-        className: 'col s6 m4 xl3',
-        options: qualityLevels,
-      },
-      {
-        type: 'md',
-        label: '##### Other consequences',
-      },
-      {
-        id: 'responderHealtAndSafety',
-        label: 'Responder health and safety',
-        type: 'select',
-        className: 'col s6 m4 l3',
-        options: qualityLevels,
-      },
-      {
-        id: 'respondersExplanation',
-        label: 'Explanation',
-        type: 'textarea',
-        maxLength: 150,
-        className: 'col s6 m8 l9',
-      },
-      {
-        id: 'costs',
-        label: 'Costs concerned CM functions',
-        type: 'select',
-        className: 'col s6 m4 l3',
-        options: impactLevels,
-      },
-      {
-        id: 'costs',
-        label: 'Absolute costs',
-        className: 'col s6 m4 l3',
-        type: 'select',
-        options: costLevels,
-      },
-      {
-        id: 'costsExplanation',
-        label: 'Explanation of costs',
-        type: 'textarea',
-        maxLength: 120,
-        className: 'col s12 m4 l6',
-      },
-      {
-        type: 'md',
-        label: '##### Lesson, including its potential expected effect',
-      },
-      {
-        id: 'lessonBriefDescription',
-        label: 'Brief description of the lesson',
-        type: 'textarea',
-        maxLength: 300,
-      },
-      {
-        id: 'lessonDetailedDescription',
-        label: 'Detailed description of the lesson',
-        type: 'textarea',
-        maxLength: 1000,
-      },
-      {
-        type: 'md',
-        label: `##### Performance of the Crisis Management function
-
-        _Estimated or expected potential impact of the lesson once implemented._`,
-      },
-      {
-        id: 'logistics_improvements',
-        label: 'Logistics',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      {
-        id: 'source_fighting_improvements',
-        label: 'Source fighting',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      {
-        id: 'volunteers_improvements',
-        label: 'Volunteer management',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      { type: 'md', label: '##### Societal impact of incidents' },
-      {
-        id: 'victimsImprovements',
-        label: 'Numbers of victims/casualties',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      {
-        id: 'materialDamageImprovements',
-        label: 'Material damage',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      {
-        id: 'ciLossImprovements',
-        label: 'Loss of (critical) infrastructure services',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      {
-        id: 'socEcoDisruptionImprovements',
-        label: 'Social / Economic disruption',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      {
-        id: 'environmentalDegradationImprovements',
-        label: 'Environmental degradation',
-        className: 'col s6 m4 xl3',
-        options: improvementLevels,
-      },
-      {
-        type: 'md',
-        label: '##### Other consequences',
-      },
-      {
-        id: 'responderHealthAndSafetyIimprovements',
-        type: 'select',
-        label: 'Responder health and safety',
-        className: 'col s6 m4 l3',
-        options: improvementLevels,
-      },
-      {
-        id: 'respondersImprovements',
-        label: 'Explanation',
-        type: 'textarea',
-        maxLength: 150,
-        className: 'col s6 m8 l9',
-      },
-      {
-        id: 'costsImprovements',
-        label: 'Costs concerned CM functions',
-        className: 'col s6 m4 l3',
-        options: improvementLevels,
-      },
-      {
-        id: 'costsImprovementsExplanation',
-        label: 'Explanation',
-        type: 'textarea',
-        maxLength: 120,
-        className: 'col s6 m8 l9',
-      },
-    ],
+    type: lessonForm,
   },
+
   { id: 'editors', type: 'section' },
   { type: 'md', value: '#### Editors' },
   {
