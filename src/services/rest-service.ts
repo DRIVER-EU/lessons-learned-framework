@@ -13,6 +13,7 @@ export class RestService<T extends { $loki?: number }> {
   protected list: T[] = [];
   protected baseUrl: string;
   protected channel: IChannelDefinition<{ list: T[] } | { cur: T; old: T }>;
+  protected useDevServer = false;
 
   constructor(protected urlFragment: string, protected channelName?: string) {
     this.baseUrl = this.createBaseUrl();
@@ -50,12 +51,14 @@ export class RestService<T extends { $loki?: number }> {
   public async update(item: T, fd?: FormData) {
     try {
       console.debug('put');
-      await m.request({
-        method: 'PUT',
-        url: this.baseUrl + item.$loki,
-        body: fd || item,
-        withCredentials,
-      }).catch(e => console.error(e));
+      await m
+        .request({
+          method: 'PUT',
+          url: this.baseUrl + item.$loki,
+          body: fd || item,
+          withCredentials,
+        })
+        .catch(e => console.error(e));
       // this.setCurrent(data);
       this.current = item;
       this.updateItemInList(item);
@@ -89,12 +92,11 @@ export class RestService<T extends { $loki?: number }> {
     if (this.current && this.current.$loki === id) {
       return this.current;
     }
-    const result = await m
-      .request<T>({
-        method: 'GET',
-        url: this.baseUrl + id,
-        withCredentials,
-      });
+    const result = await m.request<T>({
+      method: 'GET',
+      url: this.baseUrl + id,
+      withCredentials,
+    });
     // log(result);
     this.setCurrent(result);
     this.updateItemInList(this.current);
@@ -103,15 +105,22 @@ export class RestService<T extends { $loki?: number }> {
 
   public async loadList(): Promise<T[] | undefined> {
     try {
-      const result = await m
-      .request<T[]>({
+      const result = await m.request<T[]>({
         method: 'GET',
         url: this.baseUrl,
         withCredentials,
       });
+      if (!result) {
+        throw Error('No result found at ' + this.baseUrl);
+      }
       this.setList(result);
       return this.list;
-    } catch {
+    } catch (error) {
+      console.error(error);
+      if (this.useDevServer) {
+        throw Error('No result found at ' + this.baseUrl + '\n' + error);
+      }
+      this.useDevServer = true;
       this.baseUrl = this.createBaseUrl(true);
       return this.loadList();
     }
