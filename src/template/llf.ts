@@ -138,131 +138,87 @@ const languages = [
   },
 ];
 
+const sortByLabel: ((a: { id: string; label: string }, b: { id: string; label: string }) => number) | undefined = (
+  a,
+  b
+) => (a.label > b.label ? 1 : a.label < b.label ? -1 : 0);
 const incidentTypes = [
   {
     id: 'earthquake',
-    label: 'Earthquake',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT Earthquake',
+    // show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
   },
   {
     id: 'eruption',
-    label: 'Volcanic eruption',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Volcanic eruption',
   },
   {
     id: 'movement',
-    label: 'Mass movement',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Mass movement',
   },
   {
     id: 'storm',
-    label: 'Storm',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Storm',
   },
   {
     id: 'tornado',
-    label: 'Tornado',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Tornado',
   },
   {
     id: 'cold',
-    label: 'Extreme cold',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Extreme cold',
   },
   {
     id: 'heat',
-    label: 'Extreme heat',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Extreme heat',
   },
   {
     id: 'drought',
-    label: 'Drought',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Drought',
   },
   {
     id: 'wildfire',
-    label: 'Wildfire',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Wildfire',
   },
   {
     id: 'river',
-    label: 'River flood',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - River flood',
   },
   {
     id: 'flash',
-    label: 'Flash flood',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Flash flood',
   },
   {
     id: 'coastal',
-    label: 'Coastal flood',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Coastal flood',
   },
   {
     id: 'landslide',
-    label: 'Landslide',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Landslide',
   },
   {
     id: 'epidemics',
-    label: 'Epidemics / Pandemics',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = natural',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
+    label: 'NAT - Epidemics / Pandemics',
   },
   {
     id: 'infestation',
-    label: 'Insect infestation',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = natural',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
+    label: 'NAT - Insect infestation',
   },
   {
     id: 'animal',
-    label: 'Animal stampede',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = natural',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
+    label: 'NAT - Animal stampede',
   },
   {
     id: 'asteroids',
-    label: 'Asteroids',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
-  },
-  {
-    id: 'meteoroids',
-    label: 'Meteoroids / Comets',
-    show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'NAT - Asteroids / Meteoroids / Comets',
   },
   {
     id: 'chemical',
     label: 'Chemical spill',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'explosion',
     label: 'Explosion',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'fire',
@@ -275,135 +231,56 @@ const incidentTypes = [
   {
     id: 'nuclear',
     label: 'Nuclear accident',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'aircrash',
     label: 'Air crash',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'roadaccident',
     label: 'Road accident',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'railaccident',
     label: 'Rail accident',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'wateraccident',
     label: 'Accident on water',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = natural',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'infra',
     label: 'Collapse of infra',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'drinkingwater',
     label: 'Drinking water failure',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'energy_failure',
     label: 'Energy failure',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'ict_failure',
-    label: 'Telecom/ICT failure',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
+    label: 'Telecom / ICT failure',
   },
   {
     id: 'bomb',
     label: 'Bomb attack',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'cbrn',
     label: 'CBRN attack',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'cyber_attack',
     label: 'Cyber attack',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
   {
     id: 'cyber_crime',
     label: 'Cyber crime',
-    show: [
-      'incidentCategory = general',
-      'incidentCategory = technological',
-      'incidentCategory = nattech',
-      'incidentCategory = intentional',
-    ],
   },
-];
+].sort(sortByLabel);
 
 const cips = [
   {
@@ -671,6 +548,160 @@ export const eventTypes = [
   { id: 'training', label: 'Training or exercise' },
 ];
 
+const cipOptions = [
+  {
+    id: 'drinkingWater',
+    label: 'Drinking water',
+  },
+  {
+    id: 'electricity',
+    label: 'Electricity',
+  },
+  {
+    id: 'gasSupply',
+    label: 'Gas supply',
+  },
+  {
+    id: 'publicHealth',
+    label: 'Public Health',
+  },
+  {
+    id: 'telecomIct',
+    label: 'Telecom/ICT',
+  },
+  {
+    id: 'airTransport',
+    label: 'Transport - Air',
+  },
+  {
+    id: 'railTransport',
+    label: 'Transport - Rail',
+  },
+  {
+    id: 'riverTransportRiver',
+    label: 'Transport - Rivers',
+  },
+  {
+    id: 'seaTransport',
+    label: 'Transport - Sea',
+  },
+  {
+    id: 'waterManagement',
+    label: 'Water management',
+  },
+  {
+    id: 'other',
+    label: 'Other',
+  },
+].sort(sortByLabel);
+
+const cmFunctions = [
+  {
+    id: 'risk_assessment',
+    label: 'Risk assessment',
+  },
+  {
+    id: 'protection_prevention',
+    label: 'Protection/Prevention',
+  },
+  {
+    id: 'contingency_planning',
+    label: 'Contingency planning',
+  },
+  {
+    id: 'collaboration_planning',
+    label: 'Collaboration planning',
+  },
+  {
+    id: 'education_training',
+    label: 'Education & Training',
+  },
+  {
+    id: 'asset_management',
+    label: 'Asset management',
+  },
+  {
+    id: 'detection_surveillance',
+    label: 'Detection/Surveillance',
+  },
+  {
+    id: 'risk_communication',
+    label: 'Risk communication',
+  },
+  {
+    id: 'alerting',
+    label: 'Alerting, incl. 112',
+  },
+  {
+    id: 'crisis_communication',
+    label: 'Crisis communication',
+  },
+  {
+    id: 'source_fighting',
+    label: 'Source fighting',
+  },
+  {
+    id: 'rescue_operations',
+    label: 'Rescue operations',
+  },
+  {
+    id: 'law_enforcement',
+    label: 'Law enforcement',
+  },
+  {
+    id: 'evacuation_shelter',
+    label: 'Evacuation & Shelter',
+  },
+  {
+    id: 'medical_treatment',
+    label: 'Medical treatment',
+  },
+  {
+    id: 'clear_incident_area',
+    label: 'Clear incident area',
+  },
+  {
+    id: 'basic_needs_supply',
+    label: 'Basic needs supply',
+  },
+  {
+    id: 'c4i',
+    label: 'C4I',
+  },
+  {
+    id: 'situation_assessment',
+    label: 'Situation Assessment',
+  },
+  {
+    id: 'collect_incident_data',
+    label: 'Collect incident data',
+  },
+  {
+    id: 'social_media_mining',
+    label: 'Social media mining',
+  },
+  {
+    id: 'volunteer_mgt',
+    label: 'Volunteer mgt.',
+  },
+  {
+    id: 'logistics',
+    label: 'Logistics',
+  },
+  {
+    id: 'humanitarian_recovery',
+    label: 'Humanitarian recovery',
+  },
+  {
+    id: 'environment_recovery',
+    label: 'Environment recovery',
+  },
+  {
+    id: 'infrastr',
+    label: 'Re-establish infrastr.',
+  },
+].sort(sortByLabel);
+
 export const llf: Form = [
   { id: 'general information', type: 'section' },
   {
@@ -793,10 +824,55 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
 
   // Incident characteristics
   { id: 'characteristics', type: 'section', label: 'Incident characteristics' },
+  { type: 'md', value: '#### Incident characteristics' },
+  {
+    id: 'initialIncident',
+    label: 'Initial incident',
+    className: 'col s12 m4',
+    type: 'select',
+    options: incidentTypes,
+  },
+  {
+    id: 'incidents',
+    label: 'Other involved incidents',
+    className: 'col s12 m8',
+    multiple: true,
+    options: incidentTypes,
+  },
+  {
+    id: 'incidentInfo',
+    label: 'Explanation',
+    type: 'textarea',
+  },
+  { type: 'md', value: '#### Affected societal sectors' },
+  {
+    id: 'cip',
+    label: 'Involved critical infrastructure',
+    type: 'options',
+    break: true,
+    checkboxClass: 'col s6 m4',
+    options: cipOptions,
+  },
+  {
+    id: 'cipAdditional',
+    label: 'Other involved societal sectors (if any)',
+    type: 'textarea',
+  },
+  {
+    id: 'cipInfo',
+    label: 'Explanation',
+    type: 'textarea',
+  },
 
   // SCALE
   { id: 'geo', type: 'section', label: 'Geographic scale' },
-  { type: 'md', value: '#### Geographical scale of the event' },
+  {
+    type: 'md',
+    value: `#### Geographical scale of the event
+
+Overview of the geographic and organisational dimensions of the event.`,
+  },
+  { id: 'location', type: 'map', className: 'col s12' },
   {
     id: 'geo',
     label: 'Inside and/or outside the EU',
@@ -821,7 +897,6 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
       },
     ],
   },
-  { id: 'location', type: 'map', className: 'col s12' },
   {
     id: 'international',
     label: 'International dimension',
@@ -883,87 +958,22 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     ],
   },
   {
-    id: 'scaleExplanation',
-    label: 'Brief explanation',
-    type: 'textarea',
-  },
-  {
-    id: 'members',
-    label: 'Involved EU member state',
-    type: [{ id: 'country', type: 'options', className: 'col s6', options: countries }],
-  },
-  {
-    id: 'memberInfo',
-    label: 'Additional info',
-    type: 'textarea',
-  },
-  {
-    id: 'cip',
-    label: 'Involved critical infrastructure',
+    id: 'memberCountries',
+    label: 'Involved EU member state(s)',
     type: 'options',
-    break: true,
-    checkboxClass: 'col s6 m4',
-    options: [
-      {
-        id: 'drinkingWater',
-        label: 'Drinking water',
-      },
-      {
-        id: 'electricity',
-        label: 'Electricity',
-      },
-      {
-        id: 'gasSupply',
-        label: 'Gas supply',
-      },
-      {
-        id: 'publicHealth',
-        label: 'Public Health',
-      },
-      {
-        id: 'telecomIct',
-        label: 'Telecom/ICT',
-      },
-      {
-        id: 'airTransport',
-        label: 'Transport - Air',
-      },
-      {
-        id: 'railTransport',
-        label: 'Transport - Rail',
-      },
-      {
-        id: 'riverTransportRiver',
-        label: 'Transport - Rivers',
-      },
-      {
-        id: 'seaTransport',
-        label: 'Transport - Sea',
-      },
-      {
-        id: 'waterManagement',
-        label: 'Water management',
-      },
-      {
-        id: 'other',
-        label: 'Other',
-      },
-    ],
+    options: countries,
   },
   {
-    id: 'cipInfo',
-    label: 'Brief explanation, if needed',
-    type: 'textarea',
-  },
-  {
-    id: 'cipAdditional',
-    label: 'Other involved critical infrastructure or societal sectors (if any)',
+    id: 'scaleExplanation',
+    label: 'Explanation',
     type: 'textarea',
   },
 
   // Involved organisations
   { id: 'organisations', type: 'section', label: 'Involved organisations' },
-  { type: 'md', value: '#### Organisations that were involved in executing CM functions' },
+  { type: 'md', value: `#### Organisations that were involved in executing CM functions
+
+Description of all organisations that have been involved in crisis management operations during the event.` },
   {
     id: 'organisations',
     label: 'Add Organisation',
@@ -1056,6 +1066,67 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
 
   // Impact & Challenges
   { id: 'impact', type: 'section', label: 'Impact & Challenges' },
+  { type: 'md', value: `#### Impact & Challenges
+
+Description of the (potential) impact of the incident(s) on society, expressed in criteria used by [UNISDR](https://www.unisdr.org/we/inform/terminology), and of the problems that have or had to be tackled by crisis management organisations.
+
+##### Societal impact`
+  },
+  {
+    id: 'victims',
+    type: 'select',
+    label: 'Numbers of victims / casualties',
+    className: 'col s6 m4',
+    options: impactLevels,
+  },
+  {
+    id: 'materialDamage',
+    type: 'select',
+    label: 'Material damage',
+    className: 'col s6 m4',
+    options: impactLevels,
+  },
+  {
+    id: 'ci_loss',
+    type: 'select',
+    label: 'Loss of (critical) infrastructure services',
+    className: 'col s6 m4',
+    options: impactLevels,
+  },
+  {
+    id: 'soc_eco_disruption',
+    label: 'Social / economical disruption',
+    type: 'select',
+    className: 'col s6 m4',
+    options: impactLevels,
+  },
+  {
+    id: 'environmental_degradation',
+    label: 'Environmental degradation',
+    type: 'select',
+    className: 'col s6 m4',
+    options: impactLevels,
+  },
+  {
+    id: 'societalInfo',
+    label: 'Explanation',
+    type: 'textarea',
+  },
+  { type: 'md', value: '##### Challenges' },
+  {
+    id: 'cmFunctions',
+    type: 'options',
+    multiple: true,
+    label: 'Applicable Crisis Management functions (up to 4)',
+    className: 'col s12',
+    checkboxClass: 'col s6 m4',
+    options: cmFunctions,
+  },
+  {
+    id: 'challengesInfo',
+    label: 'Explanation',
+    type: 'textarea',
+  },
 
   // LESSONS
   { id: 'lessons', type: 'section', label: 'Lessons' },
@@ -1115,119 +1186,6 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         newLine: true,
         className: 'col s12 m6 xl4',
         options: incidentTypes,
-      },
-      {
-        id: 'cmFunctions',
-        type: 'select',
-        multiple: true,
-        label: 'Applicable Crisis Management functions (up to 4)',
-        className: 'col s12',
-        options: [
-          {
-            id: 'risk_assessment',
-            label: 'Risk assessment',
-          },
-          {
-            id: 'protection_prevention',
-            label: 'Protection/Prevention',
-          },
-          {
-            id: 'contingency_planning',
-            label: 'Contingency planning',
-          },
-          {
-            id: 'collaboration_planning',
-            label: 'Collaboration planning',
-          },
-          {
-            id: 'education_training',
-            label: 'Education & Training',
-          },
-          {
-            id: 'asset_management',
-            label: 'Asset management',
-          },
-          {
-            id: 'detection_surveillance',
-            label: 'Detection/Surveillance',
-          },
-          {
-            id: 'risk_communication',
-            label: 'Risk communication',
-          },
-          {
-            id: 'alerting',
-            label: 'Alerting, incl. 112',
-          },
-          {
-            id: 'crisis_communication',
-            label: 'Crisis communication',
-          },
-          {
-            id: 'source_fighting',
-            label: 'Source fighting',
-          },
-          {
-            id: 'rescue_operations',
-            label: 'Rescue operations',
-          },
-          {
-            id: 'law_enforcement',
-            label: 'Law enforcement',
-          },
-          {
-            id: 'evacuation_shelter',
-            label: 'Evacuation & Shelter',
-          },
-          {
-            id: 'medical_treatment',
-            label: 'Medical treatment',
-          },
-          {
-            id: 'clear_incident_area',
-            label: 'Clear incident area',
-          },
-          {
-            id: 'basic_needs_supply',
-            label: 'Basic needs supply',
-          },
-          {
-            id: 'c4i',
-            label: 'C4I',
-          },
-          {
-            id: 'situation_assessment',
-            label: 'Situation Assessment',
-          },
-          {
-            id: 'collect_incident_data',
-            label: 'Collect incident data',
-          },
-          {
-            id: 'social_media_mining',
-            label: 'Social media mining',
-          },
-          {
-            id: 'volunteer_mgt',
-            label: 'Volunteer mgt.',
-          },
-          {
-            id: 'logistics',
-            label: 'Logistics',
-          },
-          {
-            id: 'humanitarian_recovery',
-            label: 'Humanitarian recovery',
-          },
-          {
-            id: 'environment_recovery',
-            label: 'Environment recovery',
-          },
-          {
-            id: 'infrastr',
-            label: 'Re-establish infrastr.',
-          },
-        ],
       },
       {
         id: 'cmSectors',
@@ -1369,45 +1327,6 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
         type: 'select',
         className: 'col s6 m4 xl3',
         options: qualityLevels,
-      },
-      {
-        type: 'md',
-        label: 'Societal impact of incidents',
-      },
-      {
-        id: 'victims',
-        type: 'select',
-        label: 'Numbers of victims/casualties',
-        className: 'col s6 m4 l3',
-        options: impactLevels,
-      },
-      {
-        id: 'materialDamage',
-        type: 'select',
-        label: 'Material damage',
-        className: 'col s6 m4 l3',
-        options: impactLevels,
-      },
-      {
-        id: 'ci_loss',
-        type: 'select',
-        label: 'Loss of (critical) infrastructure services',
-        className: 'col s6 m4 l3',
-        options: impactLevels,
-      },
-      {
-        id: 'soc_eco_disruption',
-        label: 'Social / Economical disruption',
-        type: 'select',
-        className: 'col s6 m4 l3',
-        options: impactLevels,
-      },
-      {
-        id: 'environmental_degradation',
-        label: 'Environmental degradation',
-        type: 'select',
-        className: 'col s6 m4 l3',
-        options: impactLevels,
       },
       {
         type: 'md',
