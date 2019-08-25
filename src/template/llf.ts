@@ -966,8 +966,8 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     options: incidentTypes,
   },
   {
-    id: 'incidents',
-    label: 'Other involved incidents',
+    id: 'cascadingIncidents',
+    label: 'Other involved incidents (cascading effects)',
     className: 'col s12 m8',
     multiple: true,
     options: incidentTypes,
