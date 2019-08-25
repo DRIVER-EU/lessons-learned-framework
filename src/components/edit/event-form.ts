@@ -118,7 +118,7 @@ export const EventForm = () => {
               }),
               ' ',
               m(Button, {
-                modalId: 'delete-lesson',
+                modalId: 'delete-event',
                 label: 'Delete',
                 iconName: 'delete',
                 class: 'red',
@@ -127,9 +127,9 @@ export const EventForm = () => {
           ),
         ]),
         m(ModalPanel, {
-          id: 'delete-lesson',
+          id: 'delete-event',
           title: 'Delete lesson',
-          description: 'Do you really want to delete this Lesson - there is no way back?',
+          description: 'Do you really want to delete this Event - there is no way back?',
           options: { opacity: 0.7 },
           buttons: [
             {
