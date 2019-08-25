@@ -88,19 +88,26 @@ export class RestService<T extends { $loki?: number }> {
     }
   }
 
-  public async load(id?: number | string) {
+  public async load(id?: number | string): Promise<T | undefined> {
     if (this.current && this.current.$loki === id) {
       return this.current;
     }
-    const result = await m.request<T>({
-      method: 'GET',
-      url: this.baseUrl + id,
-      withCredentials,
-    });
-    // log(result);
-    this.setCurrent(result);
-    this.updateItemInList(this.current);
-    return this.current;
+    try {
+      const result = await m.request<T>({
+        method: 'GET',
+        url: this.baseUrl + id,
+        withCredentials,
+      });
+      if (!result) {
+        throw Error('No result found at ' + this.baseUrl);
+      }
+      this.setCurrent(result);
+      this.updateItemInList(this.current);
+      return this.current;
+    } catch (error) {
+      this.baseUrl = this.createBaseUrl(true);
+      return this.load(id);
+    }
   }
 
   public async loadList(): Promise<T[] | undefined> {
@@ -116,9 +123,8 @@ export class RestService<T extends { $loki?: number }> {
       this.setList(result);
       return this.list;
     } catch (error) {
-      console.error(error);
       if (this.useDevServer) {
-        throw Error('No result found at ' + this.baseUrl + '\n' + error);
+        throw Error(`No result found at ${this.baseUrl}\n${error}`);
       }
       this.useDevServer = true;
       this.baseUrl = this.createBaseUrl(true);
