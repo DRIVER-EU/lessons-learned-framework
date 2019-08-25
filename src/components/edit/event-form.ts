@@ -86,13 +86,16 @@ export const EventForm = () => {
               onclick: () => dashboardSvc.switchTo(Dashboards.READ, { id: event.$loki }),
             })
           ),
-          m(LayoutForm, {
-            form,
-            obj: event,
-            onchange: () => console.log(JSON.stringify(event, null, 2)),
-            context,
-            section,
-          }),
+          [
+            m(LayoutForm, {
+              key: section,
+              form,
+              obj: event,
+              onchange: () => console.log(JSON.stringify(event, null, 2)),
+              context,
+              section,
+            }),
+          ],
 
           m(
             '.row',
