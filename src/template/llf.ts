@@ -702,357 +702,135 @@ const cmFunctions = [
   },
 ].sort(sortByLabel);
 
-const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: `cmFunctions = ${f.id}` }));
+const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: [`cmFunctions = ${f.id}`] }));
+console.table(preSelectedCmFunctions);
 
-const lessonForm = [
-  { type: 'md', value: '##### Observations' },
-  { type: 'md', value: 'Description of positive or negative observations, experiences, etc.' },
+const lessonForm: Form = [
   {
-    id: 'cmFunctions',
-    type: 'options',
-    multiple: true,
-    label: 'Applicable Crisis Management functions (up to 4)',
+    type: 'md',
+    value: `##### Observations
+Description of positive or negative observations, experiences, etc. based on a single Crisis Management (CM) function.`,
+  },
+  {
+    id: 'lessonCmFunctions',
+    type: 'select',
+    label: 'Applicable Crisis Management function',
     className: 'col s12',
     checkboxClass: 'col s6 m4',
     options: preSelectedCmFunctions,
   },
-
-  { type: 'md', value: '##### Improvement aspects' },
-  { type: 'md', value: '##### Expectations' },
   {
-    id: 'title',
-    type: 'text',
-  },
-  {
-    id: 'futureDev',
-    label: 'Future development',
-    type: 'textarea',
-    newLine: true,
-    maxLength: 200,
-  },
-  {
-    id: 'incidentCategory',
+    id: 'performance',
+    label: 'Performance',
     type: 'select',
-    label: 'Applicability of the lesson',
-    className: 'col s6 m4',
-    options: incidentCategories,
-  },
-  {
-    id: 'scale',
-    label: 'Geographical scale of interest',
-    type: 'select',
-    className: 'col s6 m4',
-    options: [
-      {
-        id: 'regional',
-        label: 'Regional',
-      },
-      {
-        id: 'national',
-        label: 'National',
-      },
-      {
-        id: 'panEurope',
-        label: 'Pan-Europe',
-      },
-      {
-        id: 'global',
-        label: 'Global',
-      },
-    ],
-  },
-  {
-    id: 'incidentTypes',
-    label: 'Select all the incident types that apply (up to 4):',
-    type: 'select',
-    multiple: true,
-    newLine: true,
-    className: 'col s12 m6 xl4',
-    options: incidentTypes,
-  },
-  {
-    id: 'cmSectors',
-    type: 'select',
-    multiple: true,
-    label: 'Applicable Crisis Management sectors (up to 4)',
-    className: 'col s12',
-    options: [
-      {
-        id: 'firebrigade',
-        label: 'Firebrigade/Civil Prot.',
-      },
-      {
-        id: 'police_military',
-        label: 'Police / Military',
-      },
-      {
-        id: 'medical_services',
-        label: 'Medical services',
-      },
-      {
-        id: 'search_and_rescue',
-        label: 'Search and Rescue',
-      },
-      {
-        id: 'coastguard',
-        label: 'Coastguard',
-      },
-      {
-        id: 'ngo_volunteer_org.',
-        label: 'NGO / Volunteer org.',
-      },
-      {
-        id: 'monitoring_institutes',
-        label: 'Monitoring institutes',
-      },
-      {
-        id: 'public_services',
-        label: 'Public services',
-      },
-      {
-        id: 'critical_infrastructures',
-        label: 'Critical Infrastructures',
-      },
-      {
-        id: 'command_centres',
-        label: 'Command centres',
-      },
-      {
-        id: 'policy_authorities',
-        label: 'Policy / Authorities',
-      },
-      {
-        id: 'international_agency',
-        label: 'International agency',
-      },
-      {
-        id: 'other',
-        label: 'Other',
-      },
-    ],
-  },
-  {
-    id: 'cips',
-    type: 'select',
-    multiple: true,
-    label: 'Applicable Critical Infrastructures (up to 4)',
-    className: 'col s12',
-    options: cips,
-  },
-  {
-    id: 'interests',
-    type: 'select',
-    multiple: true,
-    label: 'Aspects of interest (up to 4)',
-    className: 'col s6 m3',
-    options: [
-      {
-        id: 'personnel',
-        label: 'Personnel',
-      },
-      {
-        id: 'equipment/tools',
-        label: 'Equipment/Tools',
-      },
-      {
-        id: 'ict',
-        label: 'ICT',
-      },
-      {
-        id: 'fixed assets',
-        label: 'Fixed assets',
-      },
-      {
-        id: 'organisation',
-        label: 'Organisation',
-      },
-      {
-        id: 'procedures',
-        label: 'Procedures',
-      },
-    ],
-  },
-  {
-    id: 'observationBrief',
-    type: 'textarea',
-    label: 'Short description of the underlying observations',
-    description: '_Describe the observation that leads/has led to the lesson._',
-    maxLength: 300,
-  },
-  {
-    id: 'observationDetails',
-    type: 'textarea',
-    label: 'Detailed description of the underlying observations',
-    description: '_Describe the observation in detail that leads/has led to the lesson._',
-    maxLength: 1000,
-  },
-  {
-    type: 'md',
-    value: 'Performance of the Crisis Management function',
-  },
-  {
-    id: 'logistics',
-    label: 'Logistics',
-    type: 'select',
-    className: 'col s6 m4 xl3',
+    className: 'col s6 l4',
     options: qualityLevels,
   },
   {
-    id: 'sourceFighting',
-    type: 'select',
-    label: 'Source fighting',
-    className: 'col s6 m4 xl3',
-    options: qualityLevels,
-  },
-  {
-    id: 'volunteers',
-    label: 'Volunteer management',
-    type: 'select',
-    className: 'col s6 m4 xl3',
-    options: qualityLevels,
-  },
-  {
-    type: 'md',
-    label: '##### Other consequences',
-  },
-  {
-    id: 'responderHealtAndSafety',
+    id: 'responderHealthAndSafety',
     label: 'Responder health and safety',
     type: 'select',
-    className: 'col s6 m4 l3',
+    className: 'col s6 l4',
     options: qualityLevels,
   },
   {
-    id: 'respondersExplanation',
-    label: 'Explanation',
-    type: 'textarea',
-    maxLength: 150,
-    className: 'col s6 m8 l9',
-  },
-  {
-    id: 'costs',
-    label: 'Costs concerned CM functions',
+    id: 'efficiency',
+    label: 'Efficiency',
     type: 'select',
-    className: 'col s6 m4 l3',
-    options: impactLevels,
+    className: 'col s6 l4',
+    options: qualityLevels,
   },
-  {
-    id: 'costs',
-    label: 'Absolute costs',
-    className: 'col s6 m4 l3',
-    type: 'select',
-    options: costLevels,
-  },
-  {
-    id: 'costsExplanation',
-    label: 'Explanation of costs',
-    type: 'textarea',
-    maxLength: 120,
-    className: 'col s12 m4 l6',
-  },
-  {
-    type: 'md',
-    label: '##### Lesson, including its potential expected effect',
-  },
-  {
-    id: 'lessonBriefDescription',
-    label: 'Brief description of the lesson',
-    type: 'textarea',
-    maxLength: 300,
-  },
-  {
-    id: 'lessonDetailedDescription',
-    label: 'Detailed description of the lesson',
-    type: 'textarea',
-    maxLength: 1000,
-  },
-  {
-    type: 'md',
-    label: `##### Performance of the Crisis Management function
 
-        _Estimated or expected potential impact of the lesson once implemented._`,
+  {
+    type: 'md',
+    value: `##### Improvement aspects
+  Solution description – based on the observation – to meet one or more challenges of the event.`,
   },
   {
-    id: 'logistics_improvements',
-    label: 'Logistics',
-    className: 'col s6 m4 xl3',
+    id: 'lesson',
+    type: 'textarea',
+  },
+  {
+    id: 'solutionType',
+    label: 'Nature of solution',
+    type: 'options',
+    options: [
+      { id: 'doctrine', label: 'Doctrine/procedure' },
+      { id: 'equipment', label: 'Equipment' },
+      { id: 'ict', label: 'ICT' },
+      { id: 'personnel', label: 'Personnel' },
+      { id: 'training', label: 'Training' },
+      { id: 'other', label: 'Other' },
+    ],
+  },
+
+  {
+    type: 'md',
+    value: `##### Expectations
+Expected effects on CM function once the solution has been implemented:`,
+  },
+  {
+    id: 'effectsOnPerformance',
+    label: 'Performance',
+    type: 'select',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
   {
-    id: 'source_fighting_improvements',
-    label: 'Source fighting',
-    className: 'col s6 m4 xl3',
+    id: 'effectsOnResponderHealthAndSafety',
+    label: 'Responder health and safety',
+    type: 'select',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
   {
-    id: 'volunteers_improvements',
-    label: 'Volunteer management',
-    className: 'col s6 m4 xl3',
+    id: 'effectsOnEfficiency',
+    label: 'Efficiency',
+    type: 'select',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
-  { type: 'md', label: '##### Societal impact of incidents' },
+  {
+    type: 'md',
+    value: 'Expected improvement of the CM function\'s status:',
+  },
   {
     id: 'victimsImprovements',
     label: 'Numbers of victims/casualties',
-    className: 'col s6 m4 xl3',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'materialDamageImprovements',
     label: 'Material damage',
-    className: 'col s6 m4 xl3',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'ciLossImprovements',
     label: 'Loss of (critical) infrastructure services',
-    className: 'col s6 m4 xl3',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'socEcoDisruptionImprovements',
     label: 'Social / Economic disruption',
-    className: 'col s6 m4 xl3',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'environmentalDegradationImprovements',
     label: 'Environmental degradation',
-    className: 'col s6 m4 xl3',
+    className: 'col s6 l4',
     options: improvementLevels,
   },
   {
-    type: 'md',
-    label: '##### Other consequences',
-  },
-  {
-    id: 'responderHealthAndSafetyIimprovements',
-    type: 'select',
-    label: 'Responder health and safety',
-    className: 'col s6 m4 l3',
-    options: improvementLevels,
-  },
-  {
-    id: 'respondersImprovements',
+    id: 'explanationImprovements',
     label: 'Explanation',
     type: 'textarea',
-    maxLength: 150,
-    className: 'col s6 m8 l9',
-  },
-  {
-    id: 'costsImprovements',
-    label: 'Costs concerned CM functions',
-    className: 'col s6 m4 l3',
-    options: improvementLevels,
-  },
-  {
-    id: 'costsImprovementsExplanation',
-    label: 'Explanation',
-    type: 'textarea',
-    maxLength: 120,
-    className: 'col s6 m8 l9',
   },
 ];
+
 export const llf: Form = [
   { id: 'general information', type: 'section' },
   {
@@ -1322,9 +1100,12 @@ Overview of the geographic and organisational dimensions of the event.`,
 
   // Involved organisations
   { id: 'organisations', type: 'section', label: 'Involved organisations' },
-  { type: 'md', value: `#### Organisations that were involved in executing CM functions
+  {
+    type: 'md',
+    value: `#### Organisations that were involved in executing CM functions
 
-Description of all organisations that have been involved in crisis management operations during the event.` },
+Description of all organisations that have been involved in crisis management operations during the event.`,
+  },
   {
     id: 'organisations',
     label: 'Add Organisation',
@@ -1417,11 +1198,13 @@ Description of all organisations that have been involved in crisis management op
 
   // Impact & Challenges
   { id: 'impact', type: 'section', label: 'Impact & Challenges' },
-  { type: 'md', value: `#### Impact & Challenges
+  {
+    type: 'md',
+    value: `#### Impact & Challenges
 
 Description of the (potential) impact of the incident(s) on society, expressed in criteria used by [UNISDR](https://www.unisdr.org/we/inform/terminology), and of the problems that have or had to be tackled by crisis management organisations.
 
-##### Societal impact`
+##### Societal impact`,
   },
   {
     id: 'victims',
