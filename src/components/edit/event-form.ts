@@ -44,8 +44,8 @@ export const EventForm = () => {
   return {
     oninit: () => {
       return new Promise(async (resolve, reject) => {
-        const lesson = await EventsSvc.load(m.route.param('id')).catch(r => reject(r));
-        state.event = lesson ? deepCopy(lesson) : ({} as IEvent);
+        const event = await EventsSvc.load(m.route.param('id')).catch(r => reject(r));
+        state.event = event ? deepCopy(event) : ({} as IEvent);
         state.loaded = true;
         resolve();
       });
@@ -64,7 +64,7 @@ export const EventForm = () => {
           style: 'cursor: pointer;',
           id: c.id,
           title: c.label || capitalizeFirstLetter(c.id),
-          onclick: () => (state.section = c.id),
+          onclick: () => (state.section = c.id || ''),
         }));
       const section = state.section || sections[0].id;
       return m('.row', [
@@ -101,7 +101,7 @@ export const EventForm = () => {
               //   label: 'Undo',
               //   iconName: 'undo',
               //   class: `green ${hasChanged ? '' : 'disabled'}`,
-              //   onclick: () => (state.lesson = deepCopy(LessonsSvc.getCurrent())),
+              //   onclick: () => (state.event = deepCopy(EventsSvc.getCurrent())),
               // }),
               // ' ',
               m(Button, {
@@ -128,8 +128,8 @@ export const EventForm = () => {
         ]),
         m(ModalPanel, {
           id: 'delete-event',
-          title: 'Delete lesson',
-          description: 'Do you really want to delete this Event - there is no way back?',
+          title: 'Delete event',
+          description: 'Do you really want to delete this event - there is no way back?',
           options: { opacity: 0.7 },
           buttons: [
             {

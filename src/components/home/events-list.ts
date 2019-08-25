@@ -54,7 +54,7 @@ export const EventsList = () => {
         ]),
         m(
           '.row.sb.large',
-          filteredEvents.map(lesson =>
+          filteredEvents.map(event =>
             m('.col.s6.l4', [
               m(
                 '.card.hoverable',
@@ -63,18 +63,18 @@ export const EventsList = () => {
                     m.route.Link,
                     {
                       className: 'card-title',
-                      href: dashboardSvc.route(Dashboards.READ).replace(':id', `${lesson.$loki}`),
+                      href: dashboardSvc.route(Dashboards.READ).replace(':id', `${event.$loki}`),
                     },
-                    lesson.title || 'Untitled'
+                    event.title || 'Untitled'
                   ),
-                  m('p.light.block-with-text', lesson.desc),
+                  m('p.light.block-with-text', event.desc),
                 ]),
                 m('.card-action', [
                   m(
                     'a',
                     {
                       target: '_blank',
-                      href: `${AppState.apiService()}/lessons/${lesson.$loki}`,
+                      href: `${AppState.apiService()}/lessons/${event.$loki}`,
                     },
                     m(Icon, {
                       iconName: 'cloud_download',
@@ -83,10 +83,10 @@ export const EventsList = () => {
                   m(
                     'span.badge',
                     `${
-                      lesson.lessons
-                        ? lesson.lessons.length === 1
+                      event.lessons
+                        ? event.lessons.length === 1
                           ? '1 lesson'
-                          : `${lesson.lessons.length} lessons`
+                          : `${event.lessons.length} lessons`
                         : '0 lessons'
                     }`
                   ),

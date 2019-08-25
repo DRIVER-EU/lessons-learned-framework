@@ -30,7 +30,7 @@ export const uniqueId = () => {
   });
 };
 
-export const capitalizeFirstLetter = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+export const capitalizeFirstLetter = (s?: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
 
 export const toLetters = (num: number): string => {
   const mod = num % 26;

@@ -843,8 +843,8 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
 `,
   },
   {
-    id: 'title',
-    label: 'Title of the evaluated event',
+    id: 'name',
+    label: 'Name of the evaluated event',
     description: '_Short name to indicate the event and its evaluation (max. 70 characters)._',
     type: 'text',
     maxLength: 70,
@@ -860,9 +860,13 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   },
   {
     id: 'desc',
-    label: 'Additional info',
+    label: 'Short description of the event',
     type: 'textarea',
-    maxLength: 400,
+  },
+  {
+    id: 'locationText',
+    label: 'Location of the event',
+    type: 'textarea',
   },
   // {
   //   id: 'eventPhase',
