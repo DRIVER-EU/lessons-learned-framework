@@ -2,10 +2,6 @@ import { Form } from 'mithril-ui-form';
 
 const countries = [
   {
-    id: 'n_a',
-    label: 'N/A',
-  },
-  {
     id: 'austria',
     label: 'Austria',
   },
@@ -83,7 +79,7 @@ const countries = [
   },
   {
     id: 'netherlands',
-    label: 'The Netherlands',
+    label: 'Netherlands',
   },
   {
     id: 'poland',
@@ -117,6 +113,10 @@ const countries = [
     id: 'united_kingdom',
     label: 'United Kingdom',
   },
+  {
+    id: 'other',
+    label: 'Other',
+  },
 ];
 
 const languages = [
@@ -142,143 +142,197 @@ const sortByLabel: ((a: { id: string; label: string }, b: { id: string; label: s
   a,
   b
 ) => (a.label > b.label ? 1 : a.label < b.label ? -1 : 0);
+
 const incidentTypes = [
   {
     id: 'earthquake',
-    label: 'NAT Earthquake',
-    // show: ['incidentCategory = general', 'incidentCategory = natural', 'incidentCategory = nattech'],
+    label: 'Earthquake',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'eruption',
-    label: 'NAT - Volcanic eruption',
+    label: 'Volcanic eruption',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'movement',
-    label: 'NAT - Mass movement',
+    label: 'Mass movement',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'storm',
-    label: 'NAT - Storm',
+    label: 'Storm',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'tornado',
-    label: 'NAT - Tornado',
+    label: 'Tornado',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'cold',
-    label: 'NAT - Extreme cold',
+    label: 'Extreme cold',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'heat',
-    label: 'NAT - Extreme heat',
+    label: 'Extreme heat',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'drought',
-    label: 'NAT - Drought',
+    label: 'Drought',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'wildfire',
-    label: 'NAT - Wildfire',
+    label: 'Wildfire',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'river',
-    label: 'NAT - River flood',
+    label: 'River flood',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'flash',
-    label: 'NAT - Flash flood',
+    label: 'Flash flood',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'coastal',
-    label: 'NAT - Coastal flood',
+    label: 'Coastal flood',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'landslide',
-    label: 'NAT - Landslide',
+    label: 'Landslide',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'epidemics',
-    label: 'NAT - Epidemics / Pandemics',
+    label: 'Epidemics / Pandemics',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'infestation',
-    label: 'NAT - Insect infestation',
+    label: 'Insect infestation',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'animal',
-    label: 'NAT - Animal stampede',
+    label: 'Animal stampede',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'asteroids',
-    label: 'NAT - Asteroids / Meteoroids / Comets',
+    label: 'Asteroids / Meteoroids / Comets',
+    show: ['incidentCategory = natural'],
   },
   {
     id: 'chemical',
     label: 'Chemical spill',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'explosion',
     label: 'Explosion',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'fire',
     label: 'Fire',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'gas',
     label: 'Gas leak',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'nuclear',
     label: 'Nuclear accident',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'aircrash',
     label: 'Air crash',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'roadaccident',
     label: 'Road accident',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'railaccident',
     label: 'Rail accident',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'wateraccident',
     label: 'Accident on water',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'infra',
     label: 'Collapse of infra',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'drinkingwater',
     label: 'Drinking water failure',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'energy_failure',
     label: 'Energy failure',
+    show: ['incidentCategory = technical'],
   },
   {
     id: 'ict_failure',
     label: 'Telecom / ICT failure',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'arson',
+    label: 'Arson (fire raising)',
+    show: ['incidentCategory = attack'],
   },
   {
     id: 'bomb',
     label: 'Bomb attack',
+    show: ['incidentCategory = attack'],
   },
   {
-    id: 'cbrn',
-    label: 'CBRN attack',
+    id: 'chemical',
+    label: 'Chemical attack',
+    show: ['incidentCategory = attack'],
+  },
+  {
+    id: 'biological',
+    label: 'Biological attack',
+    show: ['incidentCategory = attack'],
+  },
+  {
+    id: 'rn',
+    label: 'Radiological or Nuclear attack',
+    show: ['incidentCategory = attack'],
   },
   {
     id: 'cyber_attack',
     label: 'Cyber attack',
+    show: ['incidentCategory = attack'],
   },
   {
     id: 'cyber_crime',
     label: 'Cyber crime',
+    show: ['incidentCategory = attack'],
+  },
+  {
+    id: 'sabotage',
+    label: 'Sabotage',
+    show: ['incidentCategory = attack'],
   },
 ].sort(sortByLabel);
 
@@ -416,37 +470,33 @@ const costLevels = [
     label: 'Unknown',
   },
   {
-    id: 'less_then_100000',
-    label: 'Less then 100.000',
+    id: 'veryLow',
+    label: 'Very low costs',
   },
   {
-    id: 'between_100_200_thousand',
-    label: '100 - 200 thousand',
+    id: 'low',
+    label: 'Low costs',
   },
   {
-    id: 'between_200_500_thousand',
-    label: '200 - 500 thousand',
+    id: 'acceptable',
+    label: 'Acceptable costs',
   },
   {
-    id: 'more_than_half_million',
-    label: '0,5 - 1 million',
+    id: 'high',
+    label: 'High costs',
   },
   {
-    id: 'one_to_two_million',
-    label: '1 - 2 million',
+    id: 'tooHigh',
+    label: 'Far too high costs',
   },
-  {
-    id: 'two_to_five_million',
-    label: '2 - 5 million',
-  },
-  {
-    id: 'five_to_ten_million',
-    label: '5 - 10 million',
-  },
-  {
-    id: 'more_then_10_million',
-    label: 'More then 10 million',
-  },
+];
+
+const riskLevels = [
+  { id: 'none', label: 'None' },
+  { id: 'veryLow', label: 'Very low' },
+  { id: 'low', label: 'Low' },
+  { id: 'medium', label: 'Medium' },
+  { id: 'high', label: 'High' },
 ];
 
 export const templateInfo = {
@@ -484,7 +534,7 @@ const publicationType = [
   },
   { id: 'author', type: 'text', label: 'First author and/or organisation', icon: 'person', className: 'col s9' },
   { id: 'yearOfPublication', type: 'number', min: 1900, max: 2100, label: 'Year of publication', className: 'col s3' },
-  { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s6' },
+  { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s6', placeholder: 'https://...' },
   { id: 'language', label: 'Language', type: 'select', value: 'en', options: languages, className: 'col s3' },
   {
     id: 'dissemination',
@@ -541,9 +591,8 @@ const incidentCategories = [
 ];
 
 export const eventTypes = [
-  { id: 'disaster', label: 'Crisis or disaster' },
-  { id: 'incident' },
-  { id: 'action', label: 'Preventive activity' },
+  { id: 'incident', label: 'Incident, disaster or crisis' },
+  { id: 'prevention', label: 'Preventive activity' },
   { id: 'test', label: 'Test or trial' },
   { id: 'training', label: 'Training or exercise' },
 ];
@@ -709,7 +758,7 @@ const lessonForm: Form = [
   {
     type: 'md',
     value: `##### Observations
-Description of positive or negative observations, experiences, etc. based on a single Crisis Management (CM) function.`,
+Description of positive or negative observations, experiences, etc. based on a single CM function.`,
   },
   {
     id: 'lessonCmFunctions',
@@ -720,15 +769,8 @@ Description of positive or negative observations, experiences, etc. based on a s
     options: preSelectedCmFunctions,
   },
   {
-    id: 'performance',
-    label: 'Performance',
-    type: 'select',
-    className: 'col s6 l4',
-    options: qualityLevels,
-  },
-  {
-    id: 'responderHealthAndSafety',
-    label: 'Responder health and safety',
+    id: 'effectiveness',
+    label: 'Quality/effectiveness',
     type: 'select',
     className: 'col s6 l4',
     options: qualityLevels,
@@ -738,7 +780,14 @@ Description of positive or negative observations, experiences, etc. based on a s
     label: 'Efficiency',
     type: 'select',
     className: 'col s6 l4',
-    options: qualityLevels,
+    options: costLevels,
+  },
+  {
+    id: 'responderHealthAndSafety',
+    label: 'Health & Safety risks for responders',
+    type: 'select',
+    className: 'col s6 l4',
+    options: riskLevels,
   },
 
   {
@@ -748,6 +797,7 @@ Description of positive or negative observations, experiences, etc. based on a s
   },
   {
     id: 'lesson',
+    label: 'Description of the lesson',
     type: 'textarea',
   },
   {
@@ -756,10 +806,8 @@ Description of positive or negative observations, experiences, etc. based on a s
     type: 'options',
     options: [
       { id: 'doctrine', label: 'Doctrine/procedure' },
-      { id: 'equipment', label: 'Equipment' },
-      { id: 'ict', label: 'ICT' },
-      { id: 'personnel', label: 'Personnel' },
-      { id: 'training', label: 'Training' },
+      { id: 'equipment', label: 'Equipment/ICT' },
+      { id: 'personnel', label: 'Personnel/training' },
       { id: 'other', label: 'Other' },
     ],
   },
@@ -767,80 +815,81 @@ Description of positive or negative observations, experiences, etc. based on a s
   {
     type: 'md',
     value: `##### Expectations
-Expected effects on CM function once the solution has been implemented:`,
+Expected improvement of the CM function once the solution has been implemented:`,
   },
   {
     id: 'effectsOnPerformance',
-    label: 'Performance',
-    type: 'select',
-    className: 'col s6 l4',
-    options: improvementLevels,
-  },
-  {
-    id: 'effectsOnResponderHealthAndSafety',
-    label: 'Responder health and safety',
+    label: 'Quality improvement',
     type: 'select',
     className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'effectsOnEfficiency',
-    label: 'Efficiency',
+    label: 'Efficiency improvement',
     type: 'select',
     className: 'col s6 l4',
     options: improvementLevels,
   },
   {
+    id: 'effectsOnResponderHealthAndSafety',
+    label: 'Health & Safety risk reduction',
+    type: 'select',
+    className: 'col s6 l4',
+    options: improvementLevels,
+  },
+  {
+    id: 'expectedImprovementsInfo',
+    label: 'Explanation of expected improvements',
+    type: 'textarea',
+  },
+  {
     type: 'md',
-    value: 'Expected improvement of the CM function\'s status:',
+    value: 'Expected impact reduction on the event:',
   },
   {
     id: 'victimsImprovements',
-    label: 'Numbers of victims/casualties',
+    label: 'Victims/casualties reduction',
     className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'materialDamageImprovements',
-    label: 'Material damage',
+    label: 'Material damage reduction',
     className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'ciLossImprovements',
-    label: 'Loss of (critical) infrastructure services',
+    label: 'Loss of services reduction',
     className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'socEcoDisruptionImprovements',
-    label: 'Social / Economic disruption',
+    label: 'Social/economic disruption reduction',
     className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'environmentalDegradationImprovements',
-    label: 'Environmental degradation',
+    label: 'Environmental degradation reduction',
     className: 'col s6 l4',
     options: improvementLevels,
   },
   {
     id: 'explanationImprovements',
-    label: 'Explanation',
+    label: 'Explanation of expected impact reductions',
     type: 'textarea',
   },
 ];
 
 export const llf: Form = [
-  { id: 'general information', type: 'section' },
+  { id: 'general event data', type: 'section' },
   {
     type: 'md',
-    value: `#### Event description
-
-This questionnaire allows you to capture the lessons that you've learned while dealing with an  incident or after running a specific event or trial.
-
-_Fields marked with a <span style='color: red;'>*</span> are mandatory._
-`,
+    value: `#### General event data
+Name and general characteristics that describe the event.`,
   },
   {
     id: 'name',
@@ -855,6 +904,7 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     id: 'eventType',
     label: 'Event type',
     type: 'select',
+    required: true,
     className: 'col s12 m4',
     options: eventTypes,
   },
@@ -866,6 +916,7 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   {
     id: 'locationText',
     label: 'Location of the event',
+    required: true,
     type: 'textarea',
   },
   // {
@@ -901,6 +952,7 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     id: 'startDate',
     type: 'date',
     label: 'Start date of the event',
+    required: true,
     className: 'col s12 m6',
   },
   {
@@ -959,18 +1011,29 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
   { id: 'characteristics', type: 'section', label: 'Incident characteristics' },
   { type: 'md', value: '#### Incident characteristics' },
   {
+    id: 'incidentCategory',
+    label: 'Initial incident category',
+    className: 'col s12 m6',
+    type: 'select',
+    options: [
+      { id: 'natural', label: 'Natural' },
+      { id: 'technical', label: 'Technical' },
+      { id: 'attack', label: 'Intentional (attacks, acts of terrorism)' },
+    ],
+  },
+  {
     id: 'initialIncident',
     label: 'Initial incident',
-    className: 'col s12 m4',
+    className: 'col s12 m6',
     type: 'select',
     options: incidentTypes,
   },
   {
-    id: 'cascadingIncidents',
-    label: 'Other involved incidents (cascading effects)',
-    className: 'col s12 m8',
+    id: 'otherIncidents',
+    label: 'Other incidents',
+    className: 'col s12',
     multiple: true,
-    options: incidentTypes,
+    options: incidentTypes.filter(i => i.show[0].indexOf('attack') < 0).map(i => ({ ...i, show: undefined })),
   },
   {
     id: 'incidentInfo',
@@ -992,24 +1055,48 @@ _Fields marked with a <span style='color: red;'>*</span> are mandatory._
     type: 'textarea',
   },
   {
-    id: 'cipInfo',
-    label: 'Explanation',
+    type: 'md',
+    value: `##### Description of the (potential) societal impact of the incident(s)
+
+Description of the (potential) impact of the incident(s) on society, expressed in criteria used by [UNISDR](https://www.unisdr.org/we/inform/terminology), and of the problems that have or had to be tackled by crisis management organisations.`,
+  },
+  {
+    id: 'victims',
+    label: 'Numbers of victims',
+    type: 'textarea',
+  },
+  {
+    id: 'damage',
+    label: 'Material damage',
+    type: 'textarea',
+  },
+  {
+    id: 'lossOfServices',
+    label: 'Loss of services',
+    type: 'textarea',
+  },
+  {
+    id: 'disruption',
+    label: 'Social/economic disruption',
+    type: 'textarea',
+  },
+  {
+    id: 'enviroment',
+    label: 'Environmental degradation',
     type: 'textarea',
   },
 
   // SCALE
-  { id: 'geo', type: 'section', label: 'Geographic scale' },
+  { id: 'geo', type: 'section', label: 'Geographic characteristics' },
   {
     type: 'md',
-    value: `#### Geographical scale of the event
-
-Overview of the geographic and organisational dimensions of the event.`,
+    value: '#### Geographical characteristics of the event',
   },
-  { id: 'location', type: 'map', className: 'col s12' },
   {
     id: 'geo',
     label: 'Inside and/or outside the EU',
     type: 'select',
+    required: true,
     className: 'col s6 m4',
     options: [
       {
@@ -1034,6 +1121,7 @@ Overview of the geographic and organisational dimensions of the event.`,
     id: 'international',
     label: 'International dimension',
     type: 'select',
+    required: true,
     className: 'col s6 m4',
     options: [
       {
@@ -1070,6 +1158,7 @@ Overview of the geographic and organisational dimensions of the event.`,
     id: 'scale',
     label: 'Scale',
     type: 'select',
+    required: true,
     className: 'col s6 m4',
     options: [
       {
@@ -1093,6 +1182,7 @@ Overview of the geographic and organisational dimensions of the event.`,
   {
     id: 'memberCountries',
     label: 'Involved EU member state(s)',
+    required: true,
     type: 'options',
     options: countries,
   },
@@ -1101,14 +1191,21 @@ Overview of the geographic and organisational dimensions of the event.`,
     label: 'Explanation',
     type: 'textarea',
   },
+  {
+    type: 'md',
+    value: `##### Mark the event area on the map
+
+_Use the buttons on the left to edit the map. Please remember to press the save button below to store your changes._`,
+  },
+  { id: 'location', type: 'map', className: 'col s12' },
 
   // Involved organisations
   { id: 'organisations', type: 'section', label: 'Involved organisations' },
   {
     type: 'md',
-    value: `#### Organisations that were involved in executing CM functions
+    value: `#### Organisations involved in executing CM functions
 
-Description of all organisations that have been involved in crisis management operations during the event.`,
+List of organisations that were involved in executing one or more crisis management functions during the event.`,
   },
   {
     id: 'organisations',
@@ -1201,68 +1298,24 @@ Description of all organisations that have been involved in crisis management op
   },
 
   // Impact & Challenges
-  { id: 'impact', type: 'section', label: 'Impact & Challenges' },
+  { id: 'impact', type: 'section', label: 'Critical functions' },
   {
     type: 'md',
-    value: `#### Impact & Challenges
-
-Description of the (potential) impact of the incident(s) on society, expressed in criteria used by [UNISDR](https://www.unisdr.org/we/inform/terminology), and of the problems that have or had to be tackled by crisis management organisations.
-
-##### Societal impact`,
+    value: '#### Critical crisis management functions',
   },
-  {
-    id: 'victims',
-    type: 'select',
-    label: 'Numbers of victims / casualties',
-    className: 'col s6 xl4',
-    options: impactLevels,
-  },
-  {
-    id: 'materialDamage',
-    type: 'select',
-    label: 'Material damage',
-    className: 'col s6 xl4',
-    options: impactLevels,
-  },
-  {
-    id: 'ci_loss',
-    type: 'select',
-    label: 'Loss of (critical) infrastructure services',
-    className: 'col s6 xl4',
-    options: impactLevels,
-  },
-  {
-    id: 'soc_eco_disruption',
-    label: 'Social / economical disruption',
-    type: 'select',
-    className: 'col s6 xl4',
-    options: impactLevels,
-  },
-  {
-    id: 'environmental_degradation',
-    label: 'Environmental degradation',
-    type: 'select',
-    className: 'col s6 xl4',
-    options: impactLevels,
-  },
-  {
-    id: 'societalInfo',
-    label: 'Explanation',
-    type: 'textarea',
-  },
-  { type: 'md', value: '##### Challenges' },
   {
     id: 'cmFunctions',
     type: 'options',
     multiple: true,
-    label: 'Applicable Crisis Management functions (up to 4)',
+    required: true,
+    label: 'Most essential crisis management functions for effectively handling this event',
     className: 'col s12',
     checkboxClass: 'col s6 xl4',
     options: cmFunctions,
   },
   {
     id: 'challengesInfo',
-    label: 'Explanation',
+    label: 'Explanation of the importance of the selected CM functions',
     type: 'textarea',
   },
 
@@ -1273,7 +1326,7 @@ Description of the (potential) impact of the incident(s) on society, expressed i
 
   {
     id: 'lessons',
-    label: 'Lesson',
+    label: 'Add lesson',
     repeat: true,
     type: lessonForm,
   },
@@ -1309,13 +1362,13 @@ Description of the (potential) impact of the incident(s) on society, expressed i
   { type: 'md', value: '#### Sources of information' },
   {
     id: 'publications',
-    label: 'Add Publications',
+    label: 'Add publication',
     repeat: true,
     type: publicationType,
   },
   {
     id: 'multimedia',
-    label: 'Add Multimedia sources',
+    label: 'Add multimedia source',
     repeat: true,
     type: [
       { id: 'desc', label: 'Short description', type: 'textarea' },

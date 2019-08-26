@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Icon, RoundIconButton, Select, TextInput } from 'mithril-materialized';
+import { Icon, FlatButton, Select, TextInput } from 'mithril-materialized';
 import { IEvent } from '../../models';
 import { AppState } from '../../models/app-state';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
@@ -24,7 +24,8 @@ export const EventsList = () => {
       const filteredEvents = events.filter(query);
       return m('.events-list', [
         m('.row', [
-          m(RoundIconButton, {
+          m(FlatButton, {
+            label: 'Add event',
             iconName: 'add',
             class: 'green input-field right btn-medium',
             style: 'margin: 1em 1em 0 0;',
@@ -34,7 +35,7 @@ export const EventsList = () => {
             },
           }),
           m(TextInput, {
-            label: 'Filter',
+            label: 'Text filter of events',
             id: 'filter',
             iconName: 'filter_list',
             onkeyup: (_: KeyboardEvent, v?: string) => (state.filterValue = v ? v : ''),
@@ -42,16 +43,16 @@ export const EventsList = () => {
             className: 'col s4',
           }),
           m(Select, {
-            placeholder: 'Pick one or more',
-            label: 'Event type',
+            placeholder: 'Select one',
+            label: 'Event type filter',
             inline: true,
-            multiple: true,
             checkedId: filter,
             options: eventTypes.map(o => ({ label: capitalizeFirstLetter(o.id), ...o })),
             onchange: f => state.filter = f,
             className: 'col s4'
           }),
         ]),
+        m('.row', m('p', 'Available events.')),
         m(
           '.row.sb.large',
           filteredEvents.map(event =>
@@ -65,7 +66,7 @@ export const EventsList = () => {
                       className: 'card-title',
                       href: dashboardSvc.route(Dashboards.READ).replace(':id', `${event.$loki}`),
                     },
-                    event.title || 'Untitled'
+                    event.name || 'Untitled'
                   ),
                   m('p.light.block-with-text', event.desc),
                 ]),

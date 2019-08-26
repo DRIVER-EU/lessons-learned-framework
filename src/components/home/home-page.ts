@@ -9,14 +9,14 @@ export const HomePage = () => ({
   view: () => [
     m('.row', [
       m(
-        'nav.orange.darken-3',
+        'nav.yellow.darken-3',
         m('.nav-wrapper', [
           m(
             'a.brand-logo[href=#]',
             { style: 'margin-left: 20px; left: 20px' },
             m(`img[width=48][height=48][src=${logo}]`, { style: 'margin-top: 5px; margin-left: -5px;' })
           ),
-          m('h3.center.orange.darken-3', { style: 'margin: 0 auto; padding: 10px 0;' }, 'Lessons Learned Library'),
+          m('h3.center.yellow.darken-3', { style: 'margin: 0 auto; padding: 10px 0;' }, 'Lessons Learned Library'),
         ]),
         m(
           '.overlay.center',
@@ -24,7 +24,7 @@ export const HomePage = () => ({
             style: 'position: relative; top: 350px;',
           },
           m(Button, {
-            className: 'orange darken-3 btn-large',
+            className: 'yellow darken-3 btn-large',
             label: 'Get started',
             onclick: () => dashboardSvc.switchTo(Dashboards.SEARCH),
           })
@@ -69,7 +69,7 @@ export const HomePage = () => ({
       ),
     ]),
     m(
-      'footer.page-footer.orange.darken-3',
+      'footer.page-footer.yellow.darken-3',
       { style: 'heigth: 75px; padding: 5px 0;' },
       m(
         '.container',

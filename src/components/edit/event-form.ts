@@ -108,21 +108,15 @@ export const EventForm = () => {
               // }),
               // ' ',
               m(Button, {
-                label: 'Save',
+                label: 'Save event',
                 iconName: 'save',
                 class: `green ${hasChanged ? '' : 'disabled'}`,
                 onclick: onsubmit,
               }),
               ' ',
               m(Button, {
-                label: 'Close',
-                iconName: 'close',
-                onclick: (e: UIEvent) => close(e),
-              }),
-              ' ',
-              m(Button, {
                 modalId: 'delete-event',
-                label: 'Delete',
+                label: 'Delete event',
                 iconName: 'delete',
                 class: 'red',
               }),

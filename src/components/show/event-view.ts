@@ -19,7 +19,7 @@ export const EventView: FactoryComponent = () => {
     const { resolver } = state;
     const { editors } = event;
     return editors
-      ? `<p class="center-align"><i>${editors
+      ? `<p class="center-align"><i>Editor${editors.length === 1 ? '' : 's'}: ${editors
           .map(
             e =>
               `${e.name}${

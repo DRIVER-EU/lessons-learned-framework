@@ -9,14 +9,16 @@
 .nav-wrapper,
 .statusbar,
 .nav-content {
-  background-color: #ef6c00;
+  background-color: #f9a825;
 }
 .input-field,
 .input-field > label,
 .input-field > .material-icons,
 .dropdown-content > li > a,
 .secondary-content > .material-icons {
-  color: #ef6c00;
+  /* color: #b4790c; */
+  color: #1a237e ;
+  font-weight: bold;
 }
 .tabs.tabs-transparent .tab a,
 nav ul a {
