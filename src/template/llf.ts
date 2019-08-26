@@ -383,33 +383,6 @@ const cips = [
   },
 ];
 
-const impactLevels = [
-  {
-    id: 'unknown',
-    label: 'Unknown',
-  },
-  {
-    id: 'veryHigh',
-    label: 'Very high',
-  },
-  {
-    id: 'high',
-    label: 'High',
-  },
-  {
-    id: 'neutral',
-    label: 'Neutral',
-  },
-  {
-    id: 'limited',
-    label: 'Limited',
-  },
-  {
-    id: 'veryLimited',
-    label: 'Very limited',
-  },
-];
-
 const qualityLevels = [
   {
     id: 'unknown',
@@ -566,29 +539,6 @@ const publicationType = [
     className: 'col s3',
   },
 ] as Form;
-
-const incidentCategories = [
-  {
-    id: 'general',
-    label: 'Incidents in general',
-  },
-  {
-    id: 'natural',
-    label: 'Natural incidents',
-  },
-  {
-    id: 'technological',
-    label: 'Technological incidents',
-  },
-  {
-    id: 'nattech',
-    label: 'Natural and Technological incidents',
-  },
-  {
-    id: 'attacks',
-    label: 'Intentional incidents / Attacks',
-  },
-];
 
 export const eventTypes = [
   { id: 'incident', label: 'Incident, disaster or crisis' },
@@ -752,7 +702,6 @@ const cmFunctions = [
 ].sort(sortByLabel);
 
 const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: [`cmFunctions = ${f.id}`] }));
-console.table(preSelectedCmFunctions);
 
 const lessonForm: Form = [
   {
@@ -761,7 +710,7 @@ const lessonForm: Form = [
 Description of positive or negative observations, experiences, etc. based on a single CM function.`,
   },
   {
-    id: 'lessonCmFunctions',
+    id: 'cmFunction',
     type: 'select',
     label: 'Applicable Crisis Management function',
     className: 'col s12',
@@ -804,6 +753,7 @@ Description of positive or negative observations, experiences, etc. based on a s
     id: 'solutionType',
     label: 'Nature of solution',
     type: 'options',
+    checkboxClass: 'col s12 m6 xl3',
     options: [
       { id: 'doctrine', label: 'Doctrine/procedure' },
       { id: 'equipment', label: 'Equipment/ICT' },
@@ -919,35 +869,6 @@ Name and general characteristics that describe the event.`,
     required: true,
     type: 'textarea',
   },
-  // {
-  //   id: 'eventPhase',
-  //   type: 'select',
-  //   multiple: true,
-  //   label: 'Relevant disaster management phase(s):',
-  //   className: 'col s12 m6',
-  //   options: [
-  //     {
-  //       id: 'risk_assessment',
-  //       label: 'Risk assessment',
-  //     },
-  //     {
-  //       id: 'mi',
-  //       label: 'Mitigation & Prevention',
-  //     },
-  //     {
-  //       id: 'preparedness',
-  //       label: 'Preparedness',
-  //     },
-  //     {
-  //       id: 'response',
-  //       label: 'Response',
-  //     },
-  //     {
-  //       id: 'recovery',
-  //       label: 'Recovery',
-  //     },
-  //   ],
-  // },
   {
     id: 'startDate',
     type: 'date',
@@ -961,51 +882,6 @@ Name and general characteristics that describe the event.`,
     label: 'End date of the event',
     className: 'col s12 m6',
   },
-  // {
-  //   id: 'areaType',
-  //   type: 'select',
-  //   label: 'Type of area:',
-  //   className: 'col s12 m6',
-  //   options: [
-  //     {
-  //       id: 'mixed',
-  //       label: 'Mixed',
-  //     },
-  //     {
-  //       id: 'centre',
-  //       label: 'City/town centre',
-  //     },
-  //     {
-  //       id: 'residential',
-  //       label: 'Residential area',
-  //     },
-  //     {
-  //       id: 'industrial',
-  //       label: 'Industrial area',
-  //     },
-  //     {
-  //       id: 'countryside',
-  //       label: 'Countryside',
-  //     },
-  //     {
-  //       id: 'water',
-  //       label: 'Water',
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: 'incidentCategory',
-  //   label: 'Incident category',
-  //   className: 'col s12 m6',
-  //   options: incidentCategories,
-  // },
-  // {
-  //   id: 'incidentTypes',
-  //   label: 'Select all the incident types that apply:',
-  //   checkboxClass: 'col s12 m6 xl4',
-  //   type: 'options',
-  //   options: incidentTypes,
-  // },
 
   // Incident characteristics
   { id: 'characteristics', type: 'section', label: 'Incident characteristics' },
