@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Button, Collection, CollectionMode, FlatButton, ModalPanel } from 'mithril-materialized';
+import { Button, ModalPanel } from 'mithril-materialized';
 import { deepCopy, LayoutForm } from 'mithril-ui-form';
 import { IEvent } from '../../models';
 import { EventsSvc } from '../../services';
@@ -47,6 +47,7 @@ export const EventForm = () => {
         const event = await EventsSvc.load(m.route.param('id')).catch(r => reject(r));
         state.event = event ? deepCopy(event) : ({} as IEvent);
         state.loaded = true;
+        m.redraw();
         resolve();
       });
     },
@@ -64,64 +65,58 @@ export const EventForm = () => {
           style: 'cursor: pointer;',
           id: c.id,
           title: c.label || capitalizeFirstLetter(c.id),
-          onclick: () => (state.section = c.id || ''),
+          onclick: (e: UIEvent) => {
+            e.preventDefault();
+            state.section = c.id || '';
+          },
         }));
       const section = state.section || sections[0].id;
       return m('.row', [
         m(
           '.col.s12.m3',
-          m(Collection, {
-            header: 'Content',
-            mode: CollectionMode.LINKS,
-            items: sections,
-          })
+          m(
+            'ul#slide-out.sidenav.sidenav-fixed',
+            {
+              oninit: () => {
+                const elems = document.querySelectorAll('.sidenav');
+                M.Sidenav.init(elems);
+              },
+            },
+            [
+              m('h4', { style: 'margin-left: 20px;' }, 'Content'),
+              ...sections.map(s => m('li', m('a[href=!#]', { onclick: s.onclick }, s.title))),
+              m('.buttons', [
+                m(Button, {
+                  label: 'Show event',
+                  iconName: 'visibility',
+                  className: 'right col s12',
+                  onclick: () => dashboardSvc.switchTo(Dashboards.READ, { id: event.$loki }),
+                }),
+                m(Button, {
+                  label: 'Save event',
+                  iconName: 'save',
+                  class: `green col s12 ${hasChanged ? '' : 'disabled'}`,
+                  onclick: onsubmit,
+                }),
+                m(Button, {
+                  modalId: 'delete-event',
+                  label: 'Delete event',
+                  iconName: 'delete',
+                  class: 'red col s12',
+                }),
+              ]),
+            ]
+          )
         ),
         m('.col.s12.m9', [
-          m(
-            '.col.s12',
-            m(FlatButton, {
-              label: 'Show document',
-              iconName: 'visibility',
-              className: 'right',
-              onclick: () => dashboardSvc.switchTo(Dashboards.READ, { id: event.$loki }),
-            })
-          ),
-          [
-            m(LayoutForm, {
-              key: section,
-              form,
-              obj: event,
-              onchange: () => console.log(JSON.stringify(event, null, 2)),
-              context,
-              section,
-            }),
-          ],
-
-          m(
-            '.row',
-            m('.col.s12.buttons', [
-              // m(Button, {
-              //   label: 'Undo',
-              //   iconName: 'undo',
-              //   class: `green ${hasChanged ? '' : 'disabled'}`,
-              //   onclick: () => (state.event = deepCopy(EventsSvc.getCurrent())),
-              // }),
-              // ' ',
-              m(Button, {
-                label: 'Save event',
-                iconName: 'save',
-                class: `green ${hasChanged ? '' : 'disabled'}`,
-                onclick: onsubmit,
-              }),
-              ' ',
-              m(Button, {
-                modalId: 'delete-event',
-                label: 'Delete event',
-                iconName: 'delete',
-                class: 'red',
-              }),
-            ])
-          ),
+          m(LayoutForm, {
+            key: section,
+            form,
+            obj: event,
+            onchange: () => console.log(JSON.stringify(event, null, 2)),
+            context,
+            section,
+          }),
         ]),
         m(ModalPanel, {
           id: 'delete-event',
