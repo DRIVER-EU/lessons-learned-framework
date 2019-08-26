@@ -14,10 +14,14 @@ export const HomePage = () => ({
         m('.nav-wrapper', [
           m(
             'a.brand-logo[href=#]',
-            { style: 'margin-left: 20px; left: 20px' },
+            { style: 'margin: 0 10px 0 20px; left: 20px' },
             m(`img[width=48][height=48][src=${logo}]`, { style: 'margin-top: 5px; margin-left: -5px;' })
           ),
-          m('h3.center.yellow.darken-3', { style: 'margin: 0 auto; padding: 10px 0;' }, 'Lessons Learned Library'),
+          m(
+            'h3.center.yellow.darken-3.hide-on-small-only',
+            { style: 'margin: 0 auto; padding: 10px 0;' },
+            'Lessons Learned Library'
+          ),
         ]),
         m(
           '.overlay.center',
