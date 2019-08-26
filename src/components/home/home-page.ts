@@ -2,6 +2,7 @@ import m from 'mithril';
 import { Button, Icon, Parallax } from 'mithril-materialized';
 import { SlimdownView } from 'mithril-ui-form';
 import background from '../../assets/background.jpg';
+import euLogo from '../../assets/eu-flag-logo.png';
 import logo from '../../assets/logo_white.svg';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 
@@ -73,13 +74,15 @@ export const HomePage = () => ({
       { style: 'heigth: 75px; padding: 5px 0;' },
       m(
         '.container',
-        m(
-          '.white-text',
-          `This project has received funding from the European Union’s Seventh Framework Programme
-      for research, technological development and demonstration under grant agreement n° 607798.
-      The information and views set out in this presentation are those of the author(s) and do
-      not necessarily reflect the official opinion of the European Union.`
-        )
+        m('.clearfix', [
+          m('img', { src: euLogo, width: 100, height: 67, style: 'float: left; margin-right: 10px;' }),
+          m(
+            '.white-text',
+            `This project has received funding from the European Union's 7th Framework Programme for Research,
+          Technological Development and Demonstration under Grant Agreement (GA) N°#607798`
+          ),
+          m('span', '©DRIVER+'),
+        ])
       )
     ),
   ],
