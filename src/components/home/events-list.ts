@@ -40,7 +40,7 @@ export const EventsList = () => {
             iconName: 'filter_list',
             onkeyup: (_: KeyboardEvent, v?: string) => (state.filterValue = v ? v : ''),
             style: 'margin-right:100px',
-            className: 'col s4',
+            className: 'col s12 l4',
           }),
           m(Select, {
             placeholder: 'Select one',
@@ -49,14 +49,14 @@ export const EventsList = () => {
             checkedId: filter,
             options: eventTypes.map(o => ({ label: capitalizeFirstLetter(o.id), ...o })),
             onchange: f => state.filter = f,
-            className: 'col s4'
+            className: 'col s12 l4'
           }),
         ]),
         m('.row', m('p', 'Available events.')),
         m(
           '.row.sb.large',
           filteredEvents.map(event =>
-            m('.col.s6.l4', [
+            m('.col.s12.l4', [
               m(
                 '.card.hoverable',
                 m('.card-content', { style: 'height: 150px;' }, [
