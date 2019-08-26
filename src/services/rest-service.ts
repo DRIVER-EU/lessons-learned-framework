@@ -89,7 +89,7 @@ export class RestService<T extends { $loki?: number }> {
   }
 
   public async load(id?: number | string): Promise<T | undefined> {
-    if (this.current && this.current.$loki === id) {
+    if (id === '-1' || this.current && this.current.$loki === id) {
       return this.current;
     }
     try {
