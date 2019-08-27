@@ -30,7 +30,7 @@ export const EventsList = () => {
         .filter(typeFilter('eventType', state.eventTypeFilter))
         .filter(typeFilter('cmFunctions', state.cmFunctionFilter))
         .filter(typeFilter('initialIncident', state.incidentTypeFilter));
-      return m('.row', [
+      return m('.row', { style: 'margin-top: 1em;' }, [
         m(
           '.col.s12.l3',
           m(
