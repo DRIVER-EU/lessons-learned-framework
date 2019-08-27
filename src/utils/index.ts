@@ -30,7 +30,7 @@ export const uniqueId = () => {
   });
 };
 
-export const capitalizeFirstLetter = (s?: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+export const capitalizeFirstLetter = (s?: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : '');
 
 export const toLetters = (num: number): string => {
   const mod = num % 26;
@@ -68,13 +68,36 @@ export const range = (from: number, to: number, count: number = to - from + 1, s
  * Function to filter case-insensitive name and description.
  * @param filterValue Filter text
  */
-export const nameAndDescriptionFilter = (filterValue: string) => {
-  filterValue = filterValue.toLowerCase();
+export const nameAndDescriptionFilter = (filterValue?: string) => {
+  if (!filterValue) {
+    return () => true;
+  }
+  const fv = filterValue.toLowerCase() as string;
   return (content: { name?: string; desc?: string }) =>
-    !filterValue ||
     !content.name ||
-    content.name.toLowerCase().indexOf(filterValue) >= 0 ||
-    (content.desc && content.desc.toLowerCase().indexOf(filterValue) >= 0);
+    content.name.toLowerCase().indexOf(fv) >= 0 ||
+    (content.desc && content.desc.toLowerCase().indexOf(fv) >= 0);
+};
+
+/**
+ * Function to filter on a named type.
+ * @param filterValue Filter text
+ */
+export const typeFilter = (propName: string, filterValue?: Array<string | number>) => {
+  if (!filterValue || filterValue.length === 0) {
+    return () => true;
+  }
+  return filterValue instanceof Array
+    ? (content: { [key: string]: string | number | Array<string | number> }) =>
+        content.hasOwnProperty(propName) &&
+        (content[propName] instanceof Array
+          ? filterValue.reduce((acc, fv) => acc && (content[propName] as Array<string | number>).indexOf(fv) >= 0, true)
+          : filterValue.indexOf(content[propName] as string) >= 0)
+    : (content: { [key: string]: string | number | Array<string | number> }) =>
+        content.hasOwnProperty(propName) &&
+        (content[propName] instanceof Array
+          ? (content[propName] as Array<string | number>).indexOf(filterValue) >= 0
+          : content.propName === filterValue);
 };
 
 /**

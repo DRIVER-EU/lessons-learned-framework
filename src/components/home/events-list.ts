@@ -5,7 +5,7 @@ import { AppState } from '../../models/app-state';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { EventsSvc } from '../../services/events-service';
 import { cmFunctions, eventTypes, incidentTypes } from '../../template/llf';
-import { nameAndDescriptionFilter } from '../../utils';
+import { nameAndDescriptionFilter, typeFilter } from '../../utils';
 
 export const EventsList = () => {
   const state = {
@@ -25,7 +25,11 @@ export const EventsList = () => {
       const { eventTypeFilter: filter } = state;
       const events = EventsSvc.getList() || ([] as IEvent[]);
       const query = nameAndDescriptionFilter(state.filterValue);
-      const filteredEvents = events.filter(query);
+      const filteredEvents = events
+        .filter(query)
+        .filter(typeFilter('eventType', state.eventTypeFilter))
+        .filter(typeFilter('cmFunctions', state.cmFunctionFilter))
+        .filter(typeFilter('initialIncident', state.incidentTypeFilter));
       return m('.row', [
         m(
           '.col.s12.l3',
@@ -57,9 +61,9 @@ export const EventsList = () => {
                 className: 'col s12',
               }),
               m(Select, {
-                placeholder: 'Select one',
+                placeholder: 'Select one or more',
                 label: 'Event type filter',
-                inline: true,
+                multiple: true,
                 checkedId: filter,
                 options: eventTypes,
                 iconName: 'public',
@@ -67,9 +71,9 @@ export const EventsList = () => {
                 className: 'col s12',
               }),
               m(Select, {
-                placeholder: 'Select one',
+                placeholder: 'Select one or more',
                 label: 'Incident type filter',
-                inline: true,
+                multiple: true,
                 checkedId: filter,
                 options: incidentTypes,
                 iconName: 'priority_high',
@@ -77,15 +81,27 @@ export const EventsList = () => {
                 className: 'col s12',
               }),
               m(Select, {
-                placeholder: 'Select one',
+                placeholder: 'Select one or more',
                 label: 'CM function filter',
-                inline: true,
+                multiple: true,
                 checkedId: filter,
                 options: cmFunctions,
                 iconName: 'functions',
                 onchange: f => (state.cmFunctionFilter = f),
                 className: 'col s12',
                 dropdownOptions: { container: 'body' as any },
+              }),
+              m(FlatButton, {
+                label: 'Clear all filters',
+                iconName: 'clear_all',
+                class: 'col s11',
+                style: 'margin: 1em;',
+                onclick: () => {
+                  state.filterValue = '';
+                  state.cmFunctionFilter.length = 0;
+                  state.eventTypeFilter.length = 0;
+                  state.incidentTypeFilter.length = 0;
+                },
               }),
             ]
           )
@@ -115,6 +131,7 @@ export const EventsList = () => {
                       href: `${AppState.apiService()}/events/${event.$loki}`,
                     },
                     m(Icon, {
+                      className: 'white-text',
                       iconName: 'cloud_download',
                     })
                   ),

@@ -16,9 +16,11 @@ export interface IEvent extends ILokiObj {
   categories: string[]; // TODO Allow the user to specify defaults
   startDate: Date;
   endDate: Date;
+  eventType: string;
+  initialIncident: string;
+  cmFunctions: string[];
   incidentTypes: string[];
   incidentCategory: string[];
-  eventType: string;
   areaType: string;
   eventPhase: string[];
   editors: IEditor[];
