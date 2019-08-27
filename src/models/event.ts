@@ -9,7 +9,7 @@ export interface ILokiObj {
 }
 
 export interface IEvent extends ILokiObj {
-  title: string;
+  name: string;
   desc: string;
   /** GeoJSON area definition */
   location: { [key: string]: any };

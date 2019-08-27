@@ -5,7 +5,6 @@ import { IChannelDefinition, messageBus } from './message-bus-service';
 
 const log = console.log;
 const error = console.error;
-const withCredentials = false;
 
 // export class RestService<T extends IBaseModel> {
 export class RestService<T extends { $loki?: number }> {
@@ -14,6 +13,7 @@ export class RestService<T extends { $loki?: number }> {
   protected baseUrl: string;
   protected channel: IChannelDefinition<{ list: T[] } | { cur: T; old: T }>;
   protected useDevServer = false;
+  protected withCredentials = false;
 
   constructor(protected urlFragment: string, protected channelName?: string) {
     this.baseUrl = this.createBaseUrl();
@@ -38,7 +38,7 @@ export class RestService<T extends { $loki?: number }> {
         method: 'POST',
         url: this.baseUrl,
         body: fd || item,
-        withCredentials,
+        withCredentials: this.withCredentials,
       });
       this.setCurrent(result);
       this.addItemToList(this.current);
@@ -56,7 +56,7 @@ export class RestService<T extends { $loki?: number }> {
           method: 'PUT',
           url: this.baseUrl + item.$loki,
           body: fd || item,
-          withCredentials,
+          withCredentials: this.withCredentials,
         })
         .catch(e => console.error(e));
       // this.setCurrent(data);
@@ -73,7 +73,7 @@ export class RestService<T extends { $loki?: number }> {
       await m.request<T>({
         method: 'DELETE',
         url: this.baseUrl + id,
-        withCredentials,
+        withCredentials: this.withCredentials,
       });
       log(`Deleted with id: ${id}.`);
       this.removeItemFromList(id);
@@ -89,14 +89,15 @@ export class RestService<T extends { $loki?: number }> {
   }
 
   public async load(id?: number | string): Promise<T | undefined> {
-    if (id === '-1' || this.current && this.current.$loki === id) {
+    debugger;
+    if (id === '-1') {
       return this.current;
     }
     try {
       const result = await m.request<T>({
         method: 'GET',
         url: this.baseUrl + id,
-        withCredentials,
+        withCredentials: this.withCredentials,
       });
       if (!result) {
         throw Error('No result found at ' + this.baseUrl);
@@ -115,7 +116,7 @@ export class RestService<T extends { $loki?: number }> {
       const result = await m.request<T[]>({
         method: 'GET',
         url: this.baseUrl,
-        withCredentials,
+        withCredentials: this.withCredentials,
       });
       if (!result) {
         throw Error('No result found at ' + this.baseUrl);
@@ -137,15 +138,24 @@ export class RestService<T extends { $loki?: number }> {
     return this.current;
   }
 
+  protected setList(value: T[]) {
+    this.list = value;
+    this.channel.publish(TopicNames.LIST_UPDATE, { list: this.list });
+  }
+
+  // private createBaseUrl(): string {
+  //   return `http://localhost:3000/${this.urlFragment}/`;
+  // }
+  /** Create the base URL, either using the apiService or the apiDevService */
+  protected createBaseUrl(useDevServer = false): string {
+    AppState.usingDevServer = useDevServer;
+    return `${AppState.apiService()}/${this.urlFragment}/`;
+  }
+
   private setCurrent(value: T) {
     const old = this.current;
     this.current = value;
     this.channel.publish(TopicNames.ITEM_UPDATE, { old, cur: this.current });
-  }
-
-  private setList(value: T[]) {
-    this.list = value;
-    this.channel.publish(TopicNames.LIST_UPDATE, { list: this.list });
   }
 
   private addItemToList(item: T) {
@@ -158,14 +168,5 @@ export class RestService<T extends { $loki?: number }> {
 
   private removeItemFromList(id?: string | number) {
     this.setList([...this.list.filter(i => i.$loki !== id)]);
-  }
-
-  // private createBaseUrl(): string {
-  //   return `http://localhost:3000/${this.urlFragment}/`;
-  // }
-  /** Create the base URL, either using the apiService or the apiDevService */
-  private createBaseUrl(useDevServer = false): string {
-    AppState.usingDevServer = useDevServer;
-    return `${AppState.apiService()}/${this.urlFragment}/`;
   }
 }

@@ -43,7 +43,7 @@ export const EventsList = () => {
                 class: 'col s11 indigo darken-4 white-text',
                 style: 'margin: 1em;',
                 onclick: () => {
-                  EventsSvc.new({ title: 'New event' });
+                  EventsSvc.new({ name: 'New event' });
                   dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
                 },
               }),
@@ -112,7 +112,7 @@ export const EventsList = () => {
                     'a',
                     {
                       target: '_blank',
-                      href: `${AppState.apiService()}/lessons/${event.$loki}`,
+                      href: `${AppState.apiService()}/events/${event.$loki}`,
                     },
                     m(Icon, {
                       iconName: 'cloud_download',
