@@ -29,7 +29,6 @@ export const EventForm = () => {
     context: {
       admin: true,
     },
-    section: '',
   };
 
   const onsubmit = async (e: MouseEvent) => {
@@ -70,12 +69,8 @@ export const EventForm = () => {
           style: 'cursor: pointer;',
           id: c.id,
           title: c.label || capitalizeFirstLetter(c.id),
-          onclick: (e: UIEvent) => {
-            e.preventDefault();
-            state.section = c.id || '';
-          },
         }));
-      const section = state.section || sections[0].id;
+      const section = m.route.param('section') || sections[0].id;
       return m('.row', [
         m(
           '.col.s12.l3',
@@ -88,7 +83,17 @@ export const EventForm = () => {
             },
             [
               m('h4.primary-text', { style: 'margin-left: 20px;' }, 'Content'),
-              ...sections.map(s => m('li', m('a[href=!#]', { onclick: s.onclick }, m('span.primary-text', s.title)))),
+              ...sections.map(s =>
+                m(
+                  'li',
+                  m(
+                    m.route.Link,
+                    { href: dashboardSvc.route(Dashboards.EDIT).replace(':id', `${event.$loki}?section=${s.id}`) },
+                    m('span.primary-text', s.title)
+                  )
+                )
+              ),
+              // ...sections.map(s => m('li', m('a[href=!#]', { onclick: s.onclick }, m('span.primary-text', s.title)))),
               m('.buttons', [
                 m(Button, {
                   label: 'Show event',
