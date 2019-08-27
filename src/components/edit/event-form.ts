@@ -1,6 +1,6 @@
 import m from 'mithril';
 import { Button, ModalPanel } from 'mithril-materialized';
-import { deepCopy, LayoutForm } from 'mithril-ui-form';
+import { deepCopy, I18n, LayoutForm } from 'mithril-ui-form';
 import { IEvent } from '../../models';
 import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
@@ -40,6 +40,11 @@ export const EventForm = () => {
       state.event = deepCopy(EventsSvc.getCurrent());
     }
   };
+
+  const i18n = Object.freeze({
+    editRepeat: 'Edit a lesson',
+    createRepeat: 'Create new lesson',
+  }) as I18n;
 
   return {
     oninit: () => {
@@ -116,6 +121,7 @@ export const EventForm = () => {
             onchange: () => console.log(JSON.stringify(event, null, 2)),
             context,
             section,
+            i18n,
           }),
         ]),
         m(ModalPanel, {
