@@ -143,7 +143,7 @@ const sortByLabel: ((a: { id: string; label: string }, b: { id: string; label: s
   b
 ) => (a.label > b.label ? 1 : a.label < b.label ? -1 : 0);
 
-const incidentTypes = [
+export const incidentTypes = [
   {
     id: 'earthquake',
     label: 'Earthquake',
@@ -594,7 +594,7 @@ const cipOptions = [
   },
 ].sort(sortByLabel);
 
-const cmFunctions = [
+export const cmFunctions = [
   {
     id: 'risk_assessment',
     label: 'Risk assessment',
