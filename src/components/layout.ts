@@ -1,7 +1,7 @@
 import m, { Vnode } from 'mithril';
+import { Icon } from 'mithril-materialized';
 import logo from '../assets/logo_white.svg';
 import { dashboardSvc } from '../services/dashboard-service';
-import { Icon } from 'mithril-materialized';
 
 const stripRouteParams = (path: string) => path.replace(/:[a-zA-Z]+/, '');
 
