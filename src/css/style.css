@@ -74,24 +74,3 @@ nav ul a {
 .buttons {
   padding: 0 20px;
 }
-
-header, main, footer {
-  padding-left: 300px;
-}
-
-@media only screen and (max-width : 992px) {
-  header, main, footer {
-    padding-left: 0;
-  }
-}
-     
-
-
-.no-sb {
-  overflow-y: hidden;  
-}
-.sb {
-  height: 90vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-}

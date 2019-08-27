@@ -78,13 +78,12 @@ export const EventForm = () => {
       const section = state.section || sections[0].id;
       return m('.row', [
         m(
-          '.col.s12.m3',
+          '.col.s12.l3',
           m(
             'ul#slide-out.sidenav.sidenav-fixed',
             {
-              oninit: () => {
-                const elems = document.querySelectorAll('.sidenav');
-                M.Sidenav.init(elems);
+              oncreate: ({ dom }) => {
+                M.Sidenav.init(dom);
               },
             },
             [
@@ -113,7 +112,7 @@ export const EventForm = () => {
             ]
           )
         ),
-        m('.col.s12.m9', [
+        m('.col.s12.l9', [
           m(LayoutForm, {
             key: section,
             form,
