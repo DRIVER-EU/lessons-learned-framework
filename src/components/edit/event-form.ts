@@ -87,7 +87,7 @@ export const EventForm = () => {
               },
             },
             [
-              m('h4', { style: 'margin-left: 20px;' }, 'Content'),
+              m('h4.primary-text', { style: 'margin-left: 20px;' }, 'Content'),
               ...sections.map(s => m('li', m('a[href=!#]', { onclick: s.onclick }, s.title))),
               m('.buttons', [
                 m(Button, {
