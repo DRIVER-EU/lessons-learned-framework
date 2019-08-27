@@ -5,7 +5,7 @@ import { AppState } from '../../models/app-state';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { EventsSvc } from '../../services/events-service';
 import { eventTypes } from '../../template/llf';
-import { capitalizeFirstLetter, titleAndDescriptionFilter } from '../../utils';
+import { capitalizeFirstLetter, nameAndDescriptionFilter } from '../../utils';
 
 export const EventsList = () => {
   const state = {
@@ -20,7 +20,7 @@ export const EventsList = () => {
     view: () => {
       const { filter } = state;
       const events = EventsSvc.getList() || [] as IEvent[];
-      const query = titleAndDescriptionFilter(state.filterValue);
+      const query = nameAndDescriptionFilter(state.filterValue);
       const filteredEvents = events.filter(query);
       return m('.events-list', [
         m('.row', [
