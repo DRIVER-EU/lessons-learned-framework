@@ -64,11 +64,13 @@ export const EventView: FactoryComponent = () => {
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }
-      const { title, desc } = event;
+      const { name, desc } = event;
 
       Object.keys(event).forEach(key => {
-        const value = event[key];
-        console.log(key, resolver(key, value));
+        const value = event[key as keyof IEvent];
+        if (typeof value === 'string') {
+          console.log(key, resolver(key, value));
+        }
         // if (value instanceof Array && value.repeat) {
         //   value.map(v => Object.keys(v).forEach(k => console.log('  ', k, resolver(`${key}.${k}`, v[k]))));
         // } else {
@@ -77,7 +79,7 @@ export const EventView: FactoryComponent = () => {
       });
 
       const md = `
-<h4 class="center-align">${title}</h4>
+<h4 class="center-align">${name}</h4>
 
 ${showEditors(event)}
 
