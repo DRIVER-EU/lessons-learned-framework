@@ -489,7 +489,7 @@ export const templateInfo = {
   showTemplateSelector: true,
 };
 
-const publicationType = [
+const publicationForm = [
   {
     id: 'title',
     label: 'English title',
@@ -507,7 +507,13 @@ const publicationType = [
   },
   { id: 'author', type: 'text', label: 'First author and/or organisation', icon: 'person', className: 'col s9' },
   { id: 'yearOfPublication', type: 'number', min: 1900, max: 2100, label: 'Year of publication', className: 'col s3' },
-  { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s6', placeholder: 'https://...' },
+  {
+    id: 'url',
+    label: 'Link',
+    type: 'url',
+    icon: 'link',
+    className: 'col s6',
+  },
   { id: 'language', label: 'Language', type: 'select', value: 'en', options: languages, className: 'col s3' },
   {
     id: 'dissemination',
@@ -703,6 +709,12 @@ export const cmFunctions = [
 
 const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: [`cmFunctions = ${f.id}`] }));
 
+const solutionTypes = [
+  { id: 'doctrine', label: 'Doctrine/procedure' },
+  { id: 'equipment', label: 'Equipment/ICT' },
+  { id: 'personnel', label: 'Personnel/training' },
+  { id: 'other', label: 'Other' },
+];
 const lessonForm: Form = [
   {
     type: 'md',
@@ -754,12 +766,7 @@ Description of positive or negative observations, experiences, etc. based on a s
     label: 'Nature of solution',
     type: 'options',
     checkboxClass: 'col s12 m6 xl3',
-    options: [
-      { id: 'doctrine', label: 'Doctrine/procedure' },
-      { id: 'equipment', label: 'Equipment/ICT' },
-      { id: 'personnel', label: 'Personnel/training' },
-      { id: 'other', label: 'Other' },
-    ],
+    options: solutionTypes,
   },
 
   {
@@ -834,6 +841,197 @@ Expected improvement of the CM function once the solution has been implemented:`
   },
 ];
 
+const incidentCategories = [
+  { id: 'natural', label: 'Natural' },
+  { id: 'technical', label: 'Technical' },
+  { id: 'attack', label: 'Intentional (attacks, acts of terrorism)' },
+];
+const geographicRegion = [
+  {
+    id: 'inside',
+    label: 'Inside EU',
+  },
+  {
+    id: 'inside_outside',
+    label: 'Inside and outside EU',
+  },
+  {
+    id: 'europe',
+    label: 'Elsewhere in Europe',
+  },
+  {
+    id: 'outside',
+    label: 'Outside Europe',
+  },
+];
+const internationalDimension = [
+  {
+    id: 'one_country',
+    label: 'One country',
+  },
+  {
+    id: 'bi_tri',
+    label: 'Bi/Tri national',
+  },
+  {
+    id: 'multi',
+    label: 'Multi-national',
+  },
+  {
+    id: 'pan_eu',
+    label: 'Pan EU',
+  },
+  {
+    id: 'european',
+    label: 'European',
+  },
+  {
+    id: 'extern_europe',
+    label: 'Extern Europe',
+  },
+  {
+    id: 'worldwide',
+    label: 'Worldwide',
+  },
+];
+const scale = [
+  {
+    id: 'regional',
+    label: 'Regional',
+  },
+  {
+    id: 'national',
+    label: 'National',
+  },
+  {
+    id: 'pan_europe',
+    label: 'Pan-Europe',
+  },
+  {
+    id: 'global',
+    label: 'Global',
+  },
+];
+const organisationType = [
+  {
+    id: 'none',
+    label: 'Choose one option',
+  },
+  {
+    id: 'fireBrigade',
+    label: 'Firebrigade/Civil Prot.',
+  },
+  {
+    id: 'policeMilitary',
+    label: 'Police / Military',
+  },
+  {
+    id: 'medicalServices',
+    label: 'Medical services',
+  },
+  {
+    id: 'searchAndRescue',
+    label: 'Search and Rescue',
+  },
+  {
+    id: 'coastguard',
+    label: 'Coastguard',
+  },
+  {
+    id: 'ngoVolunteerOrg.',
+    label: 'NGO / Volunteer org.',
+  },
+  {
+    id: 'monitoringInstitutes',
+    label: 'Monitoring institutes',
+  },
+  {
+    id: 'publicServices',
+    label: 'Public services',
+  },
+  {
+    id: 'criticalInfrastructures',
+    label: 'Critical Infrastructures',
+  },
+  {
+    id: 'commandCentres',
+    label: 'Command centres',
+  },
+  {
+    id: 'policyAuthorities',
+    label: 'Policy / Authorities',
+  },
+  {
+    id: 'internationalAgency',
+    label: 'International agency',
+  },
+  {
+    id: 'other',
+    label: 'Other',
+  },
+];
+
+const organisationForm: Form = [
+  {
+    id: 'name',
+    label: 'Organisation',
+    type: 'text',
+    className: 'col s12 m4',
+  },
+  {
+    id: 'type',
+    label: 'Type of organisation',
+    type: 'select',
+    className: 'col s12 m4',
+    options: organisationType,
+  },
+  {
+    id: 'country',
+    label: 'Country of organisation',
+    type: 'select',
+    className: 'col s12 m4',
+    options: countries,
+  },
+  {
+    id: 'info',
+    label: 'Role during the event',
+    type: 'textarea',
+  },
+];
+
+const editorForm = [
+  {
+    id: 'name',
+    label: 'Name',
+    type: 'text',
+    className: 'col s6',
+    iconName: 'title',
+    required: true,
+  },
+  { id: 'organisation', type: 'text', className: 'col s6' },
+  { id: 'country', type: 'select', options: countries, className: 'col s6' },
+  { id: 'lastEdit', label: 'Last edit on', type: 'date', className: 'col s6' },
+  {
+    id: 'info',
+    label: 'Description of provided input',
+    type: 'textarea',
+  },
+];
+
+const multimediaForm = [
+  { id: 'desc', label: 'Short description', type: 'textarea' },
+  { id: 'owner', label: 'Owner', type: 'text', className: 'col s6' },
+  {
+    id: 'yearOfPublication',
+    type: 'number',
+    min: 1900,
+    max: 2100,
+    label: 'Year of publication',
+    className: 'col s6',
+  },
+  { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s12' },
+];
+
 export const llf: Form = [
   { id: 'general event data', type: 'section' },
   {
@@ -891,11 +1089,7 @@ Name and general characteristics that describe the event.`,
     label: 'Initial incident category',
     className: 'col s12 m6',
     type: 'select',
-    options: [
-      { id: 'natural', label: 'Natural' },
-      { id: 'technical', label: 'Technical' },
-      { id: 'attack', label: 'Intentional (attacks, acts of terrorism)' },
-    ],
+    options: incidentCategories,
   },
   {
     id: 'initialIncident',
@@ -974,24 +1168,7 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     type: 'select',
     required: true,
     className: 'col s6 m4',
-    options: [
-      {
-        id: 'inside',
-        label: 'Inside EU',
-      },
-      {
-        id: 'inside_outside',
-        label: 'Inside and outside EU',
-      },
-      {
-        id: 'europe',
-        label: 'Elsewhere in Europe',
-      },
-      {
-        id: 'outside',
-        label: 'Outside Europe',
-      },
-    ],
+    options: geographicRegion,
   },
   {
     id: 'international',
@@ -999,36 +1176,7 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     type: 'select',
     required: true,
     className: 'col s6 m4',
-    options: [
-      {
-        id: 'one_country',
-        label: 'One country',
-      },
-      {
-        id: 'bi_tri',
-        label: 'Bi/Tri national',
-      },
-      {
-        id: 'multi',
-        label: 'Multi-national',
-      },
-      {
-        id: 'pan_eu',
-        label: 'Pan EU',
-      },
-      {
-        id: 'european',
-        label: 'European',
-      },
-      {
-        id: 'extern_europe',
-        label: 'Extern Europe',
-      },
-      {
-        id: 'worldwide',
-        label: 'Worldwide',
-      },
-    ],
+    options: internationalDimension,
   },
   {
     id: 'scale',
@@ -1036,24 +1184,7 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     type: 'select',
     required: true,
     className: 'col s6 m4',
-    options: [
-      {
-        id: 'regional',
-        label: 'Regional',
-      },
-      {
-        id: 'national',
-        label: 'National',
-      },
-      {
-        id: 'pan_europe',
-        label: 'Pan-Europe',
-      },
-      {
-        id: 'global',
-        label: 'Global',
-      },
-    ],
+    options: scale,
   },
   {
     id: 'memberCountries',
@@ -1087,90 +1218,11 @@ List of organisations that were involved in executing one or more crisis managem
     id: 'organisations',
     label: 'Add Organisation',
     repeat: true,
-    type: [
-      {
-        id: 'name',
-        label: 'Organisation',
-        type: 'text',
-        className: 'col s12 m4',
-      },
-      {
-        id: 'type',
-        label: 'Type of organisation',
-        type: 'select',
-        className: 'col s12 m4',
-        options: [
-          {
-            id: 'none',
-            label: 'Choose one option',
-          },
-          {
-            id: 'fireBrigade',
-            label: 'Firebrigade/Civil Prot.',
-          },
-          {
-            id: 'policeMilitary',
-            label: 'Police / Military',
-          },
-          {
-            id: 'medicalServices',
-            label: 'Medical services',
-          },
-          {
-            id: 'searchAndRescue',
-            label: 'Search and Rescue',
-          },
-          {
-            id: 'coastguard',
-            label: 'Coastguard',
-          },
-          {
-            id: 'ngoVolunteerOrg.',
-            label: 'NGO / Volunteer org.',
-          },
-          {
-            id: 'monitoringInstitutes',
-            label: 'Monitoring institutes',
-          },
-          {
-            id: 'publicServices',
-            label: 'Public services',
-          },
-          {
-            id: 'criticalInfrastructures',
-            label: 'Critical Infrastructures',
-          },
-          {
-            id: 'commandCentres',
-            label: 'Command centres',
-          },
-          {
-            id: 'policyAuthorities',
-            label: 'Policy / Authorities',
-          },
-          {
-            id: 'internationalAgency',
-            label: 'International agency',
-          },
-          {
-            id: 'other',
-            label: 'Other',
-          },
-        ],
-      },
-      {
-        id: 'country',
-        label: 'Country of organisation',
-        type: 'select',
-        className: 'col s12 m4',
-        options: countries,
-      },
-      {
-        id: 'info',
-        label: 'Role during the event',
-        type: 'textarea',
-      },
-    ],
+    type: organisationForm,
+    i18n: {
+      createRepeat: 'Create a new organisation',
+      editRepeat: 'Edit organisation',
+    },
   },
 
   // Impact & Challenges
@@ -1211,53 +1263,41 @@ List of organisations that were involved in executing one or more crisis managem
   { type: 'md', value: '#### Editors' },
   {
     id: 'editors',
-    label: 'Editors',
+    label: 'Add editor',
     className: 'col s12',
     repeat: true,
-    type: [
-      {
-        id: 'name',
-        label: 'Name',
-        type: 'text',
-        className: 'col s6',
-        iconName: 'title',
-        required: true,
-      },
-      { id: 'organisation', type: 'text', className: 'col s6' },
-      { id: 'country', type: 'select', options: countries, className: 'col s6' },
-      { id: 'lastEdit', label: 'Last edit on', type: 'date', className: 'col s6' },
-      {
-        id: 'info',
-        label: 'Description of provided input',
-        type: 'textarea',
-      },
-    ],
+    type: editorForm,
+    i18n: {
+      createRepeat: 'Create a new editor',
+      editRepeat: 'Edit editor',
+    },
   },
   { id: 'created', label: 'Created "{{event}}" event on:', type: 'date', required: true },
-  { id: 'sources', type: 'section' },
-  { type: 'md', value: '#### Sources of information' },
+
+  // { id: 'sources', type: 'section' },
+  // { type: 'md', value: '#### Sources of information' },
+  { id: 'publications', type: 'section' },
+  { type: 'md', value: '#### Publications' },
   {
     id: 'publications',
     label: 'Add publication',
     repeat: true,
-    type: publicationType,
+    type: publicationForm,
+    i18n: {
+      createRepeat: 'Create a new publication',
+      editRepeat: 'Edit publication',
+    },
   },
+  { id: 'multimedia', label: 'Multimedia sources', type: 'section' },
+  { type: 'md', value: '#### Multimedia sources' },
   {
     id: 'multimedia',
     label: 'Add multimedia source',
     repeat: true,
-    type: [
-      { id: 'desc', label: 'Short description', type: 'textarea' },
-      { id: 'owner', label: 'Owner', type: 'text', className: 'col s6' },
-      {
-        id: 'yearOfPublication',
-        type: 'number',
-        min: 1900,
-        max: 2100,
-        label: 'Year of publication',
-        className: 'col s6',
-      },
-      { id: 'url', label: 'Link', type: 'url', icon: 'link', className: 'col s12' },
-    ],
+    type: multimediaForm,
+    i18n: {
+      createRepeat: 'Create a new multimedia source',
+      editRepeat: 'Edit multimedia source',
+    },
   },
 ] as Form;

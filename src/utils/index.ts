@@ -1,3 +1,5 @@
+import { IEvent } from '../models';
+
 /**
  * Create a GUID
  * @see https://stackoverflow.com/a/2117523/319711
@@ -83,21 +85,21 @@ export const nameAndDescriptionFilter = (filterValue?: string) => {
  * Function to filter on a named type.
  * @param filterValue Filter text
  */
-export const typeFilter = (propName: string, filterValue?: Array<string | number>) => {
+export const typeFilter = (propName: keyof IEvent, filterValue?: Array<string | number>) => {
   if (!filterValue || filterValue.length === 0) {
     return () => true;
   }
   return filterValue instanceof Array
-    ? (content: { [key: string]: string | number | Array<string | number> }) =>
+    ? (content: Partial<IEvent>) =>
         content.hasOwnProperty(propName) &&
         (content[propName] instanceof Array
           ? filterValue.reduce((acc, fv) => acc && (content[propName] as Array<string | number>).indexOf(fv) >= 0, true)
           : filterValue.indexOf(content[propName] as string) >= 0)
-    : (content: { [key: string]: string | number | Array<string | number> }) =>
+    : (content: Partial<IEvent>) =>
         content.hasOwnProperty(propName) &&
         (content[propName] instanceof Array
           ? (content[propName] as Array<string | number>).indexOf(filterValue) >= 0
-          : content.propName === filterValue);
+          : content[propName] === filterValue);
 };
 
 /**
