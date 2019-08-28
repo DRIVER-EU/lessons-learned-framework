@@ -22,14 +22,14 @@ export const EventsList = () => {
   return {
     oninit: () => EventsSvc.loadList(),
     view: () => {
-      const { eventTypeFilter: filter } = state;
+      const { eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
       const events = EventsSvc.getList() || ([] as IEvent[]);
       const query = nameAndDescriptionFilter(state.filterValue);
       const filteredEvents = events
         .filter(query)
-        .filter(typeFilter('eventType', state.eventTypeFilter))
-        .filter(typeFilter('cmFunctions', state.cmFunctionFilter))
-        .filter(typeFilter('initialIncident', state.incidentTypeFilter));
+        .filter(typeFilter('eventType', eventTypeFilter))
+        .filter(typeFilter('cmFunctions', cmFunctionFilter))
+        .filter(typeFilter('initialIncident', incidentTypeFilter));
       return m('.row', { style: 'margin-top: 1em;' }, [
         m(
           '.col.s12.l3',
@@ -63,7 +63,7 @@ export const EventsList = () => {
               m(Select, {
                 placeholder: 'Select one',
                 label: 'Event type',
-                checkedId: filter,
+                checkedId: eventTypeFilter,
                 options: eventTypes,
                 iconName: 'public',
                 onchange: f => (state.eventTypeFilter = f),
@@ -72,7 +72,7 @@ export const EventsList = () => {
               m(Select, {
                 placeholder: 'Select one',
                 label: 'Initial incident',
-                checkedId: filter,
+                checkedId: incidentTypeFilter,
                 options: incidentTypes,
                 iconName: 'flash_on',
                 onchange: f => (state.incidentTypeFilter = f),
@@ -81,7 +81,7 @@ export const EventsList = () => {
               m(Select, {
                 placeholder: 'Select one',
                 label: 'CM function',
-                checkedId: filter,
+                checkedId: cmFunctionFilter,
                 options: cmFunctions,
                 iconName: 'notifications_active',
                 onchange: f => (state.cmFunctionFilter = f),
