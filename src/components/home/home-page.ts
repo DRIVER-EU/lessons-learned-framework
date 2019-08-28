@@ -2,6 +2,7 @@ import m from 'mithril';
 import { Button, Icon, Parallax } from 'mithril-materialized';
 import { SlimdownView } from 'mithril-ui-form';
 import background from '../../assets/background.jpg';
+import driverLogo from '../../assets/driver-logo-compact2.png';
 import euLogo from '../../assets/eu-flag-logo.png';
 import logo from '../../assets/logo_white.svg';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
@@ -80,6 +81,7 @@ export const HomePage = () => ({
         '.container',
         m('.clearfix', [
           m('img', { src: euLogo, width: 100, height: 67, style: 'float: left; margin-right: 10px;' }),
+          m('img', { src: driverLogo, width: 67, height: 67, style: 'float: right; margin-left: 10px;' }),
           m(
             '.white-text',
             `This project has received funding from the European Union's 7th Framework Programme for Research,
