@@ -1,3 +1,6 @@
+import { ILesson } from './lesson';
+import { IOrganisation } from './organisation';
+
 export interface ILokiObj {
   $loki: number;
   meta: {
@@ -11,23 +14,39 @@ export interface ILokiObj {
 export interface IEvent extends ILokiObj {
   name: string;
   desc: string;
-  /** GeoJSON area definition */
-  location: { [key: string]: any };
-  categories: string[]; // TODO Allow the user to specify defaults
+  eventType: string;
+  locationText: string;
+  /** Initial incident category */
+  incidentCategory: string;
+  initialIncident: string;
+  otherIncidents: string[];
+  incidentInfo: string;
   startDate: Date;
   endDate: Date;
-  eventType: string;
-  initialIncident: string;
-  cmFunctions: string[];
+  cip: string[];
+  cipAdditional: string;
   incidentTypes: string[];
-  incidentCategory: string[];
-  areaType: string;
-  eventPhase: string[];
+  victims: string;
+  damage: string;
+  lossOfServices: string;
+  disruption: string;
+  environment: string;
+  /** Geographic region */
+  geo: string;
+  /** internationalDimension */
+  international: string;
+  scale: string;
+  scaleExplanation: string;
+  memberCountries: string[];
+  /** GeoJSON area definition */
+  location: { [key: string]: any };
+  organisations: IOrganisation[];
+  cmFunctions: string[];
+  challengesInfo: string;
+  lessons?: ILesson[];
   editors: IEditor[];
   publications: IPublication[];
   multimedia: IMultimedia[];
-  lessons?: Array<{ title: string; status: string; [key: string]: any }>;
-  [key: string]: any;
 }
 
 interface IEditor {
