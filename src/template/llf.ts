@@ -1174,10 +1174,10 @@ List of organisations that were involved in executing one or more crisis managem
   },
 
   // Impact & Challenges
-  { id: 'impact', type: 'section', label: 'Critical functions' },
+  { id: 'impact', type: 'section', label: 'Critical CM functions' },
   {
     type: 'md',
-    value: '#### Critical crisis management functions',
+    value: '#### Critical Crisis Management functions',
   },
   {
     id: 'cmFunctions',
