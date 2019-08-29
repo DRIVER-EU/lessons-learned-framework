@@ -15,7 +15,8 @@
     "no-string-literal": false,
     "object-literal-sort-keys": false,
     "no-console": false,
-    "trailing-comma": true
+    "trailing-comma": true,
+    "max-line-length": false
   },
   "rulesDirectory": []
 }

@@ -43,7 +43,7 @@ export const HomePage = () => ({
           m(SlimdownView, {
             md:
               '## Learn and share\n' +
-              'The Lessons Learned Library (L3) is a repository for lessons gathered during an incident, trial or exercise.',
+              'The Lessons Learned Library (L3) is a repository in the domain of Crisis Management (CM) and Disaster Risk Reduction (DRR) for collecting and sharing lessons from preventive or response activities at events such as severe incidents, crisis situations, tests or exercises.',
           }),
           m('.row', [
             m(
@@ -51,7 +51,7 @@ export const HomePage = () => ({
               m('.icon-block', [
                 m('.center', m(Icon, { iconName: 'group' })),
                 m('h5.center', 'Share your experience'),
-                m('p.light', "Help others, so they won't make the same mistakes as you have seen."),
+                m('p.light', 'Help others, so they can take advantage of your experiences.'),
               ])
             ),
             m(
@@ -59,15 +59,15 @@ export const HomePage = () => ({
               m('.icon-block', [
                 m('.center', m(Icon, { iconName: 'flash_on' })),
                 m('h5.center', 'Quick and easy'),
-                m('p.light', 'In 10~15 minutes, you can share the most important lessons.'),
+                m('p.light', 'In a short period of time you can edit information and key lessons from an event in a well-organised way.'),
               ])
             ),
             m(
               '.col.s12.m4',
               m('.icon-block', [
                 m('.center', m(Icon, { iconName: 'public' })),
-                m('h5.center', 'Open to anyone'),
-                m('p.light', 'Not locked away in a safe, but open to anyone interested to learn more.'),
+                m('h5.center', 'Open to any professional'),
+                m('p.light', 'Not locked away in a safe or hidden in some report, but open to any CM professional interested to learn from other colleagues.'),
               ])
             ),
           ]),
