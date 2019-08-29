@@ -23,8 +23,8 @@ export interface IEvent extends ILokiObj {
   incidentInfo: string;
   startDate: Date;
   endDate: Date;
-  cip: string[];
-  cipAdditional: string;
+  societalSectors: string[];
+  societalSectorsAdditional: string;
   incidentTypes: string[];
   victims: string;
   damage: string;

@@ -145,28 +145,23 @@ const sortByLabel: ((a: { id: string; label: string }, b: { id: string; label: s
 
 export const incidentTypes = [
   {
+    id: 'animalDisease',
+    label: 'Animal disease',
+    show: ['incidentCategory = natural'],
+  },
+  {
+    id: 'avalanche',
+    label: 'Avalanche',
+    show: ['incidentCategory = natural'],
+  },
+  {
     id: 'earthquake',
     label: 'Earthquake',
     show: ['incidentCategory = natural'],
   },
   {
-    id: 'eruption',
-    label: 'Volcanic eruption',
-    show: ['incidentCategory = natural'],
-  },
-  {
-    id: 'movement',
-    label: 'Mass movement',
-    show: ['incidentCategory = natural'],
-  },
-  {
-    id: 'storm',
-    label: 'Storm',
-    show: ['incidentCategory = natural'],
-  },
-  {
-    id: 'tornado',
-    label: 'Tornado',
+    id: 'epidemics',
+    label: 'Epidemics / Pandemics',
     show: ['incidentCategory = natural'],
   },
   {
@@ -176,32 +171,37 @@ export const incidentTypes = [
   },
   {
     id: 'heat',
-    label: 'Extreme heat',
+    label: 'Extreme heat/drought',
     show: ['incidentCategory = natural'],
   },
   {
-    id: 'drought',
-    label: 'Drought',
+    id: 'hail',
+    label: 'Extreme hail or snowfall',
     show: ['incidentCategory = natural'],
   },
   {
-    id: 'wildfire',
-    label: 'Wildfire',
-    show: ['incidentCategory = natural'],
-  },
-  {
-    id: 'river',
-    label: 'River flood',
-    show: ['incidentCategory = natural'],
-  },
-  {
-    id: 'flash',
-    label: 'Flash flood',
+    id: 'rain',
+    label: 'Extreme rainfall',
     show: ['incidentCategory = natural'],
   },
   {
     id: 'coastal',
-    label: 'Coastal flood',
+    label: 'Flood: Coastal flood',
+    show: ['incidentCategory = natural'],
+  },
+  {
+    id: 'flash',
+    label: 'Flood: Flash flood',
+    show: ['incidentCategory = natural'],
+  },
+  {
+    id: 'river',
+    label: 'Flood: River flood',
+    show: ['incidentCategory = natural'],
+  },
+  {
+    id: 'wildfire',
+    label: 'Forest fire',
     show: ['incidentCategory = natural'],
   },
   {
@@ -210,103 +210,111 @@ export const incidentTypes = [
     show: ['incidentCategory = natural'],
   },
   {
-    id: 'epidemics',
-    label: 'Epidemics / Pandemics',
+    id: 'meteorites',
+    label: 'Meteorites',
     show: ['incidentCategory = natural'],
   },
   {
-    id: 'infestation',
-    label: 'Insect infestation',
+    id: 'storm',
+    label: 'Storm/tornado',
     show: ['incidentCategory = natural'],
   },
   {
-    id: 'animal',
-    label: 'Animal stampede',
+    id: 'eruption',
+    label: 'Volcanic eruption',
     show: ['incidentCategory = natural'],
   },
-  {
-    id: 'asteroids',
-    label: 'Asteroids / Meteoroids / Comets',
-    show: ['incidentCategory = natural'],
-  },
-  {
-    id: 'chemical',
-    label: 'Chemical spill',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'explosion',
-    label: 'Explosion',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'fire',
-    label: 'Fire',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'gas',
-    label: 'Gas leak',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'nuclear',
-    label: 'Nuclear accident',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'aircrash',
-    label: 'Air crash',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'roadaccident',
-    label: 'Road accident',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'railaccident',
-    label: 'Rail accident',
-    show: ['incidentCategory = technical'],
-  },
-  {
-    id: 'wateraccident',
-    label: 'Accident on water',
-    show: ['incidentCategory = technical'],
-  },
+
+  // {
+  //   id: 'movement',
+  //   label: 'Mass movement',
+  //   show: ['incidentCategory = natural'],
+  // },
+  // {
+  //   id: 'infestation',
+  //   label: 'Insect infestation',
+  //   show: ['incidentCategory = natural'],
+  // },
+  // {
+  //   id: 'animal',
+  //   label: 'Animal stampede',
+  //   show: ['incidentCategory = natural'],
+  // },
+
   {
     id: 'infra',
     label: 'Collapse of infra',
     show: ['incidentCategory = technical'],
   },
   {
-    id: 'drinkingwater',
-    label: 'Drinking water failure',
+    id: 'explosion',
+    label: 'Explosion/gas leak',
     show: ['incidentCategory = technical'],
   },
   {
-    id: 'energy_failure',
-    label: 'Energy failure',
+    id: 'fire',
+    label: 'Fire in building/infrastructure',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'chemical',
+    label: 'Industry: Chemical spill',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'industrial_explosion',
+    label: 'Industry: Explosion/fire',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'nuclear',
+    label: 'Industry: Nuclear accident',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'gas_supply',
+    label: 'Outage: Gas supply',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'power',
+    label: 'Outage: Power (electricity)',
     show: ['incidentCategory = technical'],
   },
   {
     id: 'ict_failure',
-    label: 'Telecom / ICT failure',
+    label: 'Outage: Telecom/ICT',
     show: ['incidentCategory = technical'],
   },
   {
+    id: 'drinkingwater',
+    label: 'Outage: Water supply',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'aircrash',
+    label: 'Transport: Air crash',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'railaccident',
+    label: 'Transport: Railway accident',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'roadaccident',
+    label: 'Transport: Road accident',
+    show: ['incidentCategory = technical'],
+  },
+  {
+    id: 'wateraccident',
+    label: 'Transport: Accident on the water',
+    show: ['incidentCategory = technical'],
+  },
+
+  {
     id: 'arson',
     label: 'Arson (fire raising)',
-    show: ['incidentCategory = attack'],
-  },
-  {
-    id: 'bomb',
-    label: 'Bomb attack',
-    show: ['incidentCategory = attack'],
-  },
-  {
-    id: 'chemical',
-    label: 'Chemical attack',
     show: ['incidentCategory = attack'],
   },
   {
@@ -315,18 +323,28 @@ export const incidentTypes = [
     show: ['incidentCategory = attack'],
   },
   {
-    id: 'rn',
-    label: 'Radiological or Nuclear attack',
+    id: 'bomb',
+    label: 'Bombing (explosives)',
+    show: ['incidentCategory = attack'],
+  },
+  {
+    id: 'chemical',
+    label: 'Chemical attack',
     show: ['incidentCategory = attack'],
   },
   {
     id: 'cyber_attack',
-    label: 'Cyber attack',
+    label: 'Cyber attack/crime',
     show: ['incidentCategory = attack'],
   },
   {
-    id: 'cyber_crime',
-    label: 'Cyber crime',
+    id: 'dumping',
+    label: 'Dumping waste',
+    show: ['incidentCategory = attack'],
+  },
+  {
+    id: 'rn',
+    label: 'Radiological/nuclear attack',
     show: ['incidentCategory = attack'],
   },
   {
@@ -334,7 +352,23 @@ export const incidentTypes = [
     label: 'Sabotage',
     show: ['incidentCategory = attack'],
   },
+  {
+    id: 'vandalism',
+    label: 'Vandalism',
+    show: ['incidentCategory = attack'],
+  },
 ].sort(sortByLabel);
+
+const societalSectors = [
+  { id: 'authorities', label: 'Authorities / Administration' },
+  { id: 'business_industry', label: 'Business and industry' },
+  { id: 'education', label: 'Education' },
+  { id: 'healthcare', label: 'Healthcare' },
+  { id: 'mass_media', label: 'Mass media' },
+  { id: 'public_transport', label: 'Public transport' },
+  { id: 'transport', label: 'Transport in general' },
+  { id: 'other', label: 'Other' },
+];
 
 const cips = [
   {
@@ -601,110 +635,24 @@ const cipOptions = [
 ].sort(sortByLabel);
 
 export const cmFunctions = [
-  {
-    id: 'risk_assessment',
-    label: 'Risk assessment',
-  },
-  {
-    id: 'protection_prevention',
-    label: 'Protection/Prevention',
-  },
-  {
-    id: 'contingency_planning',
-    label: 'Contingency planning',
-  },
-  {
-    id: 'collaboration_planning',
-    label: 'Collaboration planning',
-  },
-  {
-    id: 'education_training',
-    label: 'Education & Training',
-  },
-  {
-    id: 'asset_management',
-    label: 'Asset management',
-  },
-  {
-    id: 'detection_surveillance',
-    label: 'Detection/Surveillance',
-  },
-  {
-    id: 'risk_communication',
-    label: 'Risk communication',
-  },
-  {
-    id: 'alerting',
-    label: 'Alerting, incl. 112',
-  },
-  {
-    id: 'crisis_communication',
-    label: 'Crisis communication',
-  },
-  {
-    id: 'source_fighting',
-    label: 'Source fighting',
-  },
-  {
-    id: 'rescue_operations',
-    label: 'Rescue operations',
-  },
-  {
-    id: 'law_enforcement',
-    label: 'Law enforcement',
-  },
-  {
-    id: 'evacuation_shelter',
-    label: 'Evacuation & Shelter',
-  },
-  {
-    id: 'medical_treatment',
-    label: 'Medical treatment',
-  },
-  {
-    id: 'clear_incident_area',
-    label: 'Clear incident area',
-  },
-  {
-    id: 'basic_needs_supply',
-    label: 'Basic needs supply',
-  },
-  {
-    id: 'c4i',
-    label: 'C4I',
-  },
-  {
-    id: 'situation_assessment',
-    label: 'Situation Assessment',
-  },
-  {
-    id: 'collect_incident_data',
-    label: 'Collect incident data',
-  },
-  {
-    id: 'social_media_mining',
-    label: 'Social media mining',
-  },
-  {
-    id: 'volunteer_mgt',
-    label: 'Volunteer mgt.',
-  },
-  {
-    id: 'logistics',
-    label: 'Logistics',
-  },
-  {
-    id: 'humanitarian_recovery',
-    label: 'Humanitarian recovery',
-  },
-  {
-    id: 'environment_recovery',
-    label: 'Environment recovery',
-  },
-  {
-    id: 'infrastr',
-    label: 'Re-establish infrastr.',
-  },
+  { id: 'risk_assessment', label: 'Risk assessment' },
+  { id: 'planning', label: 'Planning/Doctrines' },
+  { id: 'education_training', label: 'Education & Training' },
+  { id: 'risk_communication', label: 'Crisis/Risk communication' },
+  { id: 'detection_surveillance', label: 'Detection/Surveillance' },
+  { id: 'alerting', label: 'Alerting, incl. 112' },
+  { id: 'scale', label: 'Up-scale/Down-scale' },
+  { id: 'fight_incident_sources', label: 'Fight incident sources' },
+  { id: 'rescue_operations', label: 'Rescue operations' },
+  { id: 'law_enforcement', label: 'Law enforcement' },
+  { id: 'evacuation_shelter', label: 'Evacuation & Shelter' },
+  { id: 'medical_treatment', label: 'Medical treatment' },
+  { id: 'c3', label: 'C3/Information management' },
+  { id: 'sa', label: 'Situation Assessment' },
+  { id: 'logistics', label: 'Logistics' },
+  { id: 'volunteer_management', label: 'Volunteer management' },
+  { id: 'social_media_mining', label: 'Social media mining' },
+  { id: 'clear_area', label: 'Clear area/Restore services' },
 ].sort(sortByLabel);
 
 const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: [`cmFunctions = ${f.id}`] }));
@@ -842,9 +790,9 @@ Expected improvement of the CM function once the solution has been implemented:`
 ];
 
 const incidentCategories = [
-  { id: 'natural', label: 'Natural' },
-  { id: 'technical', label: 'Technical' },
-  { id: 'attack', label: 'Intentional (attacks, acts of terrorism)' },
+  { id: 'natural', label: 'Natural incident' },
+  { id: 'technical', label: 'Technological/human failure' },
+  { id: 'attack', label: 'Intentional incident' },
 ];
 const geographicRegion = [
   {
@@ -914,62 +862,58 @@ const scale = [
 ];
 const organisationType = [
   {
-    id: 'none',
-    label: 'Choose one option',
+    id: 'authority',
+    label: 'Authority',
   },
   {
     id: 'fireBrigade',
-    label: 'Firebrigade/Civil Prot.',
+    label: 'Firebrigade',
   },
   {
-    id: 'policeMilitary',
-    label: 'Police / Military',
+    id: 'civil_protection',
+    label: 'Civil Protection',
   },
   {
-    id: 'medicalServices',
+    id: 'police',
+    label: 'Police',
+  },
+  {
+    id: 'medical_services',
     label: 'Medical services',
   },
   {
-    id: 'searchAndRescue',
-    label: 'Search and Rescue',
+    id: 'public_services',
+    label: 'Other local public service',
   },
   {
-    id: 'coastguard',
-    label: 'Coastguard',
+    id: 'defence',
+    label: 'Defence',
   },
   {
-    id: 'ngoVolunteerOrg.',
-    label: 'NGO / Volunteer org.',
+    id: 'command_centres',
+    label: 'Command and/or Control centres',
   },
   {
-    id: 'monitoringInstitutes',
-    label: 'Monitoring institutes',
+    id: 'monitoring_institute',
+    label: 'Monitoring institute',
   },
   {
-    id: 'publicServices',
-    label: 'Public services',
+    id: 'cip',
+    label: 'Critical Infrastructure provider',
   },
   {
-    id: 'criticalInfrastructures',
-    label: 'Critical Infrastructures',
+    id: 'ngo_volunteer.',
+    label: 'NGO/Voluntary organisation',
   },
   {
-    id: 'commandCentres',
-    label: 'Command centres',
-  },
-  {
-    id: 'policyAuthorities',
-    label: 'Policy / Authorities',
-  },
-  {
-    id: 'internationalAgency',
-    label: 'International agency',
+    id: 'training',
+    label: 'Training institure',
   },
   {
     id: 'other',
     label: 'Other',
   },
-];
+].sort(sortByLabel);
 
 const organisationForm: Form = [
   {
@@ -1112,15 +1056,15 @@ Name and general characteristics that describe the event.`,
   },
   { type: 'md', value: '#### Affected societal sectors' },
   {
-    id: 'cip',
-    label: 'Involved critical infrastructure',
+    id: 'societalSectors',
+    label: 'Involved societal sectors',
     type: 'options',
     break: true,
     checkboxClass: 'col s6 m4',
-    options: cipOptions,
+    options: societalSectors,
   },
   {
-    id: 'cipAdditional',
+    id: 'societalSectorsAdditional',
     label: 'Other involved societal sectors (if any)',
     type: 'textarea',
   },
