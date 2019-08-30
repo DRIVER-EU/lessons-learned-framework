@@ -19,10 +19,9 @@ export interface IEvent extends ILokiObj {
   /** Initial incident category */
   incidentCategory: string;
   initialIncident: string;
-  otherIncidents: string[];
+  otherIncidents: string | string[];
   incidentInfo: string;
-  startDate: Date;
-  endDate: Date;
+  date: Date;
   societalSectors: string[];
   societalSectorsAdditional: string;
   incidentTypes: string[];
@@ -54,6 +53,7 @@ interface IEditor {
   role: string;
   region: string;
   country: string;
+  organisation: string;
 }
 
 export interface IPublication {
@@ -71,4 +71,5 @@ export interface IMultimedia {
   desc?: string;
   owner?: string;
   url?: string;
+  yearOfPublication?: string;
 }

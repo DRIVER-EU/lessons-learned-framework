@@ -370,53 +370,6 @@ const societalSectors = [
   { id: 'other', label: 'Other' },
 ];
 
-const cips = [
-  {
-    id: 'drinking_water',
-    label: 'Drinking water',
-  },
-  {
-    id: 'electricity',
-    label: 'Electricity',
-  },
-  {
-    id: 'gas_supply',
-    label: 'Gas supply',
-  },
-  {
-    id: 'public_health',
-    label: 'Public Health',
-  },
-  {
-    id: 'telecom_ict',
-    label: 'Telecom/ICT',
-  },
-  {
-    id: 'transport_air',
-    label: 'Transport - Air',
-  },
-  {
-    id: 'transport_rail',
-    label: 'Transport - Rail',
-  },
-  {
-    id: 'transport_rivers',
-    label: 'Transport - Rivers',
-  },
-  {
-    id: 'transport_sea',
-    label: 'Transport - Sea',
-  },
-  {
-    id: 'water_management',
-    label: 'Water management',
-  },
-  {
-    id: 'other',
-    label: 'Other',
-  },
-];
-
 const qualityLevels = [
   {
     id: 'unknown',
@@ -642,7 +595,7 @@ export const cmFunctions = [
   { id: 'detection_surveillance', label: 'Detection/Surveillance' },
   { id: 'alerting', label: 'Alerting, incl. 112' },
   { id: 'scale', label: 'Up-scale/Down-scale' },
-  { id: 'fight_incident_sources', label: 'Fight incident sources' },
+  { id: 'fight_incident_sources', label: 'Fight/Eliminate incident source' },
   { id: 'rescue_operations', label: 'Rescue operations' },
   { id: 'law_enforcement', label: 'Law enforcement' },
   { id: 'evacuation_shelter', label: 'Evacuation & Shelter' },
@@ -652,7 +605,10 @@ export const cmFunctions = [
   { id: 'logistics', label: 'Logistics' },
   { id: 'volunteer_management', label: 'Volunteer management' },
   { id: 'social_media_mining', label: 'Social media mining' },
-  { id: 'clear_area', label: 'Clear area/Restore services' },
+  { id: 'debris', label: 'Remove debris' },
+  { id: 'restore', label: 'Restore criticial services' },
+  { id: 'crowd_mgmt', label: 'Crowd management' },
+  { id: 'traffic_mgmt', label: 'Traffic management' },
 ].sort(sortByLabel);
 
 const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: [`cmFunctions = ${f.id}`] }));
@@ -664,6 +620,7 @@ const solutionTypes = [
   { id: 'other', label: 'Other' },
 ];
 const lessonForm: Form = [
+  { id: 'name', type: 'text', label: 'Title', icon: 'title', required: true,   },
   {
     type: 'md',
     value: `##### Observations
@@ -1001,33 +958,29 @@ Name and general characteristics that describe the event.`,
     options: eventTypes,
   },
   {
-    id: 'desc',
-    label: 'Short description of the event',
-    type: 'textarea',
-  },
-  {
     id: 'locationText',
     label: 'Location of the event',
     required: true,
     type: 'textarea',
+    className: 'col s12 m9',
   },
   {
-    id: 'startDate',
+    id: 'date',
     type: 'date',
-    label: 'Start date of the event',
+    label: 'Date',
     required: true,
-    className: 'col s12 m6',
+    className: 'col s12 m3',
   },
   {
-    id: 'endDate',
-    type: 'date',
-    label: 'End date of the event',
-    className: 'col s12 m6',
+    id: 'desc',
+    label: 'Short description of the event',
+    type: 'textarea',
   },
 
   // Incident characteristics
   { id: 'characteristics', type: 'section', label: 'Incident characteristics' },
-  { type: 'md', value: '#### Incident characteristics' },
+  { type: 'md', value: `#### Incident characteristics
+Description of the event scenario: characteristics of the incidents and their impact on society.` },
   {
     id: 'incidentCategory',
     label: 'Initial incident category',
@@ -1067,6 +1020,7 @@ Name and general characteristics that describe the event.`,
     id: 'societalSectorsAdditional',
     label: 'Other involved societal sectors (if any)',
     type: 'textarea',
+    show: ['societalSectors = other']
   },
   {
     type: 'md',

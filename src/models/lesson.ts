@@ -1,4 +1,5 @@
 export interface ILesson {
+  name: string;
   cmFunction: string;
   effectiveness: string;
   efficiency: string;
