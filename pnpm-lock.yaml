@@ -4,9 +4,9 @@ dependencies:
   material-icons: 0.3.1
   materialize-css: 1.0.0
   mithril: 2.0.4
-  mithril-leaflet: 0.1.5_154c6bfd3ace91745ba245372494e571
+  mithril-leaflet: 0.1.6_154c6bfd3ace91745ba245372494e571
   mithril-materialized: 0.14.4_f3d9df6f4766fd28b6cfb8072ccbc3ca
-  mithril-ui-form: 0.3.1_da6f269a7ba86973b6abc35cd17744c1
+  mithril-ui-form: 0.3.2_da6f269a7ba86973b6abc35cd17744c1
   rest-easy-loki: 0.3.2
 devDependencies:
   '@types/leaflet': 1.5.1
@@ -3700,7 +3700,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
-  /mithril-leaflet/0.1.5_154c6bfd3ace91745ba245372494e571:
+  /mithril-leaflet/0.1.6_154c6bfd3ace91745ba245372494e571:
     dependencies:
       leaflet: 1.5.1
       leaflet-draw: 1.0.4
@@ -3709,9 +3709,9 @@ packages:
     peerDependencies:
       leaflet: ^1.5.1
       leaflet-draw: ^1.0.4
-      mithril: ^2.0.0-rc.6
+      mithril: ^2.0.4
     resolution:
-      integrity: sha512-W4WBPw+kHOW43UmhwHoMCrFGc0mgXnfmpvxhmVcKLkBOyFJBuPxr+N0HZkIvqgdAZmM6uTGjxJ4zSdd8HjH2yw==
+      integrity: sha512-amVfw2T1+eo8H4VSRaBq3OSWQkV+FNc80FwQ/MZ3ofLlkx5+9Bt6AM5zicjAsM/RnONJ/PA2tPr8Q/DSGpqZPg==
   /mithril-materialized/0.14.4_f3d9df6f4766fd28b6cfb8072ccbc3ca:
     dependencies:
       materialize-css: 1.0.0
@@ -3722,7 +3722,7 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-imlji5cdQ1dXFYcqy6INPVK9Ch7f0FDd4XXcxHwbLX+emMtpZCOtx738e+gXsqNATo2eHHaVMBg2RDkm+JEf8g==
-  /mithril-ui-form/0.3.1_da6f269a7ba86973b6abc35cd17744c1:
+  /mithril-ui-form/0.3.2_da6f269a7ba86973b6abc35cd17744c1:
     dependencies:
       leaflet: 1.5.1
       leaflet-draw: 1.0.4
@@ -3738,7 +3738,7 @@ packages:
       mithril: ^2.0.4
       mithril-materialized: ^0.14.3
     resolution:
-      integrity: sha512-7F3DM7Q5Szo85/nQEDus4w/YCQcGJWh22eF5GRrTOneG35D6E8itvy5w9ifeCUeCFgFrkQ/WNJ5w8aQZoMvMYg==
+      integrity: sha512-JhDghBv9vURxVdY8JzZvLSDJ403UqY970UL+hkrZLdcy5RMnMj0M5onK5vaM7FZaxsMd4J0NnE2mHeDAO1R/8Q==
   /mithril/2.0.4:
     dev: false
     hasBin: true
@@ -6163,10 +6163,10 @@ specifiers:
   material-icons: ^0.3.1
   materialize-css: ^1.0.0
   mithril: ^2.0.4
-  mithril-leaflet: ^0.1.5
+  mithril-leaflet: ^0.1.6
   mithril-materialized: ^0.14.4
-  mithril-ui-form: ^0.3.1
+  mithril-ui-form: ^0.3.2
   parcel-bundler: ^1.12.3
   rest-easy-loki: ^0.3.2
   rimraf: ^3.0.0
-  typescript: ^3.5.3
+  typescript: ^3.6.2

@@ -12,18 +12,22 @@ export const EventsList = () => {
     filterValue: '',
     eventTypeFilter: [],
     incidentTypeFilter: [],
-    cmFunctionFilter: []
+    cmFunctionFilter: [],
   } as {
     eventTypeFilter: Array<string | number>;
     incidentTypeFilter: Array<string | number>;
     cmFunctionFilter: Array<string | number>;
     filterValue: string;
   };
+
+  const sortByName: ((a: Partial<IEvent>, b: Partial<IEvent>) => number) | undefined = (a, b) =>
+    (a.name || '') > (b.name || '') ? 1 : (a.name || '') < (b.name || '') ? -1 : 0;
+
   return {
     oninit: () => EventsSvc.loadList(),
     view: () => {
       const { eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
-      const events = EventsSvc.getList() || ([] as IEvent[]);
+      const events = (EventsSvc.getList() || ([] as IEvent[])).sort(sortByName);
       const query = nameAndDescriptionFilter(state.filterValue);
       const filteredEvents = events
         .filter(query)
@@ -51,7 +55,7 @@ export const EventsList = () => {
                   dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
                 },
               }),
-              m('h4.primary-text', { style: 'margin-left: 0.5em;' }, 'Filter events' ),
+              m('h4.primary-text', { style: 'margin-left: 0.5em;' }, 'Filter events'),
               m(TextInput, {
                 label: 'Text filter of events',
                 id: 'filter',

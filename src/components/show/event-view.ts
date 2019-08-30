@@ -1,19 +1,23 @@
 import m, { FactoryComponent } from 'mithril';
 import { FlatButton } from 'mithril-materialized';
-import { deepCopy, Form, IInputField, SlimdownView } from 'mithril-ui-form';
-// import { deepCopy, labelResolver, SlimdownView } from 'mithril-ui-form';
-import { IEvent, IPublication } from '../../models';
+import { deepCopy, Form, IInputField, LayoutForm, SlimdownView } from 'mithril-ui-form';
+import { IEvent, IMultimedia, IPublication } from '../../models';
 import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { llf } from '../../template/llf';
 import { capitalizeFirstLetter, formatOptional } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
+import { ILesson } from '../../models/lesson';
+
+// const toGeoJSON = (g: GeoJSON.FeatureCollection) => {
+//   return geoJSON(g);
+// };
 
 /** Create a resolver that translates an ID and value (or values) to a human readable representation */
 export const labelResolver = (form: Form) => {
   const createDict = (ff: IInputField[], label = '') => {
     const d = ff
-      .filter(f => f.type !== 'section')
+      .filter(f => f.type !== 'section' && f.type !== 'md')
       .reduce(
         (acc, cur) => {
           const fieldId = (label ? `${label}.` : '') + cur.id;
@@ -31,10 +35,7 @@ export const labelResolver = (form: Form) => {
   };
   const dict = createDict(form);
   return (id: string, value?: string | string[]) => {
-    if (typeof value === 'undefined') {
-      return '';
-    }
-    if (!dict.hasOwnProperty(id)) {
+    if (!dict.hasOwnProperty(id) || typeof value === 'undefined') {
       return undefined;
     }
     const ff = dict[id];
@@ -53,7 +54,7 @@ export const labelResolver = (form: Form) => {
               .map(o => o.label || capitalizeFirstLetter(o.id))
               .shift()
           )
-          .join(', ');
+          .filter(v => typeof v !== 'undefined');
     }
   };
 };
@@ -66,68 +67,130 @@ export const EventView: FactoryComponent = () => {
   };
 
   const showEditors = (event: Partial<IEvent>) => {
-    const { resolver } = state;
     const { editors } = event;
     return editors
-      ? `<p class="center-align"><i>Editor${editors.length === 1 ? '' : 's'}: ${editors
-          .map(
-            e =>
-              `${e.name}${
-                e.country || e.role
-                  ? ` (${e.role ? `${e.role}` : ''}${
-                      e.country ? `${e.role ? ', ' : ''}${resolver('editors.country', e.country)}` : ''
-                    })`
-                  : ''
-              }`
-          )
+      ? `<p class="center-align"><i>by ${editors
+          .map(e => `${e.name}${formatOptional({ brackets: true }, e.role, e.organisation, e.country)}`)
           .join(', ')}</i></p>`
       : '';
   };
 
-  const showSources = (event: Partial<IEvent>) => {
-    const { resolver } = state;
-    const { publications } = event;
-
-    const formatPublication = (p: IPublication) =>
-      `${p.title}${formatOptional(
-        true,
-        p.orgTitle,
-        p.language === 'other' ? p.otherLanguage : (resolver('publications.language', p.language) as string)
-      )}`;
-    return publications ? publications.map((p, i) => `${i + 1}. ${formatPublication(p)}`).join('\n') : '';
+  const showOrganisations = (event: Partial<IEvent>) => {
+    const { organisations } = event;
+    return organisations
+      ? organisations
+          .map(
+            org =>
+              `- ${org.name}${formatOptional({ brackets: true }, org.type, org.country)}${p(
+                org.info,
+                `<br>${org.info}`
+              )}`
+          )
+          .join(', ')
+      : '';
   };
 
-  const resolveObj = (obj: any, parent = ''): any => {
+  const showLessons = (event: Partial<IEvent>) => {
+    const { lessons } = event;
+    const obs = ({ effectiveness, efficiency, responderHealthAndSafety }: ILesson) =>
+      `<br>Observation: the current effectiveness is ${effectiveness}, its efficiency ${efficiency} and the Health & Safety risks for responders are ${responderHealthAndSafety}.`;
+    return lessons
+      ? lessons
+          .map(
+            les =>
+              `1. ${les.name}${formatOptional({ brackets: true, prepend: 'addressing ' }, les.cmFunction)}${obs(les)}${p(les.lesson,
+                `<br>${les.lesson}`
+              )}`
+          )
+          .join(', ')
+      : '';
+  };
+
+  const formatUrl = (url?: string) => (url ? `[${url}](${url})` : '');
+
+  const showSources = (event: Partial<IEvent>) => {
+    const { publications, multimedia } = event;
+
+    const formatPublication = (p: IPublication) =>
+      `${p.title}${
+        p.yearOfPublication
+          ? ` (${p.yearOfPublication}${p.dissemination ? `, ${p.dissemination}` : ''})`
+          : `${p.dissemination ? `, ${p.dissemination}` : ''}`
+      }${p.author ? `, ${p.author}` : ''}${p.url ? `, ${formatUrl(p.url)}` : ''}${formatOptional(
+        { brackets: true, prepend: 'original title: ' },
+        p.orgTitle,
+        /other/i.test(p.language || '') ? p.otherLanguage : p.language
+      )}`;
+
+    const formatMultimedia = (p: IMultimedia) =>
+      `${formatUrl(p.url)}${p.yearOfPublication ? ` (${p.yearOfPublication})` : ''}${p.desc ? `, ${p.desc}` : ''}${
+        p.owner ? ` (owned by ${p.owner})` : ''
+      }`;
+
+    const ps = publications ? publications.map((p, i) => `${i + 1}. ${formatPublication(p)}`).join('\n') : '';
+    const ms = multimedia ? multimedia.map((mu, i) => `${i + 1}. ${formatMultimedia(mu)}`).join('\n') : '';
+
+    console.log(ps);
+
+    return ps || ms
+      ? `
+##### Publications
+${ps}
+
+##### Multimedia sources
+${ms}
+`
+      : '';
+  };
+
+  const resolveObj = <T>(obj: any, parent = ''): T | undefined => {
     const { resolver } = state;
 
     if (!obj || (typeof obj === 'object' && Object.keys(obj).length === 0)) {
       return undefined;
     }
     if (obj instanceof Array) {
-      return obj.map(o => resolveObj(o, parent));
+      return obj.map(o => resolveObj(o, parent)) as any;
     } else {
       const resolved = {} as { [key: string]: any };
-      Object.keys(obj).forEach(k => {
-        const key = parent ? `${parent}.${k}` : k;
+      Object.keys(obj).forEach(key => {
+        const fullKey = parent ? `${parent}.${key}` : key;
         const value = obj[key as keyof IEvent];
         if (typeof value === 'number' || typeof value === 'boolean') {
           resolved[key] = value;
         } else if (typeof value === 'string') {
-          resolved[key] = resolver(key, value);
+          const r = resolver(fullKey, value);
+          if (r) {
+            resolved[key] = r;
+          }
         } else if (value instanceof Array) {
-          if (typeof value[0] === 'string') {
-            resolved[key] = resolver(key, value as string[]);
+          if (typeof value[0] === 'string' || value[0] === null) {
+            const r = resolver(fullKey, value);
+            if (r) {
+              resolved[key] = r;
+            }
           } else {
-            resolved[key] = resolveObj(value);
+            resolved[key] = resolveObj(value, key);
           }
         }
-        // if (value instanceof Array && value.repeat) {
-        //   value.map(v => Object.keys(v).forEach(k => console.log('  ', k, resolver(`${key}.${k}`, v[k]))));
-        // } else {
-        //   console.log(key, resolver(key, value));
-        // }
       });
-      return resolved;
+      return resolved as T;
+    }
+  };
+
+  /** Print optional */
+  const p = (val: string | number | Date | undefined, output: string) => (val ? output : '');
+
+  /** Print a list: a, b and c */
+  const l = (val: undefined | string | string[]) => {
+    if (!val) {
+      return '';
+    }
+    if (val instanceof Array) {
+      const [last, oneButLast, ...items] = val.reverse();
+      return [...items, `${oneButLast} and ${last}`].filter(Boolean).join(', ');
+    } else {
+      return val;
     }
   };
 
@@ -142,21 +205,89 @@ export const EventView: FactoryComponent = () => {
     },
     view: () => {
       const { event, loaded } = state;
-      console.log(JSON.stringify(event, null, 2));
+      // console.log(JSON.stringify(event, null, 2));
       console.log(JSON.stringify(resolveObj(event), null, 2));
+      const resolved = resolveObj<IEvent>(event);
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }
-      const { name, desc } = event;
-
+      if (!resolved) {
+        return undefined;
+      }
+      const {
+        name,
+        eventType,
+        desc = '',
+        locationText = '',
+        date: startDate,
+        initialIncident,
+        otherIncidents,
+        societalSectors,
+        victims,
+        damage,
+        lossOfServices,
+        disruption,
+        environment,
+        geo,
+        international,
+        scale,
+        memberCountries,
+        scaleExplanation = '',
+        cmFunctions,
+      } = resolved;
+      const oi = l(otherIncidents);
+      const ss = l(societalSectors);
+      const mc = l(memberCountries);
+      const cm = l(cmFunctions);
       const md = `
 <h4 class="center-align">${name}</h4>
 
-${showEditors(event)}
+${showEditors(resolved)}
+
+##### Event description
+${p(eventType, `_Type of event: ${eventType}`)}${p(startDate, `, on ${new Date(startDate).toDateString()}`)}${p(
+        locationText,
+        ` at ${locationText}._`
+      )}
 
 ${desc}
 
-${showSources(event)}
+##### Incident characteristics
+
+The incident was caused initially by a${
+        initialIncident && /aeiuo/.test(initialIncident) ? 'n' : ''
+      } **${initialIncident}** ${formatOptional({ prepend: ', causing the following other incidents: _' }, oi)}_. ${p(
+        ss,
+        `This affected several societal sectors, notably _${ss}_. `
+      )}As a consequence, the:
+${p(victims, `- Number of victims: ${victims}`)}
+${p(damage, `- Material damage: ${damage}`)}
+${p(lossOfServices, `- Loss of services: ${lossOfServices}`)}
+${p(disruption, `- Social/economic: ${disruption}`)}
+${p(environment, `- Environmental degradation: ${environment}`)}
+
+##### Geographical characteristics
+
+The event took place ${p(geo, geo)}. Internationally, the dimension was ${p(international, international)} at a ${p(
+        scale,
+        scale
+      )} scale${formatOptional({ prepend: ', involving ' }, mc)}.
+
+${scaleExplanation}`;
+
+      const md2 = `##### Involved organisations
+
+The following organisations are involved in executing CM functions:
+${showOrganisations(resolved)}
+
+##### Critical Crisis Management functions
+
+The most essential crisis management functions for effectively handling this event were ${p(cm, cm)}.
+
+##### Lessons
+${showLessons(resolved)}
+
+${showSources(resolved)}
       `;
       return [
         m(
@@ -171,7 +302,18 @@ ${showSources(event)}
             })
           )
         ),
-        m('.row', m('.col.s12', m(SlimdownView, { md }))),
+        m('.row', [
+          m('.col.s12', m(SlimdownView, { md })),
+          event.location
+            ? m(LayoutForm, {
+                form: [{ type: 'map', id: 'location' }] as Form,
+                obj: event,
+                disabled: true,
+                context: {},
+              })
+            : undefined,
+          m('.col.s12', m(SlimdownView, { md: md2 })),
+        ]),
       ];
     },
   };
