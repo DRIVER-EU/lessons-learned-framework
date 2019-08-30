@@ -6,10 +6,12 @@ import { HomePage } from '../components/home/home-page';
 import { Layout } from '../components/layout';
 import { EventView } from '../components/show/event-view';
 import { IDashboard } from '../models/dashboard';
+import { HelpPage } from '../components/about/help-page';
 
 export const enum Dashboards {
   HOME = 'HOME',
   ABOUT = 'ABOUT',
+  HELP = 'HELP',
   READ = 'SHOW',
   EDIT = 'EDIT',
   SEARCH = 'SEARCH',
@@ -73,7 +75,7 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
   {
     id: Dashboards.READ,
     title: 'READ',
-    icon: 'note',
+    icon: 'description',
     route: '/read/:id',
     visible: false,
     component: EventView,
@@ -85,6 +87,14 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     route: '/edit/:id',
     visible: false,
     component: EventForm,
+  },
+  {
+    id: Dashboards.HELP,
+    title: 'HELP',
+    icon: 'help',
+    route: '/help',
+    visible: true,
+    component: HelpPage,
   },
   {
     id: Dashboards.ABOUT,

@@ -1203,21 +1203,6 @@ List of organisations that were involved in executing one or more crisis managem
     type: lessonForm,
   },
 
-  { id: 'editors', type: 'section' },
-  { type: 'md', value: '#### Editors' },
-  {
-    id: 'editors',
-    label: 'Add editor',
-    className: 'col s12',
-    repeat: true,
-    type: editorForm,
-    i18n: {
-      createRepeat: 'Create a new editor',
-      editRepeat: 'Edit editor',
-    },
-  },
-  { id: 'created', label: 'Created "{{event}}" event on:', type: 'date', required: true },
-
   // { id: 'sources', type: 'section' },
   // { type: 'md', value: '#### Sources of information' },
   { id: 'publications', type: 'section' },
@@ -1244,4 +1229,18 @@ List of organisations that were involved in executing one or more crisis managem
       editRepeat: 'Edit multimedia source',
     },
   },
+  { id: 'editors', type: 'section' },
+  { type: 'md', value: '#### Editors' },
+  {
+    id: 'editors',
+    label: 'Add editor',
+    className: 'col s12',
+    repeat: true,
+    type: editorForm,
+    i18n: {
+      createRepeat: 'Create a new editor',
+      editRepeat: 'Edit editor',
+    },
+  },
+  { id: 'created', label: 'Created "{{event}}" event on:', type: 'date', required: true },
 ] as Form;
