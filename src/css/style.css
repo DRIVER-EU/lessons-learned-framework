@@ -24,8 +24,19 @@ nav ul a {
   /* font-weight: bold; */
   color: black;
 }
+a,
 .primary-text {
   color: #1a237e ;
+}
+.markdown ul {
+  padding-left: 20px;
+}
+.markdown ul > li {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+.leaflet-top, .leaflet-bottom {
+  z-index: 950;
 }
 
 /* styles for '...' */
