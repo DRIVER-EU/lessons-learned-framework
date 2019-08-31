@@ -87,3 +87,15 @@ a,
 .buttons {
   padding: 0 20px;
 }
+
+/* print styles */
+@media print {
+  body {
+    margin: 0;
+    color: #000;
+    background-color: #fff;
+  }
+  header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
+    display: none;
+  }
+}
