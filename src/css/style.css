@@ -16,7 +16,7 @@
 .input-field > .material-icons,
 .dropdown-content > li > a,
 .secondary-content > .material-icons {
-  color: #1a237e ;
+  color: #1a237e;
   font-weight: bold;
 }
 .tabs.tabs-transparent .tab a,
@@ -26,7 +26,7 @@ nav ul a {
 }
 a,
 .primary-text {
-  color: #1a237e ;
+  color: #1a237e;
 }
 .markdown ul {
   padding-left: 20px;
@@ -35,7 +35,8 @@ a,
   padding-left: 20px;
   list-style-type: disc;
 }
-.leaflet-top, .leaflet-bottom {
+.leaflet-top,
+.leaflet-bottom {
   z-index: 950;
 }
 
@@ -94,8 +95,31 @@ a,
     margin: 0;
     color: #000;
     background-color: #fff;
+    font-size: 12px;
   }
-  header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+  }
+  img,
+  pre,
+  blockquote {
+    page-break-inside: avoid;
+  }
+  main::after {
+    content: 'Copyright DRIVER+';
+    display: block;
+    text-align: center;
+  }
+  .do-not-print,
+  header,
+  footer,
+  aside,
+  nav,
+  form,
+  iframe,
+  .menu,
+  .hero,
+  .adslot {
     display: none;
   }
 }
