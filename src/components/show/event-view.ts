@@ -93,17 +93,38 @@ export const EventView: FactoryComponent = () => {
   const showLessons = (event: Partial<IEvent>) => {
     const { lessons } = event;
     const obs = ({ effectiveness, efficiency, responderHealthAndSafety }: ILesson) =>
-      `<br>Observation: the current effectiveness is ${effectiveness}, its efficiency ${efficiency} and the Health & Safety risks for responders are ${responderHealthAndSafety}.`;
-    return lessons
-      ? lessons
-          .map(
-            les =>
-              `1. ${les.name}${formatOptional({ brackets: true, prepend: 'addressing ' }, les.cmFunction)}${obs(les)}${p(les.lesson,
-                `<br>${les.lesson}`
-              )}`
-          )
-          .join(', ')
-      : '';
+      `Observation: the current effectiveness is '${effectiveness}', its efficiency '${efficiency}' and the Health & Safety risks for responders are '${responderHealthAndSafety}'.`;
+    const createLesson = (les: ILesson, index: number) => {
+      const {
+        name,
+        solutionType,
+        expectedImprovementsInfo,
+        lesson,
+        cmFunction,
+        victimsImprovements,
+        materialDamageImprovements,
+        ciLossImprovements,
+        socEcoDisruptionImprovements,
+        environmentalDegradationImprovements,
+      } = les;
+      return `
+###### Lesson ${index + 1}: ${p(name, name)}${formatOptional({ brackets: true, prepend: 'addressing CM function ' }, cmFunction)}
+
+${obs(les)}
+
+${p(solutionType, `A solution can be found in the ${solutionType}:`)} ${p(lesson, lesson)}
+Once the solution has been implemented, the expected improvements are: ${p(
+        expectedImprovementsInfo,
+        expectedImprovementsInfo
+      )}
+${p(victimsImprovements, `- Number of victims: ${victimsImprovements}`)}
+${p(materialDamageImprovements, `- Material damage: ${materialDamageImprovements}`)}
+${p(ciLossImprovements, `- Loss of services: ${ciLossImprovements}`)}
+${p(socEcoDisruptionImprovements, `- Social/economic: ${socEcoDisruptionImprovements}`)}
+${p(environmentalDegradationImprovements, `- Environmental degradation: ${environmentalDegradationImprovements}`)}
+`;
+    };
+    return lessons ? lessons.map(createLesson).join(', ') : '';
   };
 
   const formatUrl = (url?: string) => (url ? `[${url}](${url})` : '');
@@ -172,6 +193,8 @@ ${ms}
           } else {
             resolved[key] = resolveObj(value, key);
           }
+        } else if (typeof value === 'object') {
+          resolved[key] = value;
         }
       });
       return resolved as T;
@@ -234,6 +257,7 @@ ${ms}
         memberCountries,
         scaleExplanation = '',
         cmFunctions,
+        location,
       } = resolved;
       const oi = l(otherIncidents);
       const ss = l(societalSectors);
@@ -304,7 +328,7 @@ ${showSources(resolved)}
         ),
         m('.row', [
           m('.col.s12', m(SlimdownView, { md })),
-          event.location
+          location
             ? m(LayoutForm, {
                 form: [{ type: 'map', id: 'location' }] as Form,
                 obj: event,
