@@ -140,5 +140,5 @@ export const removeHtml = (s: string) => s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/
 export const formatOptional = (options: { brackets?: boolean; prepend?: string; }, ...items: Array<string | number | undefined>) => {
   const { brackets, prepend = '' } = options;
   const f = items.filter(i => typeof i !== 'undefined' && i !== '');
-  return f.length === 0 ? '' : brackets ? ` (${prepend}${f.join(', ')})` : ` ${prepend}` + f.join(', ');
+  return f.length === 0 ? '' : brackets ? ` (${prepend}${f.join(', ')})` : `${prepend}` + f.join(', ');
 };
