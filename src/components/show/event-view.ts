@@ -1,14 +1,12 @@
 import m, { FactoryComponent } from 'mithril';
 import { FlatButton } from 'mithril-materialized';
-import { deepCopy, Form, labelResolver, LayoutForm, SlimdownView } from 'mithril-ui-form';
-import { IEvent, IMultimedia, IPublication } from '../../models';
+import { deepCopy, labelResolver } from 'mithril-ui-form';
+import { IEvent } from '../../models';
 import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
-import { llf } from '../../template/llf';
-import { formatOptional } from '../../utils';
-import { CircularSpinner } from '../ui/preloader';
-import { ILesson } from '../../models/lesson';
 import { FormattedEvent } from '../../services/format-event';
+import { llf } from '../../template/llf';
+import { CircularSpinner } from '../ui/preloader';
 
 export const EventView: FactoryComponent = () => {
   const state = {
