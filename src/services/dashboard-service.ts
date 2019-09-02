@@ -91,15 +91,15 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
   {
     id: Dashboards.HELP,
     title: 'HELP',
-    icon: 'help',
-    route: '/help',
+    icon: 'info',
+    route: '/info',
     visible: true,
     component: HelpPage,
   },
   {
     id: Dashboards.ABOUT,
     title: 'ABOUT',
-    icon: 'info',
+    icon: 'help',
     route: '/about',
     visible: true,
     component: AboutPage,

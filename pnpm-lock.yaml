@@ -5,7 +5,8 @@ dependencies:
   materialize-css: 1.0.0
   mithril: 2.0.4
   mithril-leaflet: 0.1.6_154c6bfd3ace91745ba245372494e571
-  mithril-materialized: 0.14.4_f3d9df6f4766fd28b6cfb8072ccbc3ca
+  mithril-materialized: 0.14.5_f3d9df6f4766fd28b6cfb8072ccbc3ca
+  mithril-ui-form: 0.3.4_d7ac874601f90d3f54cf108b50650c9d
   rest-easy-loki: 0.3.2
 devDependencies:
   '@types/leaflet': 1.5.1
@@ -3711,7 +3712,7 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-amVfw2T1+eo8H4VSRaBq3OSWQkV+FNc80FwQ/MZ3ofLlkx5+9Bt6AM5zicjAsM/RnONJ/PA2tPr8Q/DSGpqZPg==
-  /mithril-materialized/0.14.4_f3d9df6f4766fd28b6cfb8072ccbc3ca:
+  /mithril-materialized/0.14.5_f3d9df6f4766fd28b6cfb8072ccbc3ca:
     dependencies:
       materialize-css: 1.0.0
       mithril: 2.0.4
@@ -3720,7 +3721,24 @@ packages:
       materialize-css: ^1.0.0
       mithril: ^2.0.4
     resolution:
-      integrity: sha512-imlji5cdQ1dXFYcqy6INPVK9Ch7f0FDd4XXcxHwbLX+emMtpZCOtx738e+gXsqNATo2eHHaVMBg2RDkm+JEf8g==
+      integrity: sha512-4RBxeVpqaNzxIxYOb6hgmisG0LtLEDVRQX/kmZ57PzwgWlYH/c6dUrwgH9iWp1JMzK9jpyUEnVyhrI8OeT+6Fw==
+  /mithril-ui-form/0.3.4_d7ac874601f90d3f54cf108b50650c9d:
+    dependencies:
+      leaflet: 1.5.1
+      leaflet-draw: 1.0.4
+      materialize-css: 1.0.0
+      mithril: 2.0.4
+      mithril-materialized: 0.14.5_f3d9df6f4766fd28b6cfb8072ccbc3ca
+      slimdown-js: 0.1.4
+    dev: false
+    peerDependencies:
+      leaflet: ^1.5.1
+      leaflet-draw: ^1.0.4
+      materialize-css: ^1.0.0
+      mithril: ^2.0.4
+      mithril-materialized: ^0.14.3
+    resolution:
+      integrity: sha512-blHzpalwZTxifVvhi91EqaXLa4hAHJGWpDfiKQ85MFyxOY8wZhZNBomO4zXMi0z4HcuY8NxtmFpPa56b6DiySw==
   /mithril/2.0.4:
     dev: false
     hasBin: true
@@ -5272,6 +5290,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
+  /slimdown-js/0.1.4:
+    dev: false
+    resolution:
+      integrity: sha512-TEqF783G5RXbhVd8plTReVgbKwGYyWL9yX1Cff8N3z1Jrltf1gqj9iIZxW3QHIo7I0otDNQYQWyo0ZTvTGuYFA==
   /snapdragon-node/2.1.1:
     dependencies:
       define-property: 1.0.0
@@ -6142,7 +6164,8 @@ specifiers:
   materialize-css: ^1.0.0
   mithril: ^2.0.4
   mithril-leaflet: ^0.1.6
-  mithril-materialized: ^0.14.4
+  mithril-materialized: ^0.14.5
+  mithril-ui-form: ^0.3.4
   parcel-bundler: ^1.12.3
   rest-easy-loki: ^0.3.2
   rimraf: ^3.0.0

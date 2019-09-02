@@ -26,8 +26,8 @@ export const EventView: FactoryComponent = () => {
     view: () => {
       const { event, loaded, resolveObj } = state;
       // console.log(JSON.stringify(event, null, 2));
-      console.log(JSON.stringify(resolveObj(event), null, 2));
       const resolved = resolveObj<IEvent>(event);
+      console.log(JSON.stringify(resolved, null, 2));
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }

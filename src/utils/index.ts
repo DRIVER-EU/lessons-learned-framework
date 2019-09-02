@@ -137,8 +137,13 @@ export const removeHtml = (s: string) => s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/
  * Join a list of items with a comma.
  * Removes empty items, and optionally adds brackets around the comma separated list.
  */
-export const formatOptional = (options: { brackets?: boolean; prepend?: string; }, ...items: Array<string | number | undefined>) => {
-  const { brackets, prepend = '' } = options;
+export const formatOptional = (
+  options: { brackets?: boolean; prepend?: string; append?: string; },
+  ...items: Array<string | number | undefined>
+) => {
+  const { brackets, prepend = '', append = '' } = options;
   const f = items.filter(i => typeof i !== 'undefined' && i !== '');
-  return f.length === 0 ? '' : brackets ? ` (${prepend}${f.join(', ')})` : `${prepend}` + f.join(', ');
+  if (!f || f.length === 0) { return ''; }
+  const txt = `${prepend}${f.join(', ')}${append}`;
+  return f.length === 0 ? '' : brackets ? ` (${txt})` : txt;
 };

@@ -12,40 +12,40 @@ export interface ILokiObj {
 }
 
 export interface IEvent extends ILokiObj {
-  name: string;
-  desc: string;
-  eventType: string;
-  locationText: string;
-  /** Initial incident category */
-  incidentCategory: string;
-  initialIncident: string;
-  otherIncidents: string | string[];
-  incidentInfo: string;
-  date: Date;
-  societalSectors: string[];
-  societalSectorsAdditional: string;
-  incidentTypes: string[];
-  victims: string;
+  challengesInfo: string;
+  cmFunctions: string[];
   damage: string;
-  lossOfServices: string;
+  date: Date;
+  desc: string;
   disruption: string;
+  editors: IEditor[];
+  effectsOnEfficiency: string;
+  effectsOnPerformance: string;
+  effectsOnResponderHealthAndSafety: string;
   environment: string;
-  /** Geographic region */
+  eventType: string;
   geo: string;
-  /** internationalDimension */
+  incidentCategory: string;
+  incidentInfo: string;
+  incidentTypes: string[];
+  initialIncident: string;
   international: string;
+  lessons?: ILesson[];
+  location: { [key: string]: any };
+  locationText: string;
+  lossOfServices: string;
+  memberCountries: string[];
+  multimedia: IMultimedia[];
+  name: string;
+  organisations: IOrganisation[];
+  otherCountries: string;
+  otherIncidents: string | string[];
+  publications: IPublication[];
   scale: string;
   scaleExplanation: string;
-  memberCountries: string[];
-  /** GeoJSON area definition */
-  location: { [key: string]: any };
-  organisations: IOrganisation[];
-  cmFunctions: string[];
-  challengesInfo: string;
-  lessons?: ILesson[];
-  editors: IEditor[];
-  publications: IPublication[];
-  multimedia: IMultimedia[];
+  societalSectors: string[];
+  societalSectorsAdditional: string;
+  victims: string;
 }
 
 interface IEditor {

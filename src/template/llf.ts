@@ -113,10 +113,6 @@ const countries = [
     id: 'united_kingdom',
     label: 'United Kingdom',
   },
-  {
-    id: 'other',
-    label: 'Other',
-  },
 ];
 
 const languages = [
@@ -534,7 +530,9 @@ const publicationForm = [
 ] as Form;
 
 export const eventTypes = [
-  { id: 'incident', label: 'Incident, disaster or crisis' },
+  { id: 'crisis', label: 'Crisis' },
+  { id: 'disaster', label: 'Disaster' },
+  { id: 'incident', label: 'Incident' },
   { id: 'prevention', label: 'Preventive activity' },
   { id: 'test', label: 'Test or trial' },
   { id: 'training', label: 'Training or exercise' },
@@ -669,7 +667,7 @@ Description of positive or negative observations, experiences, etc. based on a s
   {
     id: 'solutionType',
     label: 'Nature of solution',
-    type: 'options',
+    type: 'radio',
     checkboxClass: 'col s12 m6 xl3',
     options: solutionTypes,
   },
@@ -962,14 +960,14 @@ Name and general characteristics that describe the event.`,
     label: 'Location of the event',
     required: true,
     type: 'textarea',
-    className: 'col s12 m9',
+    className: 'col s12 m8',
   },
   {
     id: 'date',
     type: 'date',
     label: 'Date',
     required: true,
-    className: 'col s12 m3',
+    className: 'col s12 m4',
   },
   {
     id: 'desc',
@@ -1049,7 +1047,7 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     type: 'textarea',
   },
   {
-    id: 'enviroment',
+    id: 'environment',
     label: 'Environmental degradation',
     type: 'textarea',
   },
@@ -1090,6 +1088,11 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     required: true,
     type: 'options',
     options: countries,
+  },
+  {
+    id: 'otherCountries',
+    label: 'Other countries',
+    type: 'textarea',
   },
   {
     id: 'scaleExplanation',
