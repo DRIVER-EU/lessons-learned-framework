@@ -163,8 +163,8 @@ ${desc}
 ##### Incident characteristics
 
 The incident was caused initially by a${
-    initialIncident && /aeiuo/.test(initialIncident) ? 'n' : ''
-  } **${initialIncident}** ${formatOptional({ prepend: ', causing the following other incidents: _' }, oi)}_. ${p(
+    initialIncident && /^[aeiuo]/i.test(initialIncident) ? 'n' : ''
+  } **${initialIncident}**${formatOptional({ prepend: ', causing the following other incidents: _' }, oi)}_. ${p(
     ss,
     `This affected several societal sectors, notably _${ss}_. `
   )}As a consequence, the:
