@@ -157,7 +157,7 @@ const formatEvent = (event: IEvent) => {
   } = event;
   const oi = l(otherIncidents);
   const ss = l(societalSectors);
-  const mc = l([...memberCountries, otherCountries]);
+  const mc = l([...(memberCountries || []), otherCountries]);
   const cm = l(cmFunctions);
   const md = `
 <h4 class="primary-text center-align">${name}</h4>
