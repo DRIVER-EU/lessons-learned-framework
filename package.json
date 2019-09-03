@@ -39,7 +39,7 @@
     "mithril": "^2.0.4",
     "mithril-leaflet": "^0.1.6",
     "mithril-materialized": "^0.14.5",
-    "mithril-ui-form": "^0.3.4",
+    "mithril-ui-form": "^0.3.5",
     "rest-easy-loki": "^0.3.2"
   },
   "devDependencies": {
