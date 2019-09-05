@@ -45,6 +45,7 @@ export interface IEvent extends ILokiObj {
   scaleExplanation: string;
   societalSectors: string[];
   societalSectorsAdditional: string;
+  societalSectorInfo: string;
   victims: string;
 }
 

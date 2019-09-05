@@ -59,7 +59,10 @@ export const HomePage = () => ({
               m('.icon-block', [
                 m('.center', m(Icon, { iconName: 'flash_on' })),
                 m('h5.center', 'Quick and easy'),
-                m('p.light', 'In a short period of time you can edit information and key lessons from an event in a well-organised way.'),
+                m(
+                  'p.light',
+                  'In a short period of time you can edit information and key lessons from an event in a well-organised way.'
+                ),
               ])
             ),
             m(
@@ -67,7 +70,10 @@ export const HomePage = () => ({
               m('.icon-block', [
                 m('.center', m(Icon, { iconName: 'public' })),
                 m('h5.center', 'Open to any professional'),
-                m('p.light', 'Not locked away in a safe or hidden in some report, but open to any CM professional interested to learn from other colleagues.'),
+                m(
+                  'p.light',
+                  'Not locked away in a safe or hidden in some report, but open to any CM professional interested to learn from other colleagues.'
+                ),
               ])
             ),
           ]),
@@ -86,12 +92,16 @@ export const HomePage = () => ({
           ]),
           m('div', { style: 'float: right; margin-left: 10px;' }, [
             m('img', { src: driverLogo, width: 67, height: 67, style: 'display: block; margin-left: 40px;' }),
-            m('a.primary-text', { style: 'display: block', href: 'https://www.project-driver.eu', target: '_blank' }, 'www.project-driver.eu'),
+            m(
+              'a.primary-text',
+              { style: 'display: block', href: 'https://www.project-driver.eu', target: '_blank' },
+              'www.project-driver.eu'
+            ),
           ]),
           m(
             '.white-text',
             `This project has received funding from the European Union's 7th Framework Programme for Research,
-          Technological Development and Demonstration under Grant Agreement (GA) N°#607798`
+          Technological Development and Demonstration under Grant Agreement (GA)`
           ),
           m('span', '©DRIVER+'),
         ])

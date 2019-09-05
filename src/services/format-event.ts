@@ -5,7 +5,7 @@ import { ILesson } from '../models/lesson';
 import { formatOptional } from '../utils';
 
 /** Print optional */
-const p = (val: string | number | Date | undefined, output?: string) => (val ? output || val : '???');
+const p = (val: string | number | Date | undefined, output?: string) => (val ? output || val : '');
 
 /** Print a list: a, b and c */
 const l = (val: undefined | string | string[]) => {
@@ -62,7 +62,7 @@ const showLessons = (event: Partial<IEvent>) => {
       environmentalDegradationImprovements,
       effectsOnPerformance,
       effectsOnEfficiency,
-      effectsOnResponderHealthAndSafety
+      effectsOnResponderHealthAndSafety,
     } = les;
     return `
 <h6 class="primary-text">Lesson ${index + 1}: ${p(name, name)}${formatOptional(
@@ -85,7 +85,10 @@ ${p(victimsImprovements, `- Number of victims/casualties reduction: ${victimsImp
 ${p(materialDamageImprovements, `- Material damage reduction: ${materialDamageImprovements}`)}
 ${p(ciLossImprovements, `- Loss of services reduction: ${ciLossImprovements}`)}
 ${p(socEcoDisruptionImprovements, `- Social/economic reduction: ${socEcoDisruptionImprovements}`)}
-${p(environmentalDegradationImprovements, `- Environmental degradation reduction: ${environmentalDegradationImprovements}`)}`;
+${p(
+  environmentalDegradationImprovements,
+  `- Environmental degradation reduction: ${environmentalDegradationImprovements}`
+)}`;
   };
   return lessons ? lessons.map(createLesson).join(', ') : '';
 };
@@ -153,6 +156,8 @@ const formatEvent = (event: IEvent) => {
     scale,
     scaleExplanation = '',
     societalSectors,
+    societalSectorsAdditional,
+    societalSectorInfo: societalSectorsInfo,
     victims,
   } = event;
   const oi = l(otherIncidents);
@@ -179,8 +184,11 @@ The incident was caused initially by a${initialIncident && /^[aeiuo]/i.test(init
   )}${oi && oi.length > 0 ? formatOptional({ prepend: ', causing the following other incidents: ' }, oi) : ''}.
 
   ${p(incidentInfo)}
+  ${p(scale, `The scale of the event was ${scale}.`)}
 
   ${p(ss, `This affected several societal sectors, notably ${ss}. `)}
+  ${p(societalSectorsAdditional)}
+  ${p(societalSectorsInfo)}
 
 As a consequence of this incident, the (potential) impact is the following:
 ${p(victims, `- Number of victims: ${victims}`)}
@@ -191,10 +199,7 @@ ${p(environment, `- Environmental degradation: ${environment}`)}
 
 <h5 class="primary-text">Geographical characteristics</h5>
 
-The event took place ${p(geo, geo)}. Internationally, the dimension was ${p(international, international)} at a ${p(
-    scale,
-    scale
-  )} scale${formatOptional({ prepend: ', involving ' }, mc)}.
+${p(mc, `The event involved the following countries: ${mc}. `)}
 
 ${scaleExplanation}`;
 

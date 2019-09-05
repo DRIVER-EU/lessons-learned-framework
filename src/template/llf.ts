@@ -799,6 +799,10 @@ const internationalDimension = [
 ];
 const scale = [
   {
+    id: 'local',
+    label: 'Local',
+  },
+  {
     id: 'regional',
     label: 'Regional',
   },
@@ -982,6 +986,7 @@ Description of the event scenario: characteristics of the incidents and their im
   {
     id: 'incidentCategory',
     label: 'Initial incident category',
+    required: true,
     className: 'col s12 m6',
     type: 'select',
     options: incidentCategories,
@@ -989,6 +994,7 @@ Description of the event scenario: characteristics of the incidents and their im
   {
     id: 'initialIncident',
     label: 'Initial incident',
+    required: true,
     className: 'col s12 m6',
     type: 'select',
     options: incidentTypes,
@@ -998,19 +1004,27 @@ Description of the event scenario: characteristics of the incidents and their im
     label: 'Other incidents',
     className: 'col s12',
     multiple: true,
-    options: incidentTypes.filter(i => i.show[0].indexOf('attack') < 0).map(i => ({ ...i, show: undefined })),
+    options: incidentTypes.filter(i => i.show[0].indexOf('attack') < 0).map(i => ({ id: i.id, label: i.label })),
   },
   {
     id: 'incidentInfo',
     label: 'Explanation',
     type: 'textarea',
   },
+  {
+    id: 'scale',
+    label: 'Scale of the incident and its impact',
+    type: 'select',
+    required: true,
+    className: 'col s6',
+    options: scale,
+  },
   { type: 'md', value: '#### Affected societal sectors' },
   {
     id: 'societalSectors',
-    label: 'Involved societal sectors',
+    label: 'Please select one or more',
     type: 'options',
-    break: true,
+    required: true,
     checkboxClass: 'col s6 m4',
     options: societalSectors,
   },
@@ -1021,8 +1035,13 @@ Description of the event scenario: characteristics of the incidents and their im
     show: ['societalSectors = other']
   },
   {
+    id: 'societalSectorsInfo',
+    label: 'Explanation',
+    type: 'textarea',
+  },
+  {
     type: 'md',
-    value: `##### Description of the (potential) societal impact of the incident(s)
+    value: `#### Societal impact of the incident(s)
 
 Description of the (potential) impact of the incident(s) on society, expressed in criteria used by [UNISDR](https://www.unisdr.org/we/inform/terminology), and of the problems that have or had to be tackled by crisis management organisations.`,
   },
@@ -1056,32 +1075,26 @@ Description of the (potential) impact of the incident(s) on society, expressed i
   { id: 'geo', type: 'section', label: 'Geographic characteristics' },
   {
     type: 'md',
-    value: '#### Geographical characteristics of the event',
+    value: `#### Geographical characteristics of the event
+
+Geographic dimensions of the event scenario.`,
   },
-  {
-    id: 'geo',
-    label: 'Inside and/or outside the EU',
-    type: 'select',
-    required: true,
-    className: 'col s6 m4',
-    options: geographicRegion,
-  },
-  {
-    id: 'international',
-    label: 'International dimension',
-    type: 'select',
-    required: true,
-    className: 'col s6 m4',
-    options: internationalDimension,
-  },
-  {
-    id: 'scale',
-    label: 'Scale',
-    type: 'select',
-    required: true,
-    className: 'col s6 m4',
-    options: scale,
-  },
+  // {
+  //   id: 'geo',
+  //   label: 'Inside and/or outside the EU',
+  //   type: 'select',
+  //   required: true,
+  //   className: 'col s6 m4',
+  //   options: geographicRegion,
+  // },
+  // {
+  //   id: 'international',
+  //   label: 'International dimension',
+  //   type: 'select',
+  //   required: true,
+  //   className: 'col s6 m4',
+  //   options: internationalDimension,
+  // },
   {
     id: 'memberCountries',
     label: 'Involved EU member state(s)',
