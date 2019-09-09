@@ -4,7 +4,7 @@ import driverLogo from '../../assets/driver-logo2.png';
 
 const md = `<h4 class="primary-text">About</h4>
 
-The Lessons Learned Library was developed by Dirk Stolk and Erik Vullings from [TNO](https://wwww.tno.nl) in 2019 as part of the DRIVER+ project. It is a practical implementation of the Lessons Learned Framework (LLF) that was developed in 2017, and includes a number of improvements based on experiences with the LLF demonstrator tool.
+The Lessons Learned Library was developed by Dirk Stolk and Erik Vullings from [TNO](https://www.tno.nl) in 2019 as part of the DRIVER+ project. It is a practical implementation of the Lessons Learned Framework (LLF) that was developed in 2017, and includes a number of improvements based on experiences with the LLF demonstrator tool.
 
 The [DRIVER+](https://www.driver-project.eu) project has received funding from the European Union's 7th Framework Programme for Research, Technological Development and Demonstration under Grant Agreement (GA) N°#607798.`;
 

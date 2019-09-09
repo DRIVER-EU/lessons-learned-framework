@@ -91,19 +91,25 @@ a,
 
 /* print styles */
 @media print {
+  html, body {
+    font-size: 14px;
+  }
   body {
     margin: 0;
     color: #000;
     background-color: #fff;
-    font-size: 14px;
   }
   a[href^='http']::after {
     content: ' (' attr(href) ')';
   }
+  .leaflet-container,
   img,
   pre,
   blockquote {
     page-break-inside: avoid;
+    page-break-before: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+    page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+    page-break-inside: avoid; /* or 'auto' */
   }
   main::after {
     content: 'Copyright DRIVER+';

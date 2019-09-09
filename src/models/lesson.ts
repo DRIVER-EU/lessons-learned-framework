@@ -16,4 +16,5 @@ export interface ILesson {
   socEcoDisruptionImprovements: string;
   environmentalDegradationImprovements: string;
   explanationImprovements: string;
+  observationInfo: string;
 }

@@ -12,6 +12,7 @@ export interface ILokiObj {
 }
 
 export interface IEvent extends ILokiObj {
+  published: boolean;
   challengesInfo: string;
   cmFunctions: string[];
   damage: string;
@@ -45,7 +46,7 @@ export interface IEvent extends ILokiObj {
   scaleExplanation: string;
   societalSectors: string[];
   societalSectorsAdditional: string;
-  societalSectorInfo: string;
+  societalSectorsInfo: string;
   victims: string;
 }
 

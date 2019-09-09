@@ -46,8 +46,11 @@ const showOrganisations = (event: Partial<IEvent>) => {
 
 const showLessons = (event: Partial<IEvent>) => {
   const { lessons } = event;
-  const obs = ({ effectiveness, efficiency, responderHealthAndSafety }: ILesson) =>
-    `Observation: the current effectiveness is '${effectiveness}', its efficiency '${efficiency}' and the Health & Safety risks for responders are '${responderHealthAndSafety}'.`;
+  if (!lessons || lessons.length === 0) {
+    return 'No lessons have been learned yet.';
+  }
+  const obs = ({ effectiveness, efficiency, responderHealthAndSafety, observationInfo }: ILesson) =>
+    `Observation: the current effectiveness is '${effectiveness}', its efficiency '${efficiency}' and the Health & Safety risks for responders are '${responderHealthAndSafety}'. ${p(observationInfo)}`;
   const createLesson = (les: ILesson, index: number) => {
     const {
       name,
@@ -63,9 +66,16 @@ const showLessons = (event: Partial<IEvent>) => {
       effectsOnPerformance,
       effectsOnEfficiency,
       effectsOnResponderHealthAndSafety,
+      explanationImprovements,
     } = les;
-    return `
-<h6 class="primary-text">Lesson ${index + 1}: ${p(name, name)}${formatOptional(
+    const intro =
+      index === 0
+        ? `From the evaluation of this event, the following ${lessons.length} lesson${
+            lessons.length > 1 ? 's' : ''
+          } have been learned.`
+        : '';
+    return `${intro}
+<h6 class="primary-text">Lesson ${index + 1}: ${p(name)}${formatOptional(
       { brackets: true, prepend: 'addressing CM function ' },
       cmFunction
     )}</h6>
@@ -76,11 +86,11 @@ ${p(solutionType, `A solution can be found in ${solutionType}:`)} ${p(lesson, le
 Once the solution has been implemented, the expected improvements are: ${p(expectedImprovementsInfo)}
 
 As a result, the expected improvements of the CM function once the solution has been implemented are:
-${p(effectsOnPerformance, `- Quality improvement: ${effectsOnPerformance}`)}
+${p(effectsOnPerformance, `- Effectiveness improvement: ${effectsOnPerformance}`)}
 ${p(effectsOnEfficiency, `- Efficiency improvement: ${effectsOnEfficiency}`)}
 ${p(effectsOnResponderHealthAndSafety, `- Health & Safety risk reduction: ${effectsOnResponderHealthAndSafety}`)}
 
-Additionally, the expected impact reductions are:
+Additionally, the expected impact reductions on the described incident are:
 ${p(victimsImprovements, `- Number of victims/casualties reduction: ${victimsImprovements}`)}
 ${p(materialDamageImprovements, `- Material damage reduction: ${materialDamageImprovements}`)}
 ${p(ciLossImprovements, `- Loss of services reduction: ${ciLossImprovements}`)}
@@ -88,9 +98,10 @@ ${p(socEcoDisruptionImprovements, `- Social/economic reduction: ${socEcoDisrupti
 ${p(
   environmentalDegradationImprovements,
   `- Environmental degradation reduction: ${environmentalDegradationImprovements}`
-)}`;
+)}
+${p(explanationImprovements)}`;
   };
-  return lessons ? lessons.map(createLesson).join(', ') : '';
+  return lessons ? lessons.map(createLesson).join('\n') : '';
 };
 
 const formatUrl = (url?: string) => (url ? `[${url}](${url})` : '');
@@ -143,10 +154,8 @@ const formatEvent = (event: IEvent) => {
     disruption,
     environment,
     eventType,
-    geo,
     incidentInfo,
     initialIncident,
-    international,
     locationText = '',
     lossOfServices,
     memberCountries,
@@ -157,12 +166,12 @@ const formatEvent = (event: IEvent) => {
     scaleExplanation = '',
     societalSectors,
     societalSectorsAdditional,
-    societalSectorInfo: societalSectorsInfo,
+    societalSectorsInfo,
     victims,
   } = event;
   const oi = l(otherIncidents);
   const ss = l(societalSectors);
-  const mc = l([...(memberCountries || []), otherCountries]);
+  const mc = otherCountries ? l([...(memberCountries || []), otherCountries]) : l(memberCountries);
   const cm = l(cmFunctions);
   const md = `
 <h4 class="primary-text center-align">${name}</h4>
@@ -184,14 +193,13 @@ The incident was caused initially by a${initialIncident && /^[aeiuo]/i.test(init
   )}${oi && oi.length > 0 ? formatOptional({ prepend: ', causing the following other incidents: ' }, oi) : ''}.
 
   ${p(incidentInfo)}
-  ${p(scale, `The scale of the event was ${scale}.`)}
+  ${p(scale, `The scale of this event was ${scale}.`)} ${p(
+    ss,
+    `It affected several societal sectors, notably ${ss}.`
+  )} ${p(societalSectorsAdditional)} ${p(societalSectorsInfo)}
 
-  ${p(ss, `This affected several societal sectors, notably ${ss}. `)}
-  ${p(societalSectorsAdditional)}
-  ${p(societalSectorsInfo)}
-
-As a consequence of this incident, the (potential) impact is the following:
-${p(victims, `- Number of victims: ${victims}`)}
+The (potential) impact of the incident was as follows:
+${p(victims, `- Number of victims/casualties: ${victims}`)}
 ${p(damage, `- Material damage: ${damage}`)}
 ${p(lossOfServices, `- Loss of services: ${lossOfServices}`)}
 ${p(disruption, `- Social/economic disruption: ${disruption}`)}
@@ -205,7 +213,7 @@ ${scaleExplanation}`;
 
   const md2 = `<h5 class="primary-text">Involved organisations</h5>
 
-The following organisations are involved in executing CM functions:
+The following organisations were involved for effectively resolving this event:
 ${showOrganisations(event)}
 
 <h5 class="primary-text">Critical Crisis Management functions</h5>

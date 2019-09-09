@@ -634,7 +634,7 @@ Description of positive or negative observations, experiences, etc. based on a s
   },
   {
     id: 'effectiveness',
-    label: 'Quality/effectiveness',
+    label: 'Effectiveness',
     type: 'select',
     className: 'col s6 l4',
     options: qualityLevels,
@@ -652,6 +652,11 @@ Description of positive or negative observations, experiences, etc. based on a s
     type: 'select',
     className: 'col s6 l4',
     options: riskLevels,
+  },
+  {
+    id: 'observationInfo',
+    label: 'Explanation of the observation',
+    type: 'textarea',
   },
 
   {
@@ -679,7 +684,7 @@ Expected improvement of the CM function once the solution has been implemented:`
   },
   {
     id: 'effectsOnPerformance',
-    label: 'Quality improvement',
+    label: 'Effectiveness improvement',
     type: 'select',
     className: 'col s6 l4',
     options: improvementLevels,
@@ -705,7 +710,7 @@ Expected improvement of the CM function once the solution has been implemented:`
   },
   {
     type: 'md',
-    value: 'Expected impact reduction on the event:',
+    value: 'Expected impact reduction on the described incident:',
   },
   {
     id: 'victimsImprovements',
@@ -1047,8 +1052,9 @@ Description of the (potential) impact of the incident(s) on society, expressed i
   },
   {
     id: 'victims',
-    label: 'Numbers of victims',
+    label: 'Number of victims',
     type: 'textarea',
+    description: '_Killed, and seriously or slightly wounded persons._',
   },
   {
     id: 'damage',
