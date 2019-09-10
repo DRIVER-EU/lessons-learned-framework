@@ -10,7 +10,7 @@ class EventsService extends RestService<Partial<IEvent>> {
   }
 
   public async loadList(): Promise<Array<Partial<IEvent>> | undefined> {
-    const filter = 'view?props=$loki,name,desc,cmFunctions,initialIncident,eventType,lessons,published';
+    const filter = 'view?props=$loki,name,desc,cmFunctions,initialIncident,eventType,lessons,published,canEdit';
     // http://localhost:3000/events/view?props=name,cmFunctions,incidentType,eventType
     try {
       const result = await m.request<IEvent[]>({

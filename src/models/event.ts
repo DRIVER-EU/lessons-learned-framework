@@ -12,7 +12,10 @@ export interface ILokiObj {
 }
 
 export interface IEvent extends ILokiObj {
+  /** If true, the document is published */
   published: boolean;
+  /** List of emails of the persons who can edit this document */
+  canEdit: string[];
   challengesInfo: string;
   cmFunctions: string[];
   damage: string;

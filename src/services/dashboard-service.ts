@@ -7,6 +7,7 @@ import { Layout } from '../components/layout';
 import { EventView } from '../components/show/event-view';
 import { IDashboard } from '../models/dashboard';
 import { HelpPage } from '../components/about/help-page';
+import { Login } from './login-service';
 
 export const enum Dashboards {
   HOME = 'HOME',
@@ -15,6 +16,7 @@ export const enum Dashboards {
   READ = 'SHOW',
   EDIT = 'EDIT',
   SEARCH = 'SEARCH',
+  USER = 'USER',
 }
 
 class DashboardService {
@@ -113,4 +115,12 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     visible: false,
     component: HomePage,
   },
+  // {
+  //   id: Dashboards.USER,
+  //   title: 'User page',
+  //   route: '/user',
+  //   icon: 'person',
+  //   visible: true,
+  //   component: Login,
+  // },
 ]);
