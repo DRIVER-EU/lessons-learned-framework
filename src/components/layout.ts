@@ -5,11 +5,13 @@ import { dashboardSvc } from '../services/dashboard-service';
 
 const stripRouteParams = (path: string) => path.replace(/:[a-zA-Z]+/, '');
 
-const isActive = (path: string) => (m.route.get().indexOf(stripRouteParams(path)) >= 0 ? '.active' : '');
+const isActiveRoute = (route = m.route.get()) => (path: string) =>
+  path.length > 1 && route.indexOf(stripRouteParams(path)) >= 0 ? '.active' : '';
 
 export const Layout = () => ({
-  view: (vnode: Vnode) =>
-    m('.main', [
+  view: (vnode: Vnode) => {
+    const isActive = isActiveRoute();
+    return m('.main', [
       m(
         '.navbar-fixed',
         m(
@@ -31,7 +33,7 @@ export const Layout = () => ({
               // 'a.sidenav-trigger[href=#!/home][data-target=slide-out]',
               // { onclick: (e: UIEvent) => e.preventDefault() },
               m.route.Link,
-              { 'className': 'sidenav-trigger', 'data-target': 'slide-out', 'href': m.route.get() },
+              { className: 'sidenav-trigger', 'data-target': 'slide-out', href: m.route.get() },
               m(Icon, {
                 iconName: 'menu',
                 className: '.hide-on-med-and-up',
@@ -58,5 +60,6 @@ export const Layout = () => ({
         )
       ),
       m('.container', vnode.children),
-    ]),
+    ]);
+  },
 });

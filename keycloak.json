@@ -1,0 +1,8 @@
+{
+  "realm": "l3",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "l3app",
+  "public-client": true,
+  "confidential-port": 0
+}

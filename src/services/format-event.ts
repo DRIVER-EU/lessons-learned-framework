@@ -50,7 +50,9 @@ const showLessons = (event: Partial<IEvent>) => {
     return 'No lessons have been learned yet.';
   }
   const obs = ({ effectiveness, efficiency, responderHealthAndSafety, observationInfo }: ILesson) =>
-    `Observation: the current effectiveness is '${effectiveness}', its efficiency '${efficiency}' and the Health & Safety risks for responders are '${responderHealthAndSafety}'. ${p(observationInfo)}`;
+    `Observation: the current effectiveness is '${effectiveness}', its efficiency '${efficiency}' and the Health & Safety risks for responders are '${responderHealthAndSafety}'. ${p(
+      observationInfo
+    )}`;
   const createLesson = (les: ILesson, index: number) => {
     const {
       name,
@@ -178,13 +180,11 @@ const formatEvent = (event: IEvent) => {
 
 ${showEditors(event)}
 
-<div class="center-align">
-${desc}
 ${p(eventType, `Type of event: ${eventType}`)}${p(startDate, `, on ${new Date(startDate).toDateString()}`)}${p(
     locationText,
     ` at ${locationText}.`
   )}
-</div>
+${desc}
 
 <h5 class="primary-text">Incident characteristics</h5>
 
@@ -207,7 +207,7 @@ ${p(environment, `- Environmental degradation: ${environment}`)}
 
 <h5 class="primary-text">Geographical characteristics</h5>
 
-${p(mc, `The event involved the following countries: ${mc}. `)}
+${p(mc, `The event involved the following country/countries: ${mc}. `)}
 
 ${scaleExplanation}`;
 

@@ -1054,6 +1054,7 @@ Description of the (potential) impact of the incident(s) on society, expressed i
     id: 'victims',
     label: 'Number of victims',
     type: 'textarea',
+    placeholder: 'Killed, and seriously or slightly wounded persons.',
     description: '_Killed, and seriously or slightly wounded persons._',
   },
   {

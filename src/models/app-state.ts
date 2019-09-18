@@ -1,4 +1,3 @@
-
 const getRootUrl = () => {
   // Regex matching everything until the first hash symbol, so should also be able to deal with route rewriting...
   const regex = /https?:\/\/.*(?=\/#)/i;
