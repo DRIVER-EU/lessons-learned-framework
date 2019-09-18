@@ -1,10 +1,11 @@
 import M from 'materialize-css';
 import m from 'mithril';
-import { Button, ModalPanel } from 'mithril-materialized';
+import { Button, Chips, ModalPanel } from 'mithril-materialized';
 import { deepCopy, LayoutForm } from 'mithril-ui-form';
 import { IEvent } from '../../models';
 import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
+import { Auth } from '../../services/login-service';
 import { llf } from '../../template/llf';
 import { capitalizeFirstLetter, deepEqual } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
@@ -59,6 +60,9 @@ export const EventForm = () => {
       }
       log(event);
       const hasChanged = !deepEqual(event, EventsSvc.getCurrent());
+      // if (hasChanged) {
+      //   onsubmit();
+      // }
       const sections = form
         .filter(c => c.type === 'section')
         .map(c => ({
@@ -109,6 +113,23 @@ export const EventForm = () => {
                   class: 'red col s12',
                 }),
               ]),
+              Auth.canCRUD(event)
+                ? m(
+                    'li',
+                    m(
+                      '.col.s12',
+                      m(Chips, {
+                        label: 'Who can change this document',
+                        placeholder: '+email',
+                        onchange: chips => {
+                          event.canEdit = chips.map(({ tag }) => tag);
+                          m.redraw();
+                        },
+                        data: (event.canEdit || []).map(editor => ({ tag: editor })),
+                      })
+                    )
+                  )
+                : undefined,
             ]
           )
         ),

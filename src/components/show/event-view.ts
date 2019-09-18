@@ -5,6 +5,7 @@ import { IEvent } from '../../models';
 import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { FormattedEvent } from '../../services/format-event';
+import { Auth } from '../../services/login-service';
 import { llf } from '../../template/llf';
 import { CircularSpinner } from '../ui/preloader';
 
@@ -25,7 +26,7 @@ export const EventView: FactoryComponent = () => {
     },
     view: () => {
       const { event, loaded, resolveObj } = state;
-      // console.log(JSON.stringify(event, null, 2));
+      console.log(JSON.stringify(event, null, 2));
       const resolved = resolveObj<IEvent>(event);
       console.log(JSON.stringify(resolved, null, 2));
       if (!loaded) {
@@ -35,19 +36,21 @@ export const EventView: FactoryComponent = () => {
         return undefined;
       }
       return [
-        m(
-          '.row',
-          m(
-            '.col.s12',
-            m(FlatButton, {
-              label: 'Edit document',
-              iconName: 'edit',
-              className: 'right hide-on-small-only do-not-print',
-              onclick: () => dashboardSvc.switchTo(Dashboards.EDIT, { id: event.$loki }),
-            })
-          )
-        ),
-        m(FormattedEvent, { event: resolved })
+        Auth.canEdit(event)
+          ? m(
+              '.row',
+              m(
+                '.col.s12',
+                m(FlatButton, {
+                  label: 'Edit document',
+                  iconName: 'edit',
+                  className: 'right hide-on-small-only do-not-print',
+                  onclick: () => dashboardSvc.switchTo(Dashboards.EDIT, { id: event.$loki }),
+                })
+              )
+            )
+          : undefined,
+        m(FormattedEvent, { event: resolved }),
       ];
     },
   };

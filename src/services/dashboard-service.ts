@@ -1,13 +1,13 @@
 import m, { ComponentTypes, RouteDefs } from 'mithril';
 import { AboutPage } from '../components/about/about-page';
+import { HelpPage } from '../components/about/help-page';
 import { EventForm } from '../components/edit/event-form';
 import { EventsList } from '../components/home/events-list';
 import { HomePage } from '../components/home/home-page';
 import { Layout } from '../components/layout';
 import { EventView } from '../components/show/event-view';
 import { IDashboard } from '../models/dashboard';
-import { HelpPage } from '../components/about/help-page';
-import { Login } from './login-service';
+import { Auth, Login } from './login-service';
 
 export const enum Dashboards {
   HOME = 'HOME',
@@ -119,7 +119,7 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     id: Dashboards.USER,
     title: 'User page',
     route: '/user',
-    icon: 'person',
+    icon: () => Auth.authenticated ? 'person' : 'person_outline',
     visible: true,
     component: Login,
   },

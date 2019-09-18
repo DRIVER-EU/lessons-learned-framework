@@ -12,6 +12,8 @@ export interface ILokiObj {
 }
 
 export interface IEvent extends ILokiObj {
+  /** Owner of the document */
+  owner: string;
   /** If true, the document is published */
   published: boolean;
   /** List of emails of the persons who can edit this document */

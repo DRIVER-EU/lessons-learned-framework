@@ -1,6 +1,7 @@
 import m, { Vnode } from 'mithril';
 import { Icon } from 'mithril-materialized';
 import logo from '../assets/logo_white.svg';
+import { IDashboard } from '../models';
 import { dashboardSvc } from '../services/dashboard-service';
 
 const stripRouteParams = (path: string) => path.replace(/:[a-zA-Z]+/, '');
@@ -45,13 +46,18 @@ export const Layout = () => ({
               dashboardSvc
                 .getList()
                 .filter(d => d.visible || isActive(d.route))
-                .map(d =>
+                .map((d: IDashboard) =>
                   m(
                     `li${isActive(d.route)}`,
                     m(
                       m.route.Link,
                       { href: d.route },
-                      m('span', d.icon ? m('i.material-icons.white-text', d.icon) : d.title)
+                      m(
+                        'span',
+                        d.icon
+                          ? m('i.material-icons.white-text', typeof d.icon === 'string' ? d.icon : d.icon())
+                          : d.title
+                      )
                     )
                   )
                 )

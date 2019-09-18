@@ -2,8 +2,10 @@ import m from 'mithril';
 import { FlatButton, Icon, Select, TextInput } from 'mithril-materialized';
 import { IEvent } from '../../models';
 import { AppState } from '../../models/app-state';
+import { Roles } from '../../models/roles';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { EventsSvc } from '../../services/events-service';
+import { Auth } from '../../services/login-service';
 import { cmFunctions, eventTypes, incidentTypes } from '../../template/llf';
 import { nameAndDescriptionFilter, typeFilter } from '../../utils';
 
@@ -29,11 +31,13 @@ export const EventsList = () => {
       const { eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
       const events = (EventsSvc.getList() || ([] as IEvent[])).sort(sortByName);
       const query = nameAndDescriptionFilter(state.filterValue);
+      console.log(events);
       const filteredEvents = events
+        .filter(ev => ev.published || (Auth.authenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email)))
         .filter(query)
         .filter(typeFilter('eventType', eventTypeFilter))
         .filter(typeFilter('cmFunctions', cmFunctionFilter))
-        .filter(typeFilter('initialIncident', incidentTypeFilter));
+        .filter(typeFilter('initialIncident', incidentTypeFilter)) || [];
       return m('.row', { style: 'margin-top: 1em;' }, [
         m(
           '.col.s12.l3',
@@ -45,16 +49,18 @@ export const EventsList = () => {
               },
             },
             [
-              m(FlatButton, {
-                label: 'Add new event',
-                iconName: 'add',
-                class: 'col s11 indigo darken-4 white-text',
-                style: 'margin: 1em;',
-                onclick: () => {
-                  EventsSvc.new({ name: 'New event' });
-                  dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
-                },
-              }),
+              Auth.authenticated
+                ? m(FlatButton, {
+                    label: 'Add new event',
+                    iconName: 'add',
+                    class: 'col s11 indigo darken-4 white-text',
+                    style: 'margin: 1em;',
+                    onclick: () => {
+                      EventsSvc.new({ name: 'New event', owner: Auth.email, published: false });
+                      dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
+                    },
+                  })
+                : undefined,
               m('h4.primary-text', { style: 'margin-left: 0.5em;' }, 'Filter events'),
               m(TextInput, {
                 label: 'Text filter of events',
