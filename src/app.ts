@@ -11,10 +11,9 @@ const keycloak = Keycloak({
   url: 'http://localhost:8080/auth',
   clientId: 'l3app',
 });
+Auth.keycloak = keycloak;
 
 const loginRequired = window.localStorage.getItem('loginRequired');
-
-Auth.keycloak = keycloak;
 
 if (loginRequired === 'true') {
   keycloak

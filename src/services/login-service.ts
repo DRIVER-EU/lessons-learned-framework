@@ -3,7 +3,7 @@ import m, { FactoryComponent } from 'mithril';
 import { Chips, EmailInput, FlatButton, TextInput } from 'mithril-materialized';
 
 export const Auth = {
-  keycloak: undefined as undefined | KeycloakInstance,
+  keycloak: {} as KeycloakInstance,
   authenticated: false,
   username: '',
   email: '',
@@ -27,13 +27,11 @@ export const Auth = {
   },
   logout() {
     console.log('Logout started...');
-    if (Auth.keycloak) {
-      Auth.setAuthenticated(false);
-      Auth.setUsername('');
-      Auth.setEmail('');
-      Auth.setRoles([]);
-      Auth.keycloak.logout();
-    }
+    Auth.setAuthenticated(false);
+    Auth.setUsername('');
+    Auth.setEmail('');
+    Auth.setRoles([]);
+    Auth.keycloak.logout();
   },
 };
 
