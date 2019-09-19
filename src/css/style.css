@@ -129,3 +129,11 @@ a,
     display: none;
   }
 }
+
+.margin-top7 {
+  margin-top: 7px;
+}
+.inline {
+  display: inline-block;
+  margin: 0 1rem;
+}

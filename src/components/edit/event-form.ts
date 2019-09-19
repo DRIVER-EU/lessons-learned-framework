@@ -33,9 +33,8 @@ export const EventForm = () => {
     },
   };
 
-  const onsubmit = async (e: MouseEvent) => {
+  const onsubmit = async () => {
     log('submitting...');
-    e.preventDefault();
     if (state.event) {
       await EventsSvc.save(state.event);
       state.event = deepCopy(EventsSvc.getCurrent());
@@ -60,9 +59,9 @@ export const EventForm = () => {
       }
       log(event);
       const hasChanged = !deepEqual(event, EventsSvc.getCurrent());
-      // if (hasChanged) {
-      //   onsubmit();
-      // }
+      if (hasChanged) {
+        onsubmit();
+      }
       const sections = form
         .filter(c => c.type === 'section')
         .map(c => ({
@@ -100,12 +99,12 @@ export const EventForm = () => {
                   className: 'right col s12',
                   onclick: () => dashboardSvc.switchTo(Dashboards.READ, { id: event.$loki }),
                 }),
-                m(Button, {
-                  label: 'Save event',
-                  iconName: 'save',
-                  class: `green col s12 ${hasChanged ? '' : 'disabled'}`,
-                  onclick: onsubmit,
-                }),
+                // m(Button, {
+                //   label: 'Save event',
+                //   iconName: 'save',
+                //   class: `green col s12 ${hasChanged ? '' : 'disabled'}`,
+                //   onclick: onsubmit,
+                // }),
                 m(Button, {
                   modalId: 'delete-event',
                   label: 'Delete event',

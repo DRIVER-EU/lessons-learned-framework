@@ -1,5 +1,5 @@
 import m, { FactoryComponent } from 'mithril';
-import { FlatButton } from 'mithril-materialized';
+import { FlatButton, InputCheckbox } from 'mithril-materialized';
 import { deepCopy, labelResolver } from 'mithril-ui-form';
 import { IEvent } from '../../models';
 import { EventsSvc } from '../../services';
@@ -37,18 +37,29 @@ export const EventView: FactoryComponent = () => {
       }
       return [
         Auth.canEdit(event)
-          ? m(
-              '.row',
+          ? m('ul.do-not-print', [
               m(
-                '.col.s12',
+                'li',
                 m(FlatButton, {
                   label: 'Edit document',
                   iconName: 'edit',
-                  className: 'right hide-on-small-only do-not-print',
+                  className: 'right hide-on-small-only',
                   onclick: () => dashboardSvc.switchTo(Dashboards.EDIT, { id: event.$loki }),
                 })
-              )
-            )
+              ),
+              m(
+                'li',
+                m(InputCheckbox, {
+                  className: 'left margin-top7',
+                  checked: event.published,
+                  onchange: async checked => {
+                    event.published = checked;
+                    await EventsSvc.save(event);
+                  },
+                  label: 'Published',
+                })
+              ),
+            ])
           : undefined,
         m(FormattedEvent, { event: resolved }),
       ];
