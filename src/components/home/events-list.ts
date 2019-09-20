@@ -6,16 +6,18 @@ import { Roles } from '../../models/roles';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { EventsSvc } from '../../services/events-service';
 import { Auth } from '../../services/login-service';
-import { cmFunctions, eventTypes, incidentTypes } from '../../template/llf';
+import { cmFunctions, eventTypes, incidentTypes, countries } from '../../template/llf';
 import { nameAndDescriptionFilter, typeFilter, incidentFilter } from '../../utils';
 
 export const EventsList = () => {
   const state = {
     filterValue: '',
+    countryFilter: [],
     eventTypeFilter: [],
     incidentTypeFilter: [],
     cmFunctionFilter: [],
   } as {
+    countryFilter: Array<string | number>;
     eventTypeFilter: Array<string | number>;
     incidentTypeFilter: string[];
     cmFunctionFilter: Array<string | number>;
@@ -28,12 +30,13 @@ export const EventsList = () => {
   return {
     oninit: () => EventsSvc.loadList(),
     view: () => {
-      const { eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
+      const { countryFilter, eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
       const events = (EventsSvc.getList() || ([] as IEvent[])).sort(sortByName);
       const query = nameAndDescriptionFilter(state.filterValue);
       const filteredEvents = events
         .filter(ev => ev.published || (Auth.authenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email)))
         .filter(query)
+        .filter(typeFilter('memberCountries', countryFilter))
         .filter(typeFilter('eventType', eventTypeFilter))
         .filter(typeFilter('cmFunctions', cmFunctionFilter))
         .filter(incidentFilter(incidentTypeFilter)) || [];
@@ -64,6 +67,7 @@ export const EventsList = () => {
               m(TextInput, {
                 label: 'Text filter of events',
                 id: 'filter',
+                placeholder: 'Part of title or description...',
                 iconName: 'filter_list',
                 onkeyup: (_: KeyboardEvent, v?: string) => (state.filterValue = v ? v : ''),
                 style: 'margin-right:100px',
@@ -71,10 +75,20 @@ export const EventsList = () => {
               }),
               m(Select, {
                 placeholder: 'Select one',
+                label: 'Country',
+                checkedId: countryFilter,
+                options: countries,
+                iconName: 'public',
+                multiple: true,
+                onchange: f => (state.countryFilter = f),
+                className: 'col s12',
+              }),
+              m(Select, {
+                placeholder: 'Select one',
                 label: 'Event type',
                 checkedId: eventTypeFilter,
                 options: eventTypes,
-                iconName: 'public',
+                iconName: 'priority_high',
                 multiple: true,
                 onchange: f => (state.eventTypeFilter = f),
                 className: 'col s12',
@@ -107,6 +121,7 @@ export const EventsList = () => {
                 style: 'margin: 1em;',
                 onclick: () => {
                   state.filterValue = '';
+                  state.countryFilter.length = 0;
                   state.cmFunctionFilter.length = 0;
                   state.eventTypeFilter.length = 0;
                   state.incidentTypeFilter.length = 0;

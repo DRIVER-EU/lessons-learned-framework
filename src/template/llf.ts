@@ -1,6 +1,6 @@
 import { Form } from 'mithril-ui-form';
 
-const countries = [
+export const countries = [
   {
     id: 'austria',
     label: 'Austria',
