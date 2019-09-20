@@ -672,7 +672,9 @@ Description of positive or negative observations, experiences, etc. based on a s
   {
     id: 'solutionType',
     label: 'Nature of solution',
-    type: 'radio',
+    type: 'options',
+    multiple: true,
+    // inline: true,
     checkboxClass: 'col s12 m6 xl3',
     options: solutionTypes,
   },
