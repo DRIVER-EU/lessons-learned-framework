@@ -90,16 +90,45 @@ export const typeFilter = (propName: keyof IEvent, filterValue?: Array<string | 
     return () => true;
   }
   return filterValue instanceof Array
-    ? (content: Partial<IEvent>) =>
-        content.hasOwnProperty(propName) &&
-        (content[propName] instanceof Array
-          ? filterValue.reduce((acc, fv) => acc && (content[propName] as Array<string | number>).indexOf(fv) >= 0, true)
-          : filterValue.indexOf(content[propName] as string) >= 0)
-    : (content: Partial<IEvent>) =>
-        content.hasOwnProperty(propName) &&
-        (content[propName] instanceof Array
-          ? (content[propName] as Array<string | number>).indexOf(filterValue) >= 0
-          : content[propName] === filterValue);
+    ? (c: Partial<IEvent>) =>
+        c.hasOwnProperty(propName) &&
+        (c[propName] instanceof Array
+          ? filterValue.reduce((acc, fv) => acc || (c[propName] as Array<string | number>).indexOf(fv) >= 0, false)
+          : filterValue.indexOf(c[propName] as string) >= 0)
+    : (c: Partial<IEvent>) =>
+        c.hasOwnProperty(propName) &&
+        (c[propName] instanceof Array
+          ? (c[propName] as Array<string | number>).indexOf(filterValue) >= 0
+          : c[propName] === filterValue);
+};
+
+const getIncidentTypes = ({ initialIncident, otherIncidents }: Partial<IEvent>) => {
+  const incidents = [] as string[];
+  if (initialIncident) {
+    incidents.push(initialIncident);
+  }
+  if (otherIncidents) {
+    if (typeof otherIncidents === 'string') {
+      incidents.push(otherIncidents);
+    } else {
+      incidents.push(...otherIncidents);
+    }
+  }
+  return incidents;
+};
+
+/**
+ * Function to filter on incident.
+ * @param filterValue Filter text
+ */
+export const incidentFilter = (filterValue?: string | string[]) => {
+  if (!filterValue || filterValue.length === 0) {
+    return () => true;
+  }
+  // console.log('Filtering incidents: ' + filterValue);
+  return filterValue instanceof Array
+    ? (c: Partial<IEvent>) => getIncidentTypes(c).reduce((acc, fv) => acc || filterValue.indexOf(fv) >= 0, false)
+    : (c: Partial<IEvent>) => getIncidentTypes(c).indexOf(filterValue) >= 0;
 };
 
 /**
@@ -138,12 +167,14 @@ export const removeHtml = (s: string) => s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/
  * Removes empty items, and optionally adds brackets around the comma separated list.
  */
 export const formatOptional = (
-  options: { brackets?: boolean; prepend?: string; append?: string; },
+  options: { brackets?: boolean; prepend?: string; append?: string },
   ...items: Array<string | number | undefined>
 ) => {
   const { brackets, prepend = '', append = '' } = options;
   const f = items.filter(i => typeof i !== 'undefined' && i !== '');
-  if (!f || f.length === 0) { return ''; }
+  if (!f || f.length === 0) {
+    return '';
+  }
   const txt = `${prepend}${f.join(', ')}${append}`;
   return f.length === 0 ? '' : brackets ? ` (${txt})` : txt;
 };

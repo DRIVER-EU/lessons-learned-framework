@@ -7,7 +7,7 @@ import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { EventsSvc } from '../../services/events-service';
 import { Auth } from '../../services/login-service';
 import { cmFunctions, eventTypes, incidentTypes } from '../../template/llf';
-import { nameAndDescriptionFilter, typeFilter } from '../../utils';
+import { nameAndDescriptionFilter, typeFilter, incidentFilter } from '../../utils';
 
 export const EventsList = () => {
   const state = {
@@ -17,7 +17,7 @@ export const EventsList = () => {
     cmFunctionFilter: [],
   } as {
     eventTypeFilter: Array<string | number>;
-    incidentTypeFilter: Array<string | number>;
+    incidentTypeFilter: string[];
     cmFunctionFilter: Array<string | number>;
     filterValue: string;
   };
@@ -31,13 +31,12 @@ export const EventsList = () => {
       const { eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
       const events = (EventsSvc.getList() || ([] as IEvent[])).sort(sortByName);
       const query = nameAndDescriptionFilter(state.filterValue);
-      console.log(events);
       const filteredEvents = events
         .filter(ev => ev.published || (Auth.authenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email)))
         .filter(query)
         .filter(typeFilter('eventType', eventTypeFilter))
         .filter(typeFilter('cmFunctions', cmFunctionFilter))
-        .filter(typeFilter('initialIncident', incidentTypeFilter)) || [];
+        .filter(incidentFilter(incidentTypeFilter)) || [];
       return m('.row', { style: 'margin-top: 1em;' }, [
         m(
           '.col.s12.l3',
@@ -76,16 +75,18 @@ export const EventsList = () => {
                 checkedId: eventTypeFilter,
                 options: eventTypes,
                 iconName: 'public',
+                multiple: true,
                 onchange: f => (state.eventTypeFilter = f),
                 className: 'col s12',
               }),
               m(Select, {
                 placeholder: 'Select one',
-                label: 'Initial incident',
+                label: 'Incident',
                 checkedId: incidentTypeFilter,
                 options: incidentTypes,
                 iconName: 'flash_on',
-                onchange: f => (state.incidentTypeFilter = f),
+                multiple: true,
+                onchange: f => (state.incidentTypeFilter = f as string[]),
                 className: 'col s12',
               }),
               m(Select, {
@@ -94,6 +95,7 @@ export const EventsList = () => {
                 checkedId: cmFunctionFilter,
                 options: cmFunctions,
                 iconName: 'notifications_active',
+                multiple: true,
                 onchange: f => (state.cmFunctionFilter = f),
                 className: 'col s12',
                 dropdownOptions: { container: 'body' as any },
