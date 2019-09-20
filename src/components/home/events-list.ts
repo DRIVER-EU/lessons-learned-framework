@@ -88,7 +88,7 @@ export const EventsList = () => {
                 label: 'Event type',
                 checkedId: eventTypeFilter,
                 options: eventTypes,
-                iconName: 'priority_high',
+                iconName: 'event_note',
                 multiple: true,
                 onchange: f => (state.eventTypeFilter = f),
                 className: 'col s12',
