@@ -42,8 +42,9 @@ export const HomePage = () => ({
         m('.row.container.center', [
           m(SlimdownView, {
             md:
-              '## Learn and share\n' +
-              'The Lessons Learned Library (L3) is a repository in the domain of Crisis Management (CM) and Disaster Risk Reduction (DRR) for collecting and sharing lessons from preventive or response activities at events such as severe incidents, crisis situations, tests or exercises.',
+              `## Learn and share
+
+              The **Lessons Learned Library (L3)** is a repository in the domain of Crisis Management (CM) and Disaster Risk Reduction (DRR) for collecting and sharing lessons from preventive or response activities at events such as severe incidents, crisis situations, tests or exercises.`,
           }),
           m('.row', [
             m(
