@@ -22,6 +22,7 @@ const close = async (e?: UIEvent) => {
 
 export const EventForm = () => {
   const state = {
+    hasChanged: false,
     event: {} as Partial<IEvent>,
     loaded: false,
     isValid: false,
@@ -34,10 +35,13 @@ export const EventForm = () => {
   };
 
   const onsubmit = async () => {
+    state.hasChanged = false;
     log('submitting...');
     if (state.event) {
-      await EventsSvc.save(state.event);
-      state.event = deepCopy(EventsSvc.getCurrent());
+      const event = deepCopy(state.event);
+      // console.log(JSON.stringify(event.memberCountries, null, 2));
+      await EventsSvc.save(event);
+      state.event = event;
     }
   };
 
@@ -57,8 +61,8 @@ export const EventForm = () => {
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }
-      log(event);
-      const hasChanged = !deepEqual(event, EventsSvc.getCurrent());
+      // log(event);
+      const hasChanged = state.hasChanged || !deepEqual(event, EventsSvc.getCurrent());
       if (hasChanged) {
         onsubmit();
       }
@@ -137,7 +141,12 @@ export const EventForm = () => {
             key: section,
             form,
             obj: event,
-            onchange: () => console.log(JSON.stringify(event, null, 2)),
+            onchange: () => {
+              // console.log(JSON.stringify(event, null, 2));
+              // console.log(JSON.stringify(event.memberCountries, null, 2));
+              state.event = event;
+              state.hasChanged = true;
+            },
             context,
             section,
           }),

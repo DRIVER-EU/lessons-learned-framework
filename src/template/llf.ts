@@ -1109,6 +1109,7 @@ Geographic dimensions of the event scenario.`,
     label: 'Involved EU member state(s)',
     required: true,
     type: 'options',
+    checkboxClass: 'col s6 m4 xl3',
     options: countries,
   },
   {
