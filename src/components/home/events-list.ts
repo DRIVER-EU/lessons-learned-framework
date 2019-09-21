@@ -6,8 +6,8 @@ import { Roles } from '../../models/roles';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { EventsSvc } from '../../services/events-service';
 import { Auth } from '../../services/login-service';
-import { cmFunctions, eventTypes, incidentTypes, countries } from '../../template/llf';
-import { nameAndDescriptionFilter, typeFilter, incidentFilter } from '../../utils';
+import { cmFunctions, countries, eventTypes, incidentTypes } from '../../template/llf';
+import { incidentFilter, nameAndDescriptionFilter, typeFilter } from '../../utils';
 
 export const EventsList = () => {
   const state = {
