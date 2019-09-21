@@ -1,0 +1,50 @@
+---
+version: "3"
+services:
+  keycloak:
+    image: jboss/keycloak:latest
+    container_name: kc
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=tno_admin
+    expose:
+      - 8080
+    # command:
+    #   - "-b 0.0.0.0"
+    #   - "-Dkeycloak.import=/opt/jboss/keycloak/l3-realm.json"
+    ports:
+      - "8765:8080"
+    volumes:
+      - ./l3-realm.json:/opt/jboss/keycloak/l3-realm.json
+
+# https://github.com/tomav/docker-mailserver
+#   mail:
+#     image: tvial/docker-mailserver:latest
+#     hostname: mail
+#     domainname: driver-testbed.eu
+#     container_name: mail
+#     ports:
+#       - "25:25"
+#       - "143:143"
+#       - "587:587"
+#       - "993:993"
+#     volumes:
+#       - maildata:/var/mail
+#       - mailstate:/var/mail-state
+#       - maillogs:/var/log/mail
+#       - ./config/:/tmp/docker-mailserver/
+#     env_file:
+#       - .env
+#       - env-mailserver
+#     cap_add:
+#       - NET_ADMIN
+#       - SYS_PTRACE
+#     restart: always
+# volumes:
+#   maildata:
+#     driver: local
+#   mailstate:
+#     driver: local
+#   maillogs:
+#     driver: local
+# docker exec -it kc keycloak/bin/standalone.sh -Djboss.socket.binding.port-offset=100 -Dkeycloak.migration.action=export -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.realmName=l3 -Dkeycloak.migration.usersExportStrategy=REALM_FILE -Dkeycloak.migration.file=./l3.json
