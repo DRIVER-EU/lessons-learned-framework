@@ -6,7 +6,7 @@ services:
     container_name: kc
     environment:
       - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=tno_admin
+      - KEYCLOAK_PASSWORD=${ADMIN_PWD}
     expose:
       - 8080
     # command:
