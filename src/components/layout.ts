@@ -15,6 +15,7 @@ export const Layout = () => ({
     return m('.main', [
       m(
         '.navbar-fixed',
+        { style: 'z-index: 1001' },
         m(
           'nav',
           m('.nav-wrapper', [

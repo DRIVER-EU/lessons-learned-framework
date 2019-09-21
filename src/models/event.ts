@@ -22,6 +22,7 @@ export interface IEvent extends ILokiObj {
   cmFunctions: string[];
   damage: string;
   date: Date;
+  duration: number;
   desc: string;
   disruption: string;
   editors: IEditor[];

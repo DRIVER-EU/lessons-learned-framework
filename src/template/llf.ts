@@ -530,9 +530,7 @@ const publicationForm = [
 ] as Form;
 
 export const eventTypes = [
-  { id: 'crisis', label: 'Crisis' },
-  { id: 'disaster', label: 'Disaster' },
-  { id: 'incident', label: 'Incident' },
+  { id: 'crisis', label: 'Incident, crisis or disaster' },
   { id: 'prevention', label: 'Preventive activity' },
   { id: 'test', label: 'Test or trial' },
   { id: 'training', label: 'Training or exercise' },
@@ -594,19 +592,22 @@ export const cmFunctions = [
   { id: 'alerting', label: 'Alerting, incl. 112' },
   { id: 'scale', label: 'Up-scale/Down-scale' },
   { id: 'fight_incident_sources', label: 'Fight/Eliminate incident source' },
-  { id: 'rescue_operations', label: 'Rescue operations' },
+  { id: 'rescue_operations', label: 'Rescue operations/SAR' },
   { id: 'law_enforcement', label: 'Law enforcement' },
   { id: 'evacuation_shelter', label: 'Evacuation & Shelter' },
-  { id: 'medical_treatment', label: 'Medical treatment' },
+  { id: 'medical_treatment', label: 'Emergency Health Care' },
   { id: 'c3', label: 'C3/Information management' },
   { id: 'sa', label: 'Situation Assessment' },
-  { id: 'logistics', label: 'Logistics' },
+  { id: 'logistics', label: 'Logistics/Resource mgt.' },
   { id: 'volunteer_management', label: 'Volunteer management' },
   { id: 'social_media_mining', label: 'Social media mining' },
   { id: 'debris', label: 'Remove debris' },
   { id: 'restore', label: 'Restore criticial services' },
   { id: 'crowd_mgmt', label: 'Crowd management' },
   { id: 'traffic_mgmt', label: 'Traffic management' },
+  { id: 'decontamination', label: 'Decontamination' },
+  { id: 'collaboration', label: 'International collaboration' },
+  { id: 'needs', label: 'Provide basic needs' },
 ].sort(sortByLabel);
 
 const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: [`cmFunctions = ${f.id}`] }));
@@ -644,7 +645,7 @@ Description of positive or negative observations, experiences, etc. based on a s
     label: 'Efficiency',
     type: 'select',
     className: 'col s6 l4',
-    options: costLevels,
+    options: qualityLevels,
   },
   {
     id: 'responderHealthAndSafety',
@@ -873,7 +874,7 @@ const organisationType = [
   },
   {
     id: 'training',
-    label: 'Training institure',
+    label: 'Training institute',
   },
   {
     id: 'other',
@@ -952,7 +953,6 @@ Name and general characteristics that describe the event.`,
   {
     id: 'name',
     label: 'Name of the evaluated event',
-    description: '_Short name to indicate the event and its evaluation (max. 70 characters)._',
     type: 'text',
     maxLength: 70,
     required: true,
@@ -971,14 +971,22 @@ Name and general characteristics that describe the event.`,
     label: 'Location of the event',
     required: true,
     type: 'textarea',
-    className: 'col s12 m8',
+    className: 'col s12',
   },
   {
     id: 'date',
     type: 'date',
-    label: 'Date',
+    label: 'Start date of the event',
     required: true,
-    className: 'col s12 m4',
+    className: 'col s12 m6',
+  },
+  {
+    id: 'duration',
+    type: 'number',
+    label: 'Duration of the event (in days)',
+    value: 1,
+    required: true,
+    className: 'col s12 m6',
   },
   {
     id: 'desc',
@@ -1126,7 +1134,7 @@ Geographic dimensions of the event scenario.`,
     type: 'md',
     value: `##### Mark the event area on the map
 
-_Use the buttons on the left to edit the map. Please remember to press the save button below to store your changes._`,
+_Use the buttons on the left to edit the map. You can add lines, polygons, squares and points of interest. Please remember to press the save button (one but last) to store your changes._`,
   },
   { id: 'location', type: 'map', className: 'col s12' },
 
@@ -1160,14 +1168,14 @@ List of organisations that were involved in executing one or more crisis managem
     type: 'options',
     multiple: true,
     required: true,
-    label: 'Most essential crisis management functions for effectively handling this event',
+    label: 'Most essential CM functions for effectively handling this event',
     className: 'col s12',
     checkboxClass: 'col s6 xl4',
     options: cmFunctions,
   },
   {
     id: 'challengesInfo',
-    label: 'Explanation of the importance of the selected CM functions',
+    label: 'CM functions of specific interest for adequately handling this event',
     type: 'textarea',
   },
 

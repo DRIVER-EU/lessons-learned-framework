@@ -5,7 +5,7 @@ import { ILesson } from '../models/lesson';
 import { formatOptional } from '../utils';
 
 /** Print optional */
-const p = (val: string | number | Date | undefined, output?: string) => (val ? output || val : '');
+const p = (val: string | number | Date | undefined, output?: string) => (val ? output || val : '...');
 
 /** Print a list: a, b and c */
 const l = (val: undefined | string | string[]) => {
@@ -50,9 +50,11 @@ const showLessons = (event: Partial<IEvent>) => {
     return 'No lessons have been learned yet.';
   }
   const obs = ({ effectiveness, efficiency, responderHealthAndSafety, observationInfo }: ILesson) =>
-    `Observation: the current effectiveness is '${effectiveness}', its efficiency '${efficiency}' and the Health & Safety risks for responders are '${responderHealthAndSafety}'. ${p(
-      observationInfo
-    )}`;
+    `Observations during the event of this CM function shows that its effectiveness was '${p(
+      effectiveness
+    )}', while its efficiency seemed to be '${p(
+      efficiency
+    )}' and the health and/or safety risks for responders were '${p(responderHealthAndSafety)}'. ${p(observationInfo)}`;
   const createLesson = (les: ILesson, index: number) => {
     const {
       name,
@@ -70,27 +72,29 @@ const showLessons = (event: Partial<IEvent>) => {
       effectsOnResponderHealthAndSafety,
       explanationImprovements,
     } = les;
+    const st = l(solutionType);
     const intro =
       index === 0
-        ? `From the evaluation of this event, the following ${lessons.length} lesson${
-            lessons.length > 1 ? 's' : ''
-          } have been learned.`
+        ? `From the evaluation of this event, the following ${
+            lessons.length === 1 ? 'lesson has' : `${lessons.length} lessons have`
+          } been learned.`
         : '';
+
     return `${intro}
-<h6 class="primary-text">Lesson ${index + 1}: ${p(name)}${formatOptional(
-      { brackets: true, prepend: 'addressing CM function ' },
-      cmFunction
-    )}</h6>
+<h6 class="primary-text">Lesson ${index + 1}: ${p(name)}</h6>
+
+This lesson addresses in particular CM function ‘${p(cmFunction)}’.
 
 ${obs(les)}
 
-${p(solutionType, `A solution can be found in ${solutionType}:`)} ${p(lesson, lesson)}
-Once the solution has been implemented, the expected improvements are: ${p(expectedImprovementsInfo)}
+Possible solution or improvement of the CM function’s performance can/have been found in aspects related to: ${p(st)}. ${p(lesson)}
 
-As a result, the expected improvements of the CM function once the solution has been implemented are:
+The (expected) improvements of the CM function’s performance of implementing such a solution are:
 ${p(effectsOnPerformance, `- Effectiveness improvement: ${effectsOnPerformance}`)}
 ${p(effectsOnEfficiency, `- Efficiency improvement: ${effectsOnEfficiency}`)}
-${p(effectsOnResponderHealthAndSafety, `- Health & Safety risk reduction: ${effectsOnResponderHealthAndSafety}`)}
+${p(effectsOnResponderHealthAndSafety, `- Health and/or Safety risk reduction for responders: ${effectsOnResponderHealthAndSafety}`)}
+
+${p(expectedImprovementsInfo)}
 
 Additionally, the expected impact reductions on the described incident are:
 ${p(victimsImprovements, `- Number of victims/casualties reduction: ${victimsImprovements}`)}
@@ -130,7 +134,7 @@ const showSources = (event: Partial<IEvent>) => {
   const ps = publications ? publications.map((pub, i) => `${i + 1}. ${formatPublication(pub)}`).join('\n') : '';
   const ms = multimedia ? multimedia.map((mm, i) => `${i + 1}. ${formatMultimedia(mm)}`).join('\n') : '';
 
-  console.log(ps);
+  // console.log(ps);
 
   return ps || ms
     ? `
@@ -152,6 +156,7 @@ const formatEvent = (event: IEvent) => {
     cmFunctions,
     damage,
     date: startDate,
+    duration,
     desc = '',
     disruption,
     environment,
@@ -180,11 +185,12 @@ const formatEvent = (event: IEvent) => {
 
 ${showEditors(event)}
 
-${p(eventType, `Type of event: ${eventType}`)}${p(startDate, `, on ${new Date(startDate).toDateString()}`)}${p(
-    locationText,
-    ` at ${locationText}.`
-  )}
-${desc}
+${p(eventType, `Type of event: ${eventType}`)}
+
+The event took place at ${p(locationText)} ${p(startDate, `on ${new Date(startDate).toDateString()}`)}${p(
+    duration,
+    ` and lasted ${duration} day${duration > 1 ? 's' : ''}`
+  )}. ${desc}
 
 <h5 class="primary-text">Incident characteristics</h5>
 
@@ -218,7 +224,7 @@ ${showOrganisations(event)}
 
 <h5 class="primary-text">Critical Crisis Management functions</h5>
 
-The most essential crisis management functions for effectively handling this event were ${p(cm, cm)}.
+The following crisis management functions were of specific interest for adequately handling this event: ${p(cm, cm)}.
 
 ${p(challengesInfo)}
 

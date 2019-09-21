@@ -33,13 +33,17 @@ export const EventsList = () => {
       const { countryFilter, eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
       const events = (EventsSvc.getList() || ([] as IEvent[])).sort(sortByName);
       const query = nameAndDescriptionFilter(state.filterValue);
-      const filteredEvents = events
-        .filter(ev => ev.published || (Auth.authenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email)))
-        .filter(query)
-        .filter(typeFilter('memberCountries', countryFilter))
-        .filter(typeFilter('eventType', eventTypeFilter))
-        .filter(typeFilter('cmFunctions', cmFunctionFilter))
-        .filter(incidentFilter(incidentTypeFilter)) || [];
+      const filteredEvents =
+        events
+          .filter(
+            ev =>
+              ev.published || (Auth.authenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email))
+          )
+          .filter(query)
+          .filter(typeFilter('memberCountries', countryFilter))
+          .filter(typeFilter('eventType', eventTypeFilter))
+          .filter(typeFilter('cmFunctions', cmFunctionFilter))
+          .filter(incidentFilter(incidentTypeFilter)) || [];
       return m('.row', { style: 'margin-top: 1em;' }, [
         m(
           '.col.s12.l3',
@@ -58,7 +62,7 @@ export const EventsList = () => {
                     class: 'col s11 indigo darken-4 white-text',
                     style: 'margin: 1em;',
                     onclick: () => {
-                      EventsSvc.new({ name: 'New event', owner: Auth.email, published: false });
+                      EventsSvc.new({ name: 'New event', owner: Auth.email, published: false, duration: 1 });
                       dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
                     },
                   })
