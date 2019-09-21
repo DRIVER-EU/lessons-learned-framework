@@ -8,7 +8,8 @@
     "start": "concurrently \"npm run serve\" \"parcel index.html\"",
     "build:domain": "npm run clean && parcel build index.html --out-dir ./public",
     "link": "npm link mithril-ui-form",
-    "serve": "rest-easy-loki"
+    "serve": "rest-easy-loki",
+    "keycloak": "docker-compose up -d -f ./docker/docker-compose.yaml"
   },
   "repository": {
     "type": "git",
