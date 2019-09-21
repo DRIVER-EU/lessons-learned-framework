@@ -7,8 +7,8 @@ export interface ILesson {
   lesson: string;
   solutionType: string;
   effectsOnPerformance: string;
-  effectsOnEfficiency: string;
-  effectsOnResponderHealthAndSafety: string;
+  // effectsOnEfficiency: string;
+  // effectsOnResponderHealthAndSafety: string;
   expectedImprovementsInfo: string;
   victimsImprovements: string;
   materialDamageImprovements: string;

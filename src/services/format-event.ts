@@ -68,8 +68,8 @@ const showLessons = (event: Partial<IEvent>) => {
       socEcoDisruptionImprovements,
       environmentalDegradationImprovements,
       effectsOnPerformance,
-      effectsOnEfficiency,
-      effectsOnResponderHealthAndSafety,
+      // effectsOnEfficiency,
+      // effectsOnResponderHealthAndSafety,
       explanationImprovements,
     } = les;
     const st = l(solutionType);
@@ -89,12 +89,7 @@ ${obs(les)}
 
 Possible solution or improvement of the CM function’s performance can/have been found in aspects related to: ${p(st)}. ${p(lesson)}
 
-The (expected) improvements of the CM function’s performance of implementing such a solution are:
-${p(effectsOnPerformance, `- Effectiveness improvement: ${effectsOnPerformance}`)}
-${p(effectsOnEfficiency, `- Efficiency improvement: ${effectsOnEfficiency}`)}
-${p(effectsOnResponderHealthAndSafety, `- Health and/or Safety risk reduction for responders: ${effectsOnResponderHealthAndSafety}`)}
-
-${p(expectedImprovementsInfo)}
+The (expected) improvements of the CM function’s performance of implementing such a solution are ${p(effectsOnPerformance)}. ${p(expectedImprovementsInfo)}
 
 Additionally, the expected impact reductions on the described incident are:
 ${p(victimsImprovements, `- Number of victims/casualties reduction: ${victimsImprovements}`)}

@@ -418,59 +418,28 @@ const improvementLevels = [
     id: 'very_high',
     label: 'Very high',
   },
-];
-
-const costLevels = [
   {
-    id: 'unknown',
-    label: 'Unknown',
-  },
-  {
-    id: 'veryLow',
-    label: 'Very low costs',
-  },
-  {
-    id: 'low',
-    label: 'Low costs',
-  },
-  {
-    id: 'acceptable',
-    label: 'Acceptable costs',
-  },
-  {
-    id: 'high',
-    label: 'High costs',
-  },
-  {
-    id: 'tooHigh',
-    label: 'Far too high costs',
+    id: 'na',
+    label: 'Not applicable',
   },
 ];
 
-const riskLevels = [
-  { id: 'none', label: 'None' },
-  { id: 'veryLow', label: 'Very low' },
-  { id: 'low', label: 'Low' },
-  { id: 'medium', label: 'Medium' },
-  { id: 'high', label: 'High' },
-];
-
-export const templateInfo = {
-  author: 'Dirk Stolk',
-  created: '2018-10-23',
-  version: 'v0.0.1',
-  tableOfContent: 'Table of Content',
-  and: 'and',
-  docInfoTitle: 'Document info',
-  authorLabel: 'Author',
-  releaseLabel: 'Comments',
-  versionLabel: 'Version',
-  createdLabel: 'Created on',
-  updatedLabel: 'Updated on',
-  nextLabel: 'Next',
-  prevLabel: 'Previous',
-  showTemplateSelector: true,
-};
+// export const templateInfo = {
+//   author: 'Dirk Stolk',
+//   created: '2018-10-23',
+//   version: 'v0.0.1',
+//   tableOfContent: 'Table of Content',
+//   and: 'and',
+//   docInfoTitle: 'Document info',
+//   authorLabel: 'Author',
+//   releaseLabel: 'Comments',
+//   versionLabel: 'Version',
+//   createdLabel: 'Created on',
+//   updatedLabel: 'Updated on',
+//   nextLabel: 'Next',
+//   prevLabel: 'Previous',
+//   showTemplateSelector: true,
+// };
 
 const publicationForm = [
   {
@@ -536,53 +505,6 @@ export const eventTypes = [
   { id: 'training', label: 'Training or exercise' },
 ];
 
-const cipOptions = [
-  {
-    id: 'drinkingWater',
-    label: 'Drinking water',
-  },
-  {
-    id: 'electricity',
-    label: 'Electricity',
-  },
-  {
-    id: 'gasSupply',
-    label: 'Gas supply',
-  },
-  {
-    id: 'publicHealth',
-    label: 'Public Health',
-  },
-  {
-    id: 'telecomIct',
-    label: 'Telecom/ICT',
-  },
-  {
-    id: 'airTransport',
-    label: 'Transport - Air',
-  },
-  {
-    id: 'railTransport',
-    label: 'Transport - Rail',
-  },
-  {
-    id: 'riverTransportRiver',
-    label: 'Transport - Rivers',
-  },
-  {
-    id: 'seaTransport',
-    label: 'Transport - Sea',
-  },
-  {
-    id: 'waterManagement',
-    label: 'Water management',
-  },
-  {
-    id: 'other',
-    label: 'Other',
-  },
-].sort(sortByLabel);
-
 export const cmFunctions = [
   { id: 'risk_assessment', label: 'Risk assessment' },
   { id: 'planning', label: 'Planning/Doctrines' },
@@ -614,106 +536,80 @@ const preSelectedCmFunctions = cmFunctions.map(f => ({ ...f, show: [`cmFunctions
 
 const solutionTypes = [
   { id: 'doctrine', label: 'Doctrine/procedure' },
-  { id: 'equipment', label: 'Equipment/ICT' },
-  { id: 'personnel', label: 'Personnel/training' },
+  { id: 'equipment', label: 'Equipment/tools' },
+  { id: 'ict', label: 'ICT' },
+  { id: 'personnel', label: 'Personnel' },
+  { id: 'training', label: 'Training' },
   { id: 'other', label: 'Other' },
 ];
 const lessonForm: Form = [
-  { id: 'name', type: 'text', label: 'Title', icon: 'title', required: true,   },
+  { id: 'name', type: 'text', label: 'Title', icon: 'title', required: true },
   {
     type: 'md',
-    value: `##### Observations
-Description of positive or negative observations, experiences, etc. based on a single CM function.`,
+    value: '##### Observation',
   },
   {
     id: 'cmFunction',
     type: 'select',
     label: 'Applicable Crisis Management function',
-    className: 'col s12',
-    checkboxClass: 'col s6 m4',
+    className: 'col s6',
     options: preSelectedCmFunctions,
   },
   {
     id: 'effectiveness',
-    label: 'Effectiveness',
     type: 'select',
-    className: 'col s6 l4',
+    label: 'Observed effectiveness during the event',
+    className: 'col s6',
     options: qualityLevels,
-  },
-  {
-    id: 'efficiency',
-    label: 'Efficiency',
-    type: 'select',
-    className: 'col s6 l4',
-    options: qualityLevels,
-  },
-  {
-    id: 'responderHealthAndSafety',
-    label: 'Health & Safety risks for responders',
-    type: 'select',
-    className: 'col s6 l4',
-    options: riskLevels,
   },
   {
     id: 'observationInfo',
-    label: 'Explanation of the observation',
+    label: 'Explanation',
+    description:
+      '_Description of the observation, positive or negative experiences, etc. with respect to the CM-function._',
     type: 'textarea',
   },
 
   {
     type: 'md',
     value: `##### Improvement aspects
-  Solution description – based on the observation – to meet one or more challenges of the event.`,
-  },
-  {
-    id: 'lesson',
-    label: 'Description of the lesson',
-    type: 'textarea',
+Solution to improve effectiveness of the Crisis Management function.`,
   },
   {
     id: 'solutionType',
     label: 'Nature of solution',
     type: 'options',
     multiple: true,
-    // inline: true,
-    checkboxClass: 'col s12 m6 xl3',
+    checkboxClass: 'col s12 m6 xl4',
     options: solutionTypes,
+  },
+  {
+    id: 'lesson',
+    label: 'Description of the solution',
+    type: 'textarea',
   },
 
   {
     type: 'md',
     value: `##### Expectations
-Expected improvement of the CM function once the solution has been implemented:`,
+Consequences of the solution on the Crisis Management function when it has been implemented:`,
   },
   {
     id: 'effectsOnPerformance',
     label: 'Effectiveness improvement',
     type: 'select',
-    className: 'col s6 l4',
-    options: improvementLevels,
-  },
-  {
-    id: 'effectsOnEfficiency',
-    label: 'Efficiency improvement',
-    type: 'select',
-    className: 'col s6 l4',
-    options: improvementLevels,
-  },
-  {
-    id: 'effectsOnResponderHealthAndSafety',
-    label: 'Health & Safety risk reduction',
-    type: 'select',
-    className: 'col s6 l4',
+    className: 'col s12',
     options: improvementLevels,
   },
   {
     id: 'expectedImprovementsInfo',
-    label: 'Explanation of expected improvements',
+    label: 'Explanation of the expected improvement of the CM-function',
     type: 'textarea',
   },
   {
     type: 'md',
-    value: 'Expected impact reduction on the described incident:',
+    value:
+      'Impact reduction of the solution in comparison to current practices (legacy) in case of the event’s incident:',
   },
   {
     id: 'victimsImprovements',
@@ -756,54 +652,6 @@ const incidentCategories = [
   { id: 'natural', label: 'Natural incident' },
   { id: 'technical', label: 'Technological/human failure' },
   { id: 'attack', label: 'Intentional incident' },
-];
-const geographicRegion = [
-  {
-    id: 'inside',
-    label: 'Inside EU',
-  },
-  {
-    id: 'inside_outside',
-    label: 'Inside and outside EU',
-  },
-  {
-    id: 'europe',
-    label: 'Elsewhere in Europe',
-  },
-  {
-    id: 'outside',
-    label: 'Outside Europe',
-  },
-];
-const internationalDimension = [
-  {
-    id: 'one_country',
-    label: 'One country',
-  },
-  {
-    id: 'bi_tri',
-    label: 'Bi/Tri national',
-  },
-  {
-    id: 'multi',
-    label: 'Multi-national',
-  },
-  {
-    id: 'pan_eu',
-    label: 'Pan EU',
-  },
-  {
-    id: 'european',
-    label: 'European',
-  },
-  {
-    id: 'extern_europe',
-    label: 'Extern Europe',
-  },
-  {
-    id: 'worldwide',
-    label: 'Worldwide',
-  },
 ];
 const scale = [
   {
@@ -996,8 +844,11 @@ Name and general characteristics that describe the event.`,
 
   // Incident characteristics
   { id: 'characteristics', type: 'section', label: 'Incident characteristics' },
-  { type: 'md', value: `#### Incident characteristics
-Description of the event scenario: characteristics of the incidents and their impact on society.` },
+  {
+    type: 'md',
+    value: `#### Incident characteristics
+Description of the event scenario: characteristics of the incidents and their impact on society.`,
+  },
   {
     id: 'incidentCategory',
     label: 'Initial incident category',
@@ -1047,7 +898,7 @@ Description of the event scenario: characteristics of the incidents and their im
     id: 'societalSectorsAdditional',
     label: 'Other involved societal sectors (if any)',
     type: 'textarea',
-    show: ['societalSectors = other']
+    show: ['societalSectors = other'],
   },
   {
     id: 'societalSectorsInfo',
@@ -1182,7 +1033,7 @@ List of organisations that were involved in executing one or more crisis managem
   // LESSONS
   { id: 'lessons', type: 'section', label: 'Lessons' },
   { type: 'md', value: '#### Lessons' },
-  { type: 'md', value: 'Lessons can be added to the event by pressing the + sign.' },
+  { type: 'md', value: 'Lessons learned can be added to the event by pressing the + sign.' },
 
   {
     id: 'lessons',

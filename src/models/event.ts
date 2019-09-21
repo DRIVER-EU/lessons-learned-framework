@@ -26,9 +26,9 @@ export interface IEvent extends ILokiObj {
   desc: string;
   disruption: string;
   editors: IEditor[];
-  effectsOnEfficiency: string;
-  effectsOnPerformance: string;
-  effectsOnResponderHealthAndSafety: string;
+  // effectsOnEfficiency: string;
+  // effectsOnPerformance: string;
+  // effectsOnResponderHealthAndSafety: string;
   environment: string;
   eventType: string;
   geo: string;
