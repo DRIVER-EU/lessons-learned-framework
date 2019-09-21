@@ -6,10 +6,12 @@ import './css/style.css';
 import { Dashboards, dashboardSvc } from './services/dashboard-service';
 import { Auth } from './services/login-service';
 
+declare const process: { env: { KEYCLOAK: string; REALM: string; CLIENTID: string; }};
+
 const keycloak = Keycloak({
-  realm: 'l3',
-  url: 'http://localhost:8080/auth',
-  clientId: 'l3app',
+  realm: process.env.REALM,
+  url: `${process.env.KEYCLOAK}/auth`,
+  clientId: process.env.CLIENTID,
 });
 Auth.keycloak = keycloak;
 
