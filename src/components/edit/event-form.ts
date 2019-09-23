@@ -39,9 +39,8 @@ export const EventForm = () => {
     log('submitting...');
     if (state.event) {
       const event = deepCopy(state.event);
-      // console.log(JSON.stringify(event.memberCountries, null, 2));
       await EventsSvc.save(event);
-      state.event = event;
+      state.event = EventsSvc.getCurrent();
     }
   };
 
