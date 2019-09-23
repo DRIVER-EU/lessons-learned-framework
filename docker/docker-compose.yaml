@@ -1,3 +1,19 @@
+# A docker compose file for running Keycloak
+#
+# Note that the behaviour on Windows is different from that on Linux. For example, under Linux,
+# the default DB is PostgreSQL, and if you don't have it, it does not run (and does not warn you either).
+# So you need to explicitly specify the database, e.g. H2.
+#
+# Additionally, under Linux, https access is required. You can circumvent that temporarily by accessing the
+# container (below, I've set the container's name to kc).
+# See also: https://stackoverflow.com/a/49894254/319711
+#
+# docker exec -it kc bash
+# cd keycloak/bin
+# ./kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin
+# Changing ssl settings on the realm:
+# ./kcadm.sh update realms/master -s sslRequired=NONE
+
 ---
 version: "3"
 services:
@@ -5,6 +21,7 @@ services:
     image: jboss/keycloak:latest
     container_name: kc
     environment:
+      - DB_VENDOR=h2
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=${ADMIN_PWD}
     expose:
