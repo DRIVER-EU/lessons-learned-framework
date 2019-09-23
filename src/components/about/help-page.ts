@@ -18,7 +18,11 @@ The main functionalities of the L3 are to add and edit crisis events and associa
 
 The L3 contains of a set of events and their associated lessons. As depicted in the adjacent figure, each event in the repository can contain 0, 1 or more lessons, while each lesson is linked to exactly one specific crisis management function. Please note that a certain function can be addressed by several lessons from one or more events.`;
 
-const md2 = `The **aim** of the DRIVER+ **Lessons Learned Library** is to support organisations in editing, maintaining, consulting and sharing lessons within the domain of crisis management. These lessons may be collected from all kinds of events, such as routine, every day operations, (near) incidents, crisis situations, but also from training/exercises or from experiments and tests (like e.g. DRIVER+ Trials).
+const md2 = `An event is described by:
+
+- A summary, including a number of general data such as type of event (e.g. an incident or an exercise), and the date and place of the event;
+-	More detailed information on the incident scenario and crisis management operations, such as the initial incident and cascading events, the (potential) impact, a map of the situation, involved organisations, and an overview of essential CM-functions that had to be executed;
+-	Lessons that have been learned from the event.
 
 A lesson consists of two sets of information. First of all, a description of the observation of positive or negative experiences concerning the applicable CM function during the event. This includes the performance of executing the CM function during the event, which is expressed in three criteria: the effectiveness of the CM function (quality), the efficiency of the CM function (cost aspects), and the risks to which responders have been exposed.
 
