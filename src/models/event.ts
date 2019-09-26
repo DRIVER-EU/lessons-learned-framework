@@ -46,6 +46,7 @@ export interface IEvent extends ILokiObj {
   name: string;
   organisations: IOrganisation[];
   otherCountries: string;
+  intInstitutions: string;
   otherIncidents: string | string[];
   publications: IPublication[];
   scale: string;

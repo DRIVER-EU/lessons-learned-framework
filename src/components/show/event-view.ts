@@ -41,7 +41,7 @@ export const EventView: FactoryComponent = () => {
               m(
                 'li',
                 m(FlatButton, {
-                  label: 'Edit document',
+                  label: 'EDIT EVENT',
                   iconName: 'edit',
                   className: 'right hide-on-small-only',
                   onclick: () => dashboardSvc.switchTo(Dashboards.EDIT, { id: event.$loki }),
@@ -56,7 +56,7 @@ export const EventView: FactoryComponent = () => {
                     event.published = checked;
                     await EventsSvc.save(event);
                   },
-                  label: 'Published',
+                  label: 'PUBLISH EVENT',
                 })
               ),
             ])

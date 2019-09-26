@@ -27,12 +27,15 @@ export const EventsList = () => {
   const sortByName: ((a: Partial<IEvent>, b: Partial<IEvent>) => number) | undefined = (a, b) =>
     (a.name || '') > (b.name || '') ? 1 : (a.name || '') < (b.name || '') ? -1 : 0;
 
+  const pageSize = 24;
+
   return {
     oninit: () => EventsSvc.loadList(),
     view: () => {
       const { countryFilter, eventTypeFilter, cmFunctionFilter, incidentTypeFilter } = state;
       const events = (EventsSvc.getList() || ([] as IEvent[])).sort(sortByName);
       const query = nameAndDescriptionFilter(state.filterValue);
+      const page = m.route.param('page') ? +m.route.param('page') : 0;
       const filteredEvents =
         events
           .filter(
@@ -43,7 +46,8 @@ export const EventsList = () => {
           .filter(typeFilter('memberCountries', countryFilter))
           .filter(typeFilter('eventType', eventTypeFilter))
           .filter(typeFilter('cmFunctions', cmFunctionFilter))
-          .filter(incidentFilter(incidentTypeFilter)) || [];
+          .filter(incidentFilter(incidentTypeFilter))
+          .slice(page * pageSize, (page + 1) * pageSize) || [];
       return m('.row', { style: 'margin-top: 1em;' }, [
         m(
           '.col.s12.l3',

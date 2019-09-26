@@ -40,12 +40,12 @@
     "materialize-css": "^1.0.0",
     "mithril": "^2.0.4",
     "mithril-leaflet": "^0.1.6",
-    "mithril-materialized": "^0.14.12",
+    "mithril-materialized": "^0.15.0",
     "mithril-ui-form": "^0.3.5",
     "rest-easy-loki": "^0.3.2"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.5.1",
+    "@types/leaflet": "^1.5.2",
     "@types/lokijs": "^1.5.2",
     "@types/materialize-css": "^1.0.6",
     "@types/mithril": "^2.0.0",

@@ -14,7 +14,7 @@ const log = console.log;
 
 const close = async (e?: UIEvent) => {
   log('closing...');
-  m.route.set('/');
+  dashboardSvc.switchTo(Dashboards.SEARCH);
   if (e) {
     e.preventDefault();
   }
@@ -121,7 +121,7 @@ export const EventForm = () => {
                     m(
                       '.col.s12',
                       m(Chips, {
-                        label: 'Who can change this document',
+                        label: 'Rights to edit are provided to:',
                         placeholder: '+email',
                         onchange: chips => {
                           event.canEdit = chips.map(({ tag }) => tag);
@@ -143,7 +143,7 @@ export const EventForm = () => {
             onchange: () => {
               // console.log(JSON.stringify(event, null, 2));
               // console.log(JSON.stringify(event.memberCountries, null, 2));
-              state.event = event;
+              // state.event = event;
               state.hasChanged = true;
             },
             context,

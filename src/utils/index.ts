@@ -178,3 +178,13 @@ export const formatOptional = (
   const txt = `${prepend}${f.join(', ')}${append}`;
   return f.length === 0 ? '' : brackets ? ` (${txt})` : txt;
 };
+
+export const debounce = (func: (...args: any) => void, timeout: number) => {
+  let timer: number;
+  return (...args: any) => {
+    clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      func(...args);
+    }, timeout);
+  };
+};

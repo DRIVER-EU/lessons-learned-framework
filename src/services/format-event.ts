@@ -5,7 +5,7 @@ import { ILesson } from '../models/lesson';
 import { formatOptional } from '../utils';
 
 /** Print optional */
-const p = (val: string | number | Date | undefined, output?: string) => (val ? output || val : '...');
+const p = (val: string | number | Date | undefined, output?: string) => (val ? output || val : '');
 
 /** Print a list: a, b and c */
 const l = (val: undefined | string | string[]) => {
@@ -49,12 +49,10 @@ const showLessons = (event: Partial<IEvent>) => {
   if (!lessons || lessons.length === 0) {
     return 'No lessons have been learned yet.';
   }
-  const obs = ({ effectiveness, efficiency, responderHealthAndSafety, observationInfo }: ILesson) =>
+  const obs = ({ effectiveness, responderHealthAndSafety, observationInfo }: ILesson) =>
     `Observations during the event of this CM function shows that its effectiveness was '${p(
       effectiveness
-    )}', while its efficiency seemed to be '${p(
-      efficiency
-    )}' and the health and/or safety risks for responders were '${p(responderHealthAndSafety)}'. ${p(observationInfo)}`;
+    )}', and the health and/or safety risks for responders were '${p(responderHealthAndSafety)}'. ${p(observationInfo)}`;
   const createLesson = (les: ILesson, index: number) => {
     const {
       name,
@@ -87,7 +85,7 @@ This lesson addresses in particular CM function ‘${p(cmFunction)}’.
 
 ${obs(les)}
 
-Possible solution or improvement of the CM function’s performance can/have been found in aspects related to: ${p(st)}. ${p(lesson)}
+Possible solution or improvement of the CM function’s performance can/has been found in aspects related to: ${p(st)}. ${p(lesson)}
 
 The (expected) improvements of the CM function’s performance of implementing such a solution are ${p(effectsOnPerformance)}. ${p(expectedImprovementsInfo)}
 
@@ -163,6 +161,7 @@ const formatEvent = (event: IEvent) => {
     memberCountries,
     name,
     otherCountries,
+    intInstitutions,
     otherIncidents,
     scale,
     scaleExplanation = '',
@@ -189,7 +188,7 @@ The event took place at ${p(locationText)} ${p(startDate, `on ${new Date(startDa
 
 <h5 class="primary-text">Incident characteristics</h5>
 
-The incident was caused initially by a${initialIncident && /^[aeiuo]/i.test(initialIncident) ? 'n' : ''} ${p(
+The incident was initiated by a${initialIncident && /^[aeiuo]/i.test(initialIncident) ? 'n' : ''} ${p(
     initialIncident
   )}${oi && oi.length > 0 ? formatOptional({ prepend: ', causing the following other incidents: ' }, oi) : ''}.
 
@@ -209,6 +208,7 @@ ${p(environment, `- Environmental degradation: ${environment}`)}
 <h5 class="primary-text">Geographical characteristics</h5>
 
 ${p(mc, `The event involved the following country/countries: ${mc}. `)}
+${p(intInstitutions, `Including the following international institutions: ${intInstitutions}. `)}
 
 ${scaleExplanation}`;
 

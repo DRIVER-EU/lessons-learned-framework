@@ -356,14 +356,21 @@ export const incidentTypes = [
 ].sort(sortByLabel);
 
 const societalSectors = [
-  { id: 'authorities', label: 'Authorities / Administration' },
-  { id: 'business_industry', label: 'Business and industry' },
-  { id: 'education', label: 'Education' },
-  { id: 'healthcare', label: 'Healthcare' },
-  { id: 'mass_media', label: 'Mass media' },
-  { id: 'public_transport', label: 'Public transport' },
-  { id: 'transport', label: 'Transport in general' },
-  { id: 'other', label: 'Other' },
+  { id: 'drinking_water', label: 'Drinking water' },
+  { id: 'education', label: 'Education/Research' },
+  { id: 'energy_supply', label: 'Energy supply' },
+  { id: 'financial_services', label: 'Financial services' },
+  { id: 'food_agriculture', label: 'Food/Agriculture' },
+  { id: 'government_administr.', label: 'Government/Administr.' },
+  { id: 'industry', label: 'Industry' },
+  { id: 'legal_order', label: 'Legal order' },
+  { id: 'media_culture', label: 'Media/Culture' },
+  { id: 'public_health', label: 'Public health' },
+  { id: 'public_order', label: 'Public order/safety' },
+  { id: 'retail_trade', label: 'Retail trade' },
+  { id: 'telecom_internet', label: 'Telecom/Internet' },
+  { id: 'transport', label: 'Transport' },
+  { id: 'water_management', label: 'Water management' },
 ];
 
 const qualityLevels = [
@@ -553,6 +560,7 @@ const lessonForm: Form = [
     type: 'select',
     label: 'Applicable Crisis Management function',
     className: 'col s6',
+    multiple: true,
     options: preSelectedCmFunctions,
   },
   {
@@ -564,7 +572,7 @@ const lessonForm: Form = [
   },
   {
     id: 'observationInfo',
-    label: 'Explanation',
+    label: 'Explanation of the observation',
     description:
       '_Description of the observation, positive or negative experiences, etc. with respect to the CM-function._',
     type: 'textarea',
@@ -654,80 +662,27 @@ const incidentCategories = [
   { id: 'attack', label: 'Intentional incident' },
 ];
 const scale = [
-  {
-    id: 'local',
-    label: 'Local',
-  },
-  {
-    id: 'regional',
-    label: 'Regional',
-  },
-  {
-    id: 'national',
-    label: 'National',
-  },
-  {
-    id: 'pan_europe',
-    label: 'Pan-Europe',
-  },
-  {
-    id: 'global',
-    label: 'Global',
-  },
+  { id: 'local', label: 'Local' },
+  { id: 'regional', label: 'Regional' },
+  { id: 'national', label: 'National' },
+  { id: 'pan_europe', label: 'Pan-Europe' },
+  { id: 'global', label: 'Global' },
 ];
 const organisationType = [
-  {
-    id: 'authority',
-    label: 'Authority',
-  },
-  {
-    id: 'fireBrigade',
-    label: 'Firebrigade',
-  },
-  {
-    id: 'civil_protection',
-    label: 'Civil Protection',
-  },
-  {
-    id: 'police',
-    label: 'Police',
-  },
-  {
-    id: 'medical_services',
-    label: 'Medical services',
-  },
-  {
-    id: 'public_services',
-    label: 'Other local public service',
-  },
-  {
-    id: 'defence',
-    label: 'Defence',
-  },
-  {
-    id: 'command_centres',
-    label: 'Command and/or Control centres',
-  },
-  {
-    id: 'monitoring_institute',
-    label: 'Monitoring institute',
-  },
-  {
-    id: 'cip',
-    label: 'Critical Infrastructure provider',
-  },
-  {
-    id: 'ngo_volunteer.',
-    label: 'NGO/Voluntary organisation',
-  },
-  {
-    id: 'training',
-    label: 'Training institute',
-  },
-  {
-    id: 'other',
-    label: 'Other',
-  },
+  { id: 'authority', label: 'Authority' },
+  { id: 'fireBrigade', label: 'Firebrigade' },
+  { id: 'civil_protection', label: 'Civil Protection' },
+  { id: 'police', label: 'Police' },
+  { id: 'medical_services', label: 'Medical services', },
+  { id: 'public_services', label: 'Other local public service' },
+  { id: 'defence', label: 'Defence' },
+  { id: 'command_centres', label: 'Command and/or Control centres' },
+  { id: 'monitoring_institute', label: 'Monitoring institute' },
+  { id: 'cip', label: 'Critical Infrastructure provider', } { id: 'ngo_volunteer.', label: 'NGO/Voluntary organisation' },
+  { id: 'training', label: 'Training institute' },
+  { id: 'other', label: 'Other' },
+  { id: 'research_organisation', label: 'Research organisations' },
+  { id: 'industry_sme', label: 'Industry/SME' },
 ].sort(sortByLabel);
 
 const organisationForm: Form = [
@@ -874,7 +829,7 @@ Description of the event scenario: characteristics of the incidents and their im
   },
   {
     id: 'incidentInfo',
-    label: 'Explanation',
+    label: 'Explanation of the incident',
     type: 'textarea',
   },
   {
@@ -902,7 +857,7 @@ Description of the event scenario: characteristics of the incidents and their im
   },
   {
     id: 'societalSectorsInfo',
-    label: 'Explanation',
+    label: 'Explanation of the involved societal sectors',
     type: 'textarea',
   },
   {
@@ -977,8 +932,13 @@ Geographic dimensions of the event scenario.`,
     type: 'textarea',
   },
   {
+    id: 'intInstitutions',
+    label: 'International institutions',
+    type: 'textarea',
+  },
+  {
     id: 'scaleExplanation',
-    label: 'Explanation',
+    label: 'Explanation of the geographic scale',
     type: 'textarea',
   },
   {
@@ -1019,14 +979,14 @@ List of organisations that were involved in executing one or more crisis managem
     type: 'options',
     multiple: true,
     required: true,
-    label: 'Most essential CM functions for effectively handling this event',
+    label: 'CM functions of specific interest for adequately handling this event',
     className: 'col s12',
-    checkboxClass: 'col s6 xl4',
+    checkboxClass: 'col s12 m6',
     options: cmFunctions,
   },
   {
     id: 'challengesInfo',
-    label: 'CM functions of specific interest for adequately handling this event',
+    label: 'Explanation of the challenge(s)',
     type: 'textarea',
   },
 

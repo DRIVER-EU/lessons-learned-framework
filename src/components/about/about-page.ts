@@ -19,8 +19,9 @@ An event can be created by clicking the \`+ ADD A NEW EVENT\` button on top of t
 An event can be selected in the main menu by clicking the button of the concerned event from the list of events that are present in the repository. To this purpose, also filtering options at the left can be used to reduce the list of available events. Filtering can be done by:
 
 - Text of event names or their short descriptions
+- Countries
 - Types of event
-- Initial incident of events
+- Incidents (initial or secondary)
 - Crisis management functions for which lessons have been defined
 
 After having selected an event, the document is presented with the most important information that already has been provided on this event. By clicking the \`EDIT DOCUMENT\` button, more detailed information can be consulted (or edited).
