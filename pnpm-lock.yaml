@@ -7,7 +7,7 @@ dependencies:
   mithril: 2.0.4
   mithril-leaflet: 0.1.6_154c6bfd3ace91745ba245372494e571
   mithril-materialized: 0.15.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
-  mithril-ui-form: 0.3.5_80da7a27c35a02100e303638036c1b2c
+  mithril-ui-form: 'link:../../../../Users/erikv/AppData/Roaming/npm/pnpm-global/node_modules/mithril-ui-form'
   rest-easy-loki: 0.3.2
 devDependencies:
   '@types/leaflet': 1.5.2
@@ -3727,23 +3727,6 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-EY6/Iy3G/9WD+zrbBAo9Tiq2N6n4PK879W8TYy2vnDguSEJzz8gGwlnyXQuyu2Qd7RwOOANOS3zUbKHGPPNABQ==
-  /mithril-ui-form/0.3.5_80da7a27c35a02100e303638036c1b2c:
-    dependencies:
-      leaflet: 1.5.1
-      leaflet-draw: 1.0.4
-      materialize-css: 1.0.0
-      mithril: 2.0.4
-      mithril-materialized: 0.15.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
-      slimdown-js: 0.1.4
-    dev: false
-    peerDependencies:
-      leaflet: ^1.5.1
-      leaflet-draw: ^1.0.4
-      materialize-css: ^1.0.0
-      mithril: ^2.0.4
-      mithril-materialized: ^0.14.3
-    resolution:
-      integrity: sha512-gJcH0u5an0K4UWbeN4WdYcWP7D2SaqWyizHiWFlS9yThWlS/XHkQZ5eEbblp27rlHcIfS3jHayHke0kNWWkPZw==
   /mithril/2.0.4:
     dev: false
     hasBin: true
@@ -5295,10 +5278,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
-  /slimdown-js/0.1.4:
-    dev: false
-    resolution:
-      integrity: sha512-TEqF783G5RXbhVd8plTReVgbKwGYyWL9yX1Cff8N3z1Jrltf1gqj9iIZxW3QHIo7I0otDNQYQWyo0ZTvTGuYFA==
   /snapdragon-node/2.1.1:
     dependencies:
       define-property: 1.0.0
