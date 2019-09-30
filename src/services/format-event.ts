@@ -49,10 +49,10 @@ const showLessons = (event: Partial<IEvent>) => {
   if (!lessons || lessons.length === 0) {
     return 'No lessons have been learned yet.';
   }
-  const obs = ({ effectiveness, responderHealthAndSafety, observationInfo }: ILesson) =>
+  const obs = ({ effectiveness, observationInfo }: ILesson) =>
     `Observations during the event of this CM function shows that its effectiveness was '${p(
       effectiveness
-    )}', and the health and/or safety risks for responders were '${p(responderHealthAndSafety)}'. ${p(observationInfo)}`;
+    )}'. ${p(observationInfo)}`;
   const createLesson = (les: ILesson, index: number) => {
     const {
       name,
@@ -81,7 +81,7 @@ const showLessons = (event: Partial<IEvent>) => {
     return `${intro}
 <h6 class="primary-text">Lesson ${index + 1}: ${p(name)}</h6>
 
-This lesson addresses in particular CM function ‘${p(cmFunction)}’.
+This lesson addresses in particular CM function(s) ‘${p(cmFunction)}’.
 
 ${obs(les)}
 
@@ -100,7 +100,7 @@ ${p(
 )}
 ${p(explanationImprovements)}`;
   };
-  return lessons ? lessons.map(createLesson).join('\n') : '';
+  return lessons ? lessons.filter(Boolean).map(createLesson).join('\n') : '';
 };
 
 const formatUrl = (url?: string) => (url ? `[${url}](${url})` : '');
@@ -208,7 +208,7 @@ ${p(environment, `- Environmental degradation: ${environment}`)}
 <h5 class="primary-text">Geographical characteristics</h5>
 
 ${p(mc, `The event involved the following country/countries: ${mc}. `)}
-${p(intInstitutions, `Including the following international institutions: ${intInstitutions}. `)}
+${p(intInstitutions, `Including the following international institution(s): ${intInstitutions}. `)}
 
 ${scaleExplanation}`;
 

@@ -559,7 +559,7 @@ const lessonForm: Form = [
     id: 'cmFunction',
     type: 'select',
     label: 'Applicable Crisis Management function',
-    className: 'col s6',
+    className: 'col s12',
     multiple: true,
     options: preSelectedCmFunctions,
   },

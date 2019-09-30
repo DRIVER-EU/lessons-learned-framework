@@ -3,7 +3,7 @@ export interface ILesson {
   cmFunction: string;
   effectiveness: string;
   // efficiency: string;
-  responderHealthAndSafety: string;
+  // responderHealthAndSafety: string;
   lesson: string;
   solutionType: string;
   effectsOnPerformance: string;
