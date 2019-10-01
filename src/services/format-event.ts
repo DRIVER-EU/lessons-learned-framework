@@ -27,6 +27,7 @@ const showEditors = (event: Partial<IEvent>) => {
   const { editors } = event;
   return editors
     ? `<p class="center-align"><i>by ${editors
+        .filter(Boolean)
         .map(e => `${e.name}${formatOptional({ brackets: true }, e.role, e.organisation, e.country)}`)
         .join(', ')}</i></p>`
     : '';
@@ -36,6 +37,7 @@ const showOrganisations = (event: Partial<IEvent>) => {
   const { organisations } = event;
   return organisations
     ? organisations
+        .filter(Boolean)
         .map(
           org =>
             `- ${org.name}${formatOptional({ brackets: true }, org.type, org.country)}${p(org.info, `<br>${org.info}`)}`
@@ -50,9 +52,9 @@ const showLessons = (event: Partial<IEvent>) => {
     return 'No lessons have been learned yet.';
   }
   const obs = ({ effectiveness, observationInfo }: ILesson) =>
-    `Observations during the event of this CM function shows that its effectiveness was '${p(
-      effectiveness
-    )}'. ${p(observationInfo)}`;
+    `Observations during the event of this CM function shows that its effectiveness was '${p(effectiveness)}'. ${p(
+      observationInfo
+    )}`;
   const createLesson = (les: ILesson, index: number) => {
     const {
       name,
@@ -85,9 +87,13 @@ This lesson addresses in particular CM function(s) ‘${p(cmFunction)}’.
 
 ${obs(les)}
 
-Possible solution or improvement of the CM function’s performance can/has been found in aspects related to: ${p(st)}. ${p(lesson)}
+Possible solution or improvement of the CM function’s performance can/has been found in aspects related to: ${p(
+      st
+    )}. ${p(lesson)}
 
-The (expected) improvements of the CM function’s performance of implementing such a solution are ${p(effectsOnPerformance)}. ${p(expectedImprovementsInfo)}
+The (expected) improvements of the CM function’s performance of implementing such a solution are ${p(
+      effectsOnPerformance
+    )}. ${p(expectedImprovementsInfo)}
 
 Additionally, the expected impact reductions on the described incident are:
 ${p(victimsImprovements, `- Number of victims/casualties reduction: ${victimsImprovements}`)}
@@ -100,7 +106,12 @@ ${p(
 )}
 ${p(explanationImprovements)}`;
   };
-  return lessons ? lessons.filter(Boolean).map(createLesson).join('\n') : '';
+  return lessons
+    ? lessons
+        .filter(Boolean)
+        .map(createLesson)
+        .join('\n')
+    : '';
 };
 
 const formatUrl = (url?: string) => (url ? `[${url}](${url})` : '');
@@ -124,8 +135,18 @@ const showSources = (event: Partial<IEvent>) => {
       mm.owner ? ` (owned by ${mm.owner})` : ''
     }`;
 
-  const ps = publications ? publications.map((pub, i) => `${i + 1}. ${formatPublication(pub)}`).join('\n') : '';
-  const ms = multimedia ? multimedia.map((mm, i) => `${i + 1}. ${formatMultimedia(mm)}`).join('\n') : '';
+  const ps = publications
+    ? publications
+        .filter(Boolean)
+        .map((pub, i) => `${i + 1}. ${formatPublication(pub)}`)
+        .join('\n')
+    : '';
+  const ms = multimedia
+    ? multimedia
+        .filter(Boolean)
+        .map((mm, i) => `${i + 1}. ${formatMultimedia(mm)}`)
+        .join('\n')
+    : '';
 
   // console.log(ps);
 
