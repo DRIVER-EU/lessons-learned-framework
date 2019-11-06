@@ -6,10 +6,18 @@
   "scripts": {
     "clean": "rimraf ./public ./.cache ./dist",
     "start": "concurrently \"npm run serve\" \"parcel index.html\"",
-    "build:domain": "npm run clean && parcel build index.html --out-dir ./public",
+    "build": "parcel build index.html --out-dir ./public",
+    "build:domain": "npm run clean && npm run build",
     "link": "npm link mithril-ui-form",
     "serve": "rest-easy-loki",
-    "keycloak": "docker-compose up -d -f ./docker/docker-compose.yaml"
+    "keycloak": "docker-compose up -d -f ./docker/docker-compose.yaml",
+    "docker:build": "docker build -t l3crisis .",
+		"docker:tag": "docker tag l3crisis drivereu/l3crisis",
+		"docker:publish": "docker push drivereu/l3crisis",
+		"docker": "npm run docker:local && npm run docker:publish",
+		"docker:local": "npm run docker:build && npm run docker:tag",
+		"docker:run": "docker run --name lr -it -p 3000:3000 l3crisis",
+		"docker:sh": "docker run -it l3crisis sh"    
   },
   "repository": {
     "type": "git",
