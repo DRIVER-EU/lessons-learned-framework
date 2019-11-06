@@ -3713,7 +3713,28 @@ packages:
       mithril: ^2.0.4
       mithril-materialized: ^0.15.0
     resolution:
+<<<<<<< HEAD
       integrity: sha512-pEEuU86GIupFs5zLNCQszoRQCgJFT/+qEn9mh6KZZmWcY5RiO9t8fxARTChgiLBDtwctzNL8U0yeE2CIKtG0xQ==
+=======
+      integrity: sha512-EY6/Iy3G/9WD+zrbBAo9Tiq2N6n4PK879W8TYy2vnDguSEJzz8gGwlnyXQuyu2Qd7RwOOANOS3zUbKHGPPNABQ==
+  /mithril-ui-form/0.3.9_80da7a27c35a02100e303638036c1b2c:
+    dependencies:
+      leaflet: 1.5.1
+      leaflet-draw: 1.0.4
+      materialize-css: 1.0.0
+      mithril: 2.0.4
+      mithril-materialized: 0.15.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
+      slimdown-js: 0.1.4
+    dev: false
+    peerDependencies:
+      leaflet: ^1.5.1
+      leaflet-draw: ^1.0.4
+      materialize-css: ^1.0.0
+      mithril: ^2.0.4
+      mithril-materialized: ^0.14.3
+    resolution:
+      integrity: sha512-l+XSm5qvZSk927Xu7rq5D2SkRg1Xqcx3cxFlWK9FTirF9Bw4Jz35ydC+JwXqarO0wZmpHvABqoRUk2eFaPZYlg==
+>>>>>>> 2411913d66fb148bbea7a5e0698ff310be3e3274
   /mithril/2.0.4:
     dev: false
     hasBin: true
@@ -6103,9 +6124,16 @@ specifiers:
   materialize-css: ^1.0.0
   mithril: ^2.0.4
   mithril-leaflet: ^0.1.6
+<<<<<<< HEAD
   mithril-materialized: ^0.15.4
   mithril-ui-form: ^0.4.0
   parcel-bundler: ^1.12.4
   rest-easy-loki: ^0.5.0
+=======
+  mithril-materialized: ^0.15.0
+  mithril-ui-form: ^0.3.9
+  parcel-bundler: ^1.12.3
+  rest-easy-loki: ^0.3.2
+>>>>>>> 2411913d66fb148bbea7a5e0698ff310be3e3274
   rimraf: ^3.0.0
   typescript: ^3.7.2
