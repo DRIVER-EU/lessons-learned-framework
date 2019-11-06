@@ -21,6 +21,6 @@ ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
-COPY --from=builder /home/node/app ./
+COPY --from=builder /app ./
 EXPOSE 3000
 CMD ["npm", "run", "serve"]
