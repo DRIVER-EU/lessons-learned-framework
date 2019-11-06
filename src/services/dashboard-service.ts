@@ -119,7 +119,7 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     id: Dashboards.USER,
     title: 'User page',
     route: '/user',
-    icon: () => Auth.authenticated ? 'person' : 'person_outline',
+    icon: () => Auth.isAuthenticated ? 'person' : 'person_outline',
     visible: true,
     component: Login,
   },

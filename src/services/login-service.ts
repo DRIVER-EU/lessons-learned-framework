@@ -56,10 +56,10 @@ export const Auth = {
         const roles = tokenParsed.realm_access.roles;
         if (
           tokenParsed.resource_access &&
-          (tokenParsed.resource_access as any).locatieregister &&
-          (tokenParsed.resource_access as any).locatieregister.roles
+          (tokenParsed.resource_access as any).l3app &&
+          (tokenParsed.resource_access as any).l3app.roles
         ) {
-          roles.push(...(tokenParsed.resource_access as any).locatieregister.roles);
+          roles.push(...(tokenParsed.resource_access as any).l3app.roles);
         }
         Auth.setRoles(roles);
       }
