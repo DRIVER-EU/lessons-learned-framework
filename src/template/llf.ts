@@ -1001,6 +1001,8 @@ List of organisations that were involved in executing one or more crisis managem
     label: 'Add lesson',
     repeat: true,
     type: lessonForm,
+    pageSize: 1,
+    propertyFilter: 'name',
   },
 
   // { id: 'sources', type: 'section' },
