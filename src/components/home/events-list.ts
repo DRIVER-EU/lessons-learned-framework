@@ -39,9 +39,7 @@ export const EventsList = () => {
       const filteredEvents =
         events
           .filter(
-            ev =>
-              ev.published ||
-              (Auth.isAuthenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email))
+            ev => ev.published || (Auth.isAuthenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || Auth.canEdit(ev)))
           )
           .filter(query)
           .filter(typeFilter('memberCountries', countryFilter))
@@ -55,6 +53,7 @@ export const EventsList = () => {
           m(
             'ul#slide-out.sidenav.sidenav-fixed',
             {
+              style: 'height: 95vh',
               oncreate: ({ dom }) => {
                 M.Sidenav.init(dom);
               },
@@ -67,7 +66,7 @@ export const EventsList = () => {
                   class: 'col s11 indigo darken-4 white-text',
                   style: 'margin: 1em;',
                   onclick: () => {
-                    EventsSvc.new({ name: 'New event', owner: Auth.email, published: false, duration: 1 });
+                    EventsSvc.new({ name: 'New event', owner: [Auth.email], published: false, duration: 1 });
                     dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
                   },
                 }),

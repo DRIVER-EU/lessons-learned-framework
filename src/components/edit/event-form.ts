@@ -61,10 +61,6 @@ export const EventForm = () => {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }
       // log(event);
-      // const hasChanged = state.hasChanged || !deepEqual(event, EventsSvc.getCurrent());
-      // if (hasChanged) {
-      //   onsubmit();
-      // }
       const sections = form
         .filter(c => c.type === 'section')
         .map(c => ({
@@ -79,6 +75,7 @@ export const EventForm = () => {
           m(
             'ul#slide-out.sidenav.sidenav-fixed',
             {
+              style: 'height: 95vh',
               oncreate: ({ dom }) => {
                 M.Sidenav.init(dom);
               },
@@ -115,6 +112,31 @@ export const EventForm = () => {
                   class: 'red col s12',
                 }),
               ]),
+              Auth.isOwner(event)
+                ? m(
+                    'li',
+                    m(
+                      '.col.s12',
+                      m(Chips, {
+                        label: 'Owner(s)',
+                        placeholder: '+email',
+                        onchange: async chips => {
+                          event.owner = chips.map(({ tag }) => tag);
+                          if (event.owner.length === 0) {
+                            M.toast({ html: 'Er moet minimaal één eigenaar zijn.', classes: 'red' });
+                            event.owner.push(Auth.email);
+                          }
+                          await onsubmit();
+                        },
+                        data: event.owner
+                          ? event.owner instanceof Array
+                            ? event.owner.map(owner => ({ tag: owner }))
+                            : [{ tag: event.owner }]
+                          : [],
+                      })
+                    )
+                  )
+                : undefined,
               Auth.canCRUD(event)
                 ? m(
                     'li',
