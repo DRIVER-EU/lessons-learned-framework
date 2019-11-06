@@ -19,7 +19,7 @@ export const Layout = () => ({
         m(
           'nav',
           m('.nav-wrapper', [
-            m('a.brand-logo[href=#]', { style: 'margin-left: 20px' }, [
+            m('a.brand-logo[href=#].hide-on-small-and-down', { style: 'margin-left: 20px' }, [
               m(`img[width=48][height=48][src=${logo}]`, { style: 'margin-top: 5px; margin-left: -5px;' }),
               m(
                 'div',
