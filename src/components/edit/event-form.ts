@@ -7,7 +7,7 @@ import { EventsSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { Auth } from '../../services/login-service';
 import { llf } from '../../template/llf';
-import { capitalizeFirstLetter, deepEqual } from '../../utils';
+import { capitalizeFirstLetter } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
 
 const log = console.log;
@@ -141,8 +141,8 @@ export const EventForm = () => {
             form,
             obj: event,
             onchange: async () => {
-              console.log(JSON.stringify(event.cmFunctions, null, 2));
-              console.log(JSON.stringify(event.memberCountries, null, 2));
+              // console.log(JSON.stringify(event.cmFunctions, null, 2));
+              // console.log(JSON.stringify(event.memberCountries, null, 2));
               // state.event = event;
               // state.hasChanged = true;
               await onsubmit();

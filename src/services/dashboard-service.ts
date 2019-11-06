@@ -47,7 +47,7 @@ class DashboardService {
   public switchTo(dashboardId: Dashboards, params?: { [key: string]: string | number | undefined }) {
     const dashboard = this.dashboards.filter(d => d.id === dashboardId).shift();
     if (dashboard) {
-      console.log(dashboard.route);
+      // console.log(dashboard.route);
       m.route.set(dashboard.route, params ? params : undefined);
     }
   }

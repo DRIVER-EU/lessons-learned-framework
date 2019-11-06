@@ -12,7 +12,6 @@ export class RestService<T extends { $loki?: number }> {
   protected list: T[] = [];
   protected baseUrl: string;
   protected channel: IChannelDefinition<{ list: T[] } | { cur: T; old: T }>;
-  protected useDevServer = false;
   protected withCredentials = false;
 
   constructor(protected urlFragment: string, protected channelName?: string) {
@@ -92,44 +91,30 @@ export class RestService<T extends { $loki?: number }> {
     if (id === '-1') {
       return this.current;
     }
-    try {
-      const result = await m.request<T>({
-        method: 'GET',
-        url: this.baseUrl + id,
-        withCredentials: this.withCredentials,
-      });
-      if (!result) {
-        throw Error('No result found at ' + this.baseUrl);
-      }
-      this.setCurrent(result);
-      this.updateItemInList(this.current);
-      return this.current;
-    } catch (error) {
-      this.baseUrl = this.createBaseUrl(true);
-      return this.load(id);
+    const result = await m.request<T>({
+      method: 'GET',
+      url: this.baseUrl + id,
+      withCredentials: this.withCredentials,
+    });
+    if (!result) {
+      console.warn('No result found at ' + this.baseUrl);
     }
+    this.setCurrent(result || {});
+    this.updateItemInList(this.current);
+    return this.current;
   }
 
   public async loadList(): Promise<T[] | undefined> {
-    try {
-      const result = await m.request<T[]>({
-        method: 'GET',
-        url: this.baseUrl,
-        withCredentials: this.withCredentials,
-      });
-      if (!result) {
-        throw Error('No result found at ' + this.baseUrl);
-      }
-      this.setList(result);
-      return this.list;
-    } catch (error) {
-      if (this.useDevServer) {
-        throw Error(`No result found at ${this.baseUrl}\n${error}`);
-      }
-      this.useDevServer = true;
-      this.baseUrl = this.createBaseUrl(true);
-      return this.loadList();
+    const result = await m.request<T[]>({
+      method: 'GET',
+      url: this.baseUrl,
+      withCredentials: this.withCredentials,
+    });
+    if (!result) {
+      console.warn('No result found at ' + this.baseUrl);
     }
+    this.setList(result || []);
+    return this.list;
   }
 
   public new(item?: T) {
@@ -146,9 +131,8 @@ export class RestService<T extends { $loki?: number }> {
   //   return `http://localhost:3000/${this.urlFragment}/`;
   // }
   /** Create the base URL, either using the apiService or the apiDevService */
-  protected createBaseUrl(useDevServer = false): string {
-    AppState.usingDevServer = useDevServer;
-    return `${AppState.apiService()}/${this.urlFragment}/`;
+  protected createBaseUrl(): string {
+    return `${AppState.apiService}/api/${this.urlFragment}/`;
   }
 
   private setCurrent(value: T) {

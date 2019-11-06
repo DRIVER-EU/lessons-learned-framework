@@ -40,7 +40,8 @@ export const EventsList = () => {
         events
           .filter(
             ev =>
-              ev.published || (Auth.authenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email))
+              ev.published ||
+              (Auth.isAuthenticated && (Auth.roles.indexOf(Roles.ADMIN) >= 0 || ev.owner === Auth.email))
           )
           .filter(query)
           .filter(typeFilter('memberCountries', countryFilter))
@@ -59,18 +60,17 @@ export const EventsList = () => {
               },
             },
             [
-              Auth.authenticated
-                ? m(FlatButton, {
-                    label: 'Add new event',
-                    iconName: 'add',
-                    class: 'col s11 indigo darken-4 white-text',
-                    style: 'margin: 1em;',
-                    onclick: () => {
-                      EventsSvc.new({ name: 'New event', owner: Auth.email, published: false, duration: 1 });
-                      dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
-                    },
-                  })
-                : undefined,
+              Auth.isAuthenticated &&
+                m(FlatButton, {
+                  label: 'Add new event',
+                  iconName: 'add',
+                  class: 'col s11 indigo darken-4 white-text',
+                  style: 'margin: 1em;',
+                  onclick: () => {
+                    EventsSvc.new({ name: 'New event', owner: Auth.email, published: false, duration: 1 });
+                    dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
+                  },
+                }),
               m('h4.primary-text', { style: 'margin-left: 0.5em;' }, 'Filter events'),
               m(TextInput, {
                 label: 'Text filter of events',
@@ -160,7 +160,7 @@ export const EventsList = () => {
                     'a',
                     {
                       target: '_blank',
-                      href: `${AppState.apiService()}/events/${event.$loki}`,
+                      href: `${AppState.apiService}/api/events/${event.$loki}`,
                     },
                     m(Icon, {
                       className: 'white-text',
