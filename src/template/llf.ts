@@ -962,6 +962,8 @@ List of organisations that were involved in executing one or more crisis managem
     id: 'organisations',
     label: 'Add Organisation',
     repeat: true,
+    inline: true,
+    pageSize: 3,
     type: organisationForm,
     i18n: {
       createRepeat: 'Create a new organisation',
@@ -1014,6 +1016,8 @@ List of organisations that were involved in executing one or more crisis managem
     id: 'publications',
     label: 'Add publication',
     repeat: true,
+    inline: true,
+    pageSize: 3,
     type: publicationForm,
     i18n: {
       createRepeat: 'Create a new publication',
@@ -1027,6 +1031,7 @@ List of organisations that were involved in executing one or more crisis managem
     label: 'Add multimedia source',
     repeat: true,
     type: multimediaForm,
+    pageSize: 3,
     i18n: {
       createRepeat: 'Create a new multimedia source',
       editRepeat: 'Edit multimedia source',

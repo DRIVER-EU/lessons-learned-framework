@@ -142,3 +142,7 @@ a,
   color: black;
   font-weight: normal;
 }
+
+.repeat-list .pagination {
+  margin: 0;
+}
