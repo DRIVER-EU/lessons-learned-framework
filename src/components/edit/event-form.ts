@@ -119,12 +119,12 @@ export const EventForm = () => {
                       '.col.s12',
                       m(Chips, {
                         label: 'Owner(s)',
-                        placeholder: '+email',
+                        placeholder: '+username',
                         onchange: async chips => {
                           event.owner = chips.map(({ tag }) => tag);
                           if (event.owner.length === 0) {
-                            M.toast({ html: 'Er moet minimaal één eigenaar zijn.', classes: 'red' });
-                            event.owner.push(Auth.email);
+                            M.toast({ html: 'Owner(s) cannot be empty!', classes: 'red' });
+                            event.owner.push(Auth.username);
                           }
                           await onsubmit();
                         },
@@ -144,7 +144,7 @@ export const EventForm = () => {
                       '.col.s12',
                       m(Chips, {
                         label: 'Rights to edit are provided to:',
-                        placeholder: '+email',
+                        placeholder: '+username',
                         onchange: chips => {
                           event.canEdit = chips.map(({ tag }) => tag);
                           m.redraw();

@@ -2,9 +2,9 @@ import Keycloak, { KeycloakError, KeycloakInstance } from 'keycloak-js';
 import m, { FactoryComponent } from 'mithril';
 import { EmailInput, FlatButton, Options, TextInput } from 'mithril-materialized';
 import { CircularSpinner } from '../components/ui/preloader';
-import { IEvent } from '../models';
 import { Roles } from '../models/roles';
 import { envSvc } from './env-service';
+import { IEvent } from '../models';
 
 const tokenKey = 'token';
 const refreshTokenKey = 'refresh-token';
@@ -25,6 +25,7 @@ const authSuccessHandler = (authenticated: boolean) => {
 export const Auth = {
   keycloak: {} as KeycloakInstance,
   isAuthenticated: false,
+  name: '',
   username: '',
   email: '',
   token: window.localStorage.getItem(tokenKey) || '',
@@ -50,7 +51,8 @@ export const Auth = {
     if (token && refreshToken && tokenParsed) {
       window.localStorage.setItem(tokenKey, token);
       window.localStorage.setItem(refreshTokenKey, refreshToken);
-      Auth.setUsername((tokenParsed as any).name || '');
+      Auth.setUsername((tokenParsed as any).preferred_username || '');
+      Auth.setName((tokenParsed as any).name || '');
       Auth.setEmail((tokenParsed as any).email || '');
       if (tokenParsed.realm_access) {
         const roles = tokenParsed.realm_access.roles;
@@ -93,6 +95,9 @@ export const Auth = {
   setUsername(username: string) {
     Auth.username = username;
   },
+  setName(name: string) {
+    Auth.name = name;
+  },
   setEmail(email: string) {
     Auth.email = email;
   },
@@ -134,7 +139,7 @@ export const Auth = {
         redirectUri: window.location.href.replace('?', '') + '?',
       })
       .success((authenticated: boolean) => {
-        authSuccessHandler(authenticated);
+          authSuccessHandler(authenticated);
       })
       .error(authErrorHandler);
   },
@@ -142,6 +147,7 @@ export const Auth = {
     Auth.cleanTokens();
     Auth.setAuthenticated(false);
     Auth.setUsername('');
+    Auth.setName('');
     Auth.setEmail('');
     Auth.setRoles([]);
     Auth.keycloak.logout();
