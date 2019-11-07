@@ -65,9 +65,16 @@ export const EventsList = () => {
                   iconName: 'add',
                   class: 'col s11 indigo darken-4 white-text',
                   style: 'margin: 1em;',
-                  onclick: () => {
-                    EventsSvc.new({ name: 'New event', owner: [Auth.username], published: false, duration: 1 });
-                    dashboardSvc.switchTo(Dashboards.EDIT, { id: -1 });
+                  onclick: async () => {
+                    const ev = await EventsSvc.create({
+                      name: 'New event',
+                      owner: [Auth.username],
+                      published: false,
+                      duration: 1,
+                    });
+                    if (ev) {
+                      dashboardSvc.switchTo(Dashboards.EDIT, { id: ev.$loki });
+                    }
                   },
                 }),
               m('h4.primary-text', { style: 'margin-left: 0.5em;' }, 'Filter events'),

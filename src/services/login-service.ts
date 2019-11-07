@@ -139,7 +139,7 @@ export const Auth = {
         redirectUri: window.location.href.replace('?', '') + '?',
       })
       .success((authenticated: boolean) => {
-          authSuccessHandler(authenticated);
+        authSuccessHandler(authenticated);
       })
       .error(authErrorHandler);
   },
@@ -151,6 +151,7 @@ export const Auth = {
     Auth.setEmail('');
     Auth.setRoles([]);
     Auth.keycloak.logout();
+    m.route.set('/');
   },
 };
 
@@ -185,7 +186,17 @@ export const Login: FactoryComponent = () => {
                   inline: true,
                 })
               ),
-              m('.col.s12', m(FlatButton, { label: 'Logout', iconName: 'exit_to_app', onclick: () => Auth.logout() })),
+              m(
+                '.col.s12',
+                m(FlatButton, {
+                  label: 'Logout',
+                  iconName: 'exit_to_app',
+                  onclick: (e: any) => {
+                    Auth.logout();
+                    e.redraw = false;
+                  },
+                })
+              ),
             ]
           : m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' })
       );

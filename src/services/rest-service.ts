@@ -81,12 +81,6 @@ export class RestService<T extends { $loki?: number }> {
     }
   }
 
-  public unload() {
-    if (this.current) {
-      this.new();
-    }
-  }
-
   public async load(id?: number | string): Promise<T | undefined> {
     if (id === '-1') {
       return this.current;
@@ -117,9 +111,8 @@ export class RestService<T extends { $loki?: number }> {
     return this.list;
   }
 
-  public new(item?: T) {
-    this.setCurrent(item || ({} as T));
-    return this.current;
+  public async new(item: T) {
+    return this.create(item);
   }
 
   protected setList(value: T[]) {
@@ -127,9 +120,6 @@ export class RestService<T extends { $loki?: number }> {
     this.channel.publish(TopicNames.LIST_UPDATE, { list: this.list });
   }
 
-  // private createBaseUrl(): string {
-  //   return `http://localhost:3000/${this.urlFragment}/`;
-  // }
   /** Create the base URL, either using the apiService or the apiDevService */
   protected createBaseUrl(): string {
     return `${AppState.apiService}/api/${this.urlFragment}/`;
