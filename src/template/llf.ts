@@ -1003,6 +1003,7 @@ List of organisations that were involved in executing one or more crisis managem
     type: lessonForm,
     pageSize: 1,
     propertyFilter: 'name',
+    filterLabel: 'Filter by name'
   },
 
   // { id: 'sources', type: 'section' },
