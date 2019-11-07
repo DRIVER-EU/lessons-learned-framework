@@ -87,11 +87,11 @@ This lesson addresses in particular CM function(s) ‘${p(cmFunction)}’.
 
 ${obs(les)}
 
-Possible solution or improvement of the CM function’s performance can/has been found in aspects related to: ${p(
+Possible solution or improvement of the CM function(s)’ performance can/has been found in aspects related to: ${p(
       st
     )}. ${p(lesson)}
 
-The (expected) improvements of the CM function’s performance of implementing such a solution are ${p(
+The (expected) improvements of the CM function(s)’ performance of implementing such a solution are ${p(
       effectsOnPerformance
     )}. ${p(expectedImprovementsInfo)}
 

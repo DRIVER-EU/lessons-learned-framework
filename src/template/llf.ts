@@ -954,7 +954,7 @@ _Use the buttons on the left to edit the map. You can add lines, polygons, squar
   { id: 'organisations', type: 'section', label: 'Involved organisations' },
   {
     type: 'md',
-    value: `#### Organisations involved in executing CM functions
+    value: `#### Organisations involved in executing CM function(s)
 
 List of organisations that were involved in executing one or more crisis management functions during the event.`,
   },
@@ -970,7 +970,7 @@ List of organisations that were involved in executing one or more crisis managem
   },
 
   // Impact & Challenges
-  { id: 'impact', type: 'section', label: 'Critical CM functions' },
+  { id: 'impact', type: 'section', label: 'Critical CM function(s)' },
   {
     type: 'md',
     value: '#### Critical Crisis Management functions',
@@ -980,7 +980,7 @@ List of organisations that were involved in executing one or more crisis managem
     type: 'options',
     multiple: true,
     required: true,
-    label: 'CM functions of specific interest for adequately handling this event',
+    label: 'CM function(s) of specific interest for adequately handling this event',
     className: 'col s12',
     checkboxClass: 'col s12 m6',
     options: cmFunctions,
