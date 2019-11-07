@@ -2,9 +2,9 @@ import Keycloak, { KeycloakError, KeycloakInstance } from 'keycloak-js';
 import m, { FactoryComponent } from 'mithril';
 import { EmailInput, FlatButton, Options, TextInput } from 'mithril-materialized';
 import { CircularSpinner } from '../components/ui/preloader';
+import { IEvent } from '../models';
 import { Roles } from '../models/roles';
 import { envSvc } from './env-service';
-import { IEvent } from '../models';
 
 const tokenKey = 'token';
 const refreshTokenKey = 'refresh-token';
