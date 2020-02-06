@@ -11,10 +11,10 @@ export interface ILesson {
   // effectsOnResponderHealthAndSafety: string;
   expectedImprovementsInfo: string;
   victimsImprovements: string;
-  materialDamageImprovements: string;
-  ciLossImprovements: string;
-  socEcoDisruptionImprovements: string;
-  environmentalDegradationImprovements: string;
+  // materialDamageImprovements: string;
+  // ciLossImprovements: string;
+  // socEcoDisruptionImprovements: string;
+  // environmentalDegradationImprovements: string;
   explanationImprovements: string;
   observationInfo: string;
 }
