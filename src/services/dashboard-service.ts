@@ -48,7 +48,7 @@ class DashboardService {
     const dashboard = this.dashboards.filter(d => d.id === dashboardId).shift();
     if (dashboard) {
       // console.log(dashboard.route);
-      m.route.set(dashboard.route, params ? params : undefined);
+      m.route.set(dashboard.route, params);
     }
   }
 
@@ -56,8 +56,8 @@ class DashboardService {
     return this.dashboards.reduce(
       (p, c) => {
         p[c.route] = c.hasNavBar === false
-          ? { render: () => m(c.component) }
-          : { render: () => m(this.layout, m(c.component)) };
+          ? { onmatch: () => window.scrollTo(0, 0), render: () => m(c.component) }
+          : { onmatch: () => window.scrollTo(0, 0), render: () => m(this.layout, m(c.component)) };
         return p;
       },
       {} as RouteDefs,
