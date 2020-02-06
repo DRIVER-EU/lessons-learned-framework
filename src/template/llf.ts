@@ -581,7 +581,7 @@ const lessonForm: Form = [
   {
     type: 'md',
     value: `##### Improvement aspects
-Solution to improve effectiveness of the Crisis Management function.`,
+Solution or solution direction for (further) improvement of the effectiveness of the CM-function across the CM community.`,
   },
   {
     id: 'solutionType',
@@ -600,11 +600,11 @@ Solution to improve effectiveness of the Crisis Management function.`,
   {
     type: 'md',
     value: `##### Expectations
-Consequences of the solution on the Crisis Management function when it has been implemented:`,
+Consequences of the solution (direction) on the effectiveness of the applicable CM-function when this solution has been implemented and applied across involved CM organisations:`,
   },
   {
     id: 'effectsOnPerformance',
-    label: 'Effectiveness improvement',
+    label: 'Expected effectiveness improvement of the CM-function',
     type: 'select',
     className: 'col s12',
     options: improvementLevels,
@@ -617,38 +617,38 @@ Consequences of the solution on the Crisis Management function when it has been 
   {
     type: 'md',
     value:
-      'Impact reduction of the solution in comparison to current practices (legacy) in case of the event’s incident:',
+      'Reduction of casualties and/or damage in case of an incident, disaster or crisis by applying the solution in comparison to current practices (legacy):',
   },
   {
     id: 'victimsImprovements',
-    label: 'Victims/casualties reduction',
+    label: 'Expected impact reductions',
     className: 'col s6 l4',
     options: improvementLevels,
   },
-  {
-    id: 'materialDamageImprovements',
-    label: 'Material damage reduction',
-    className: 'col s6 l4',
-    options: improvementLevels,
-  },
-  {
-    id: 'ciLossImprovements',
-    label: 'Loss of services reduction',
-    className: 'col s6 l4',
-    options: improvementLevels,
-  },
-  {
-    id: 'socEcoDisruptionImprovements',
-    label: 'Social/economic disruption reduction',
-    className: 'col s6 l4',
-    options: improvementLevels,
-  },
-  {
-    id: 'environmentalDegradationImprovements',
-    label: 'Environmental degradation reduction',
-    className: 'col s6 l4',
-    options: improvementLevels,
-  },
+  // {
+  //   id: 'materialDamageImprovements',
+  //   label: 'Material damage reduction',
+  //   className: 'col s6 l4',
+  //   options: improvementLevels,
+  // },
+  // {
+  //   id: 'ciLossImprovements',
+  //   label: 'Loss of services reduction',
+  //   className: 'col s6 l4',
+  //   options: improvementLevels,
+  // },
+  // {
+  //   id: 'socEcoDisruptionImprovements',
+  //   label: 'Social/economic disruption reduction',
+  //   className: 'col s6 l4',
+  //   options: improvementLevels,
+  // },
+  // {
+  //   id: 'environmentalDegradationImprovements',
+  //   label: 'Environmental degradation reduction',
+  //   className: 'col s6 l4',
+  //   options: improvementLevels,
+  // },
   {
     id: 'explanationImprovements',
     label: 'Explanation of expected impact reductions',

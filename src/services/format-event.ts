@@ -63,10 +63,10 @@ const showLessons = (event: Partial<IEvent>) => {
       lesson,
       cmFunction,
       victimsImprovements,
-      materialDamageImprovements,
-      ciLossImprovements,
-      socEcoDisruptionImprovements,
-      environmentalDegradationImprovements,
+      // materialDamageImprovements,
+      // ciLossImprovements,
+      // socEcoDisruptionImprovements,
+      // environmentalDegradationImprovements,
       effectsOnPerformance,
       // effectsOnEfficiency,
       // effectsOnResponderHealthAndSafety,
@@ -95,16 +95,15 @@ The (expected) improvements of the CM function(s)’ performance of implementing
       effectsOnPerformance
     )}. ${p(expectedImprovementsInfo)}
 
-Additionally, the expected impact reductions on the described incident are:
-${p(victimsImprovements, `- Number of victims/casualties reduction: ${victimsImprovements}`)}
-${p(materialDamageImprovements, `- Material damage reduction: ${materialDamageImprovements}`)}
-${p(ciLossImprovements, `- Loss of services reduction: ${ciLossImprovements}`)}
-${p(socEcoDisruptionImprovements, `- Social/economic reduction: ${socEcoDisruptionImprovements}`)}
-${p(
-  environmentalDegradationImprovements,
-  `- Environmental degradation reduction: ${environmentalDegradationImprovements}`
-)}
-${p(explanationImprovements)}`;
+Additionally, the expected impact reductions on the described incident are ${p(victimsImprovements)}.` +
+// ${p(materialDamageImprovements, `- Material damage reduction: ${materialDamageImprovements}`)}
+// ${p(ciLossImprovements, `- Loss of services reduction: ${ciLossImprovements}`)}
+// ${p(socEcoDisruptionImprovements, `- Social/economic reduction: ${socEcoDisruptionImprovements}`)}
+// ${p(
+//   environmentalDegradationImprovements,
+//   `- Environmental degradation reduction: ${environmentalDegradationImprovements}`
+// )}
+`${p(explanationImprovements)}`;
   };
   return lessons
     ? lessons
