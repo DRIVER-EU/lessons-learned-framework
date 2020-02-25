@@ -33,7 +33,7 @@ export const Auth = {
   roles: [] as string[],
 
   async init() {
-    if (Auth.keycloak.login) {
+    if (Auth.keycloak.hasOwnProperty('login')) {
       return;
     }
     const env = await envSvc.getEnv();
@@ -79,7 +79,7 @@ export const Auth = {
   },
   /** Can edit the document, but also change the persons that have access. */
   isOwner(doc: Partial<IEvent>) {
-    return Auth.isAdmin() || (Auth.isAuthenticated && doc.owner && doc.owner.indexOf(Auth.email) >= 0);
+    return Auth.isAdmin() || (Auth.isAuthenticated && doc.owner && doc.owner.indexOf(Auth.username) >= 0);
   },
   /** Can edit the document, but also change the persons that have access. */
   canCRUD(doc: Partial<IEvent>) {
@@ -89,7 +89,7 @@ export const Auth = {
   canEdit(doc: Partial<IEvent>) {
     return (
       Auth.isAuthenticated &&
-      (Auth.canCRUD(doc) || Auth.isEditor() || (doc.canEdit instanceof Array && doc.canEdit.indexOf(Auth.email) >= 0))
+      (Auth.canCRUD(doc) || Auth.isEditor() || (doc.canEdit instanceof Array && doc.canEdit.indexOf(Auth.username) >= 0))
     );
   },
   setUsername(username: string) {
