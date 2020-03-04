@@ -7,9 +7,8 @@ dependencies:
   material-icons: 0.3.1
   materialize-css: 1.0.0
   mithril: 2.0.4
-  mithril-leaflet: 0.2.0_540248bce08b6daa8f39770dcc779455
+  mithril-leaflet: 0.2.2_540248bce08b6daa8f39770dcc779455
   mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
-  mithril-ui-form: 0.5.0_e7aaa12ac59af2eaa7ea791b802e2765
   rest-easy-loki: 0.7.6
 devDependencies:
   '@types/leaflet': 1.5.9
@@ -3787,7 +3786,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
-  /mithril-leaflet/0.2.0_540248bce08b6daa8f39770dcc779455:
+  /mithril-leaflet/0.2.2_540248bce08b6daa8f39770dcc779455:
     dependencies:
       leaflet: 1.6.0
       leaflet-draw: 1.0.4
@@ -3798,7 +3797,7 @@ packages:
       leaflet-draw: ^1.0.4
       mithril: ^2.0.4
     resolution:
-      integrity: sha512-lLfQ3YO1/JkmHQD3ae+0Ae0O4VPQor35MdpisQ3yRYEz4znRKBWrEyrpRjEqa5enJnhV4aozknYvIhjkTwB5Dw==
+      integrity: sha512-wWJqp2mNHthMsIug9YG9BkCkixxJlffsaaB1jxgi6hrhn3o0OYOUHwQpzdo3Crnw9H9UXd1piAmMcXnQt1m3Pg==
   /mithril-materialized/0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca:
     dependencies:
       materialize-css: 1.0.0
@@ -3809,23 +3808,6 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-Y6r+X5spyE5SiTAiyKN2hdXqyfIw+ZV2t8Qg4usD50royGK8KDA5kDN979tR9JZphsIr3PYif5FUz/TGl1baSQ==
-  /mithril-ui-form/0.5.0_e7aaa12ac59af2eaa7ea791b802e2765:
-    dependencies:
-      leaflet: 1.6.0
-      leaflet-draw: 1.0.4
-      materialize-css: 1.0.0
-      mithril: 2.0.4
-      mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
-      slimdown-js: 0.1.5
-    dev: false
-    peerDependencies:
-      leaflet: ^1.5.1
-      leaflet-draw: ^1.0.4
-      materialize-css: ^1.0.0
-      mithril: ^2.0.4
-      mithril-materialized: ^0.16.0
-    resolution:
-      integrity: sha512-6PtV90O1474VkUhNMEUTAtqFlDFztl80Hvd2NlbKpMuzoxsdi2dz/2osOfqETC1incX1mOvh742/kNU5HhxuHg==
   /mithril/2.0.4:
     dev: false
     hasBin: true
@@ -5313,10 +5295,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
-  /slimdown-js/0.1.5:
-    dev: false
-    resolution:
-      integrity: sha512-CfvUmEE+KHVN1IZKyBxLDwHOUX9rkUDSAJuDswlCmuESU1U+5Q8sFkSCsDDdVBuZ2oWiLlIBa+gM5Ceius4JuA==
   /snapdragon-node/2.1.1:
     dependencies:
       define-property: 1.0.0
@@ -6289,9 +6267,9 @@ specifiers:
   material-icons: ^0.3.1
   materialize-css: ^1.0.0
   mithril: ^2.0.4
-  mithril-leaflet: ^0.2.0
+  mithril-leaflet: ^0.2.2
   mithril-materialized: ^0.16.1
-  mithril-ui-form: ^0.5.0
+  mithril-ui-form: ^0.6.0
   parcel-bundler: ^1.12.4
   rest-easy-loki: ^0.7.6
   rimraf: ^3.0.2
