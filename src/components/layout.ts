@@ -35,8 +35,8 @@ export const Layout = () => ({
                       "margin-top: 0px; position: absolute; top: 16px; left: 50px; width: 400px;",
                   },
                   m(
-                    "h4.center.yellow.darken-3.hide-on-med-and-down",
-                    { style: "margin: 0;" },
+                    "h4.center.hide-on-med-and-down",
+                    { style: "margin: 0; background: transparent;" },
                     "Lessons Learned Library"
                   )
                 ),
