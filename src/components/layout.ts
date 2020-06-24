@@ -20,28 +20,23 @@ export const Layout = () => ({
         { style: "z-index: 1001" },
         m(
           "nav",
-          m(".nav-wrapper", [
-            m(
-              "a.brand-logo[href=#].hide-on-small-and-down",
-              { style: "margin-left: 20px" },
-              [
-                m(`img[width=125][height=125][src=${logo}]`, {
-                  style: "margin-top: -30px; margin-left: -30px;",
-                }),
+          m(".nav-wrapper.white", [
+            m("a.brand-logo[href=#].hide-on-small-and-down", [
+              m(`img[width=70][height=70][src=${logo}]`, {
+                style: "margin: -3px 0 0 10px;",
+              }),
+              m(
+                "div",
+                {
+                  style:
+                    "position: absolute; top: -10px; left: 75px; width: 400px;",
+                },
                 m(
-                  "div",
-                  {
-                    style:
-                      "margin-top: 0px; position: absolute; top: 16px; left: 50px; width: 400px;",
-                  },
-                  m(
-                    "h4.center.hide-on-med-and-down",
-                    { style: "margin: 0; background: transparent;" },
-                    "Lessons Learned Library"
-                  )
-                ),
-              ]
-            ),
+                  "h4.center.black-text.hide-on-med-and-down",
+                  "Lessons Learned Library"
+                )
+              ),
+            ]),
             m(
               // 'a.sidenav-trigger[href=#!/home][data-target=slide-out]',
               // { onclick: (e: UIEvent) => e.preventDefault() },
@@ -72,7 +67,7 @@ export const Layout = () => ({
                         "span",
                         d.icon
                           ? m(
-                              "i.material-icons.white-text",
+                              "i.material-icons.black-text",
                               typeof d.icon === "string" ? d.icon : d.icon()
                             )
                           : d.title

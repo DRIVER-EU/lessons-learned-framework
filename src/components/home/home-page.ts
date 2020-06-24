@@ -11,17 +11,16 @@ export const HomePage = () => ({
   view: () => [
     m(".row", [
       m(
-        "nav.yellow.darken-3",
+        "nav.white",
         m(".nav-wrapper", [
           m(
             "a.brand-logo[href=#]",
-            { style: "margin: 0 10px 0 20px; left: 20px" },
-            m(`img[width=125][height=125][src=${logo}]`, {
-              style: "margin-top: -30px; margin-left: -50px;",
+            m(`img[width=70][height=70][src=${logo}]`, {
+              style: "margin: -3px 0 0 10px;",
             })
           ),
           m(
-            "h3.center.yellow.darken-3.hide-on-small-only",
+            "h3.center.black-text.white.hide-on-small-only",
             { style: "margin: 0 auto; padding: 10px 0;" },
             "Lessons Learned Library"
           ),
