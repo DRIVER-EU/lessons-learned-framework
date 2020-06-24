@@ -1,26 +1,27 @@
 dependencies:
   base64-js: 1.3.1
   js-sha256: 0.9.0
-  keycloak-js: 9.0.0
+  keycloak-js: 10.0.2
   leaflet: 1.6.0
   leaflet-draw: 1.0.4
   material-icons: 0.3.1
   materialize-css: 1.0.0
   mithril: 2.0.4
-  mithril-leaflet: 0.2.2_540248bce08b6daa8f39770dcc779455
+  mithril-leaflet: 0.4.1_540248bce08b6daa8f39770dcc779455
   mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
+  mithril-ui-form: 0.7.1_e7aaa12ac59af2eaa7ea791b802e2765
   rest-easy-loki: 0.7.6
 devDependencies:
-  '@types/leaflet': 1.5.9
+  '@types/leaflet': 1.5.12
   '@types/lokijs': 1.5.3
-  '@types/materialize-css': 1.0.7
-  '@types/mithril': 2.0.2
-  autoprefixer: 9.7.4
-  concurrently: 5.1.0
+  '@types/materialize-css': 1.0.8
+  '@types/mithril': 2.0.3
+  autoprefixer: 9.8.4
+  concurrently: 5.2.0
   cssnano: 4.1.10
   parcel-bundler: 1.12.4
   rimraf: 3.0.2
-  typescript: 3.8.3
+  typescript: 3.9.5
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.8.3:
@@ -930,10 +931,6 @@ packages:
       node: '>= 6.0.0'
     resolution:
       integrity: sha512-USSjRAAQYsZFlv43FUPdD+jEGML5/8oLF0rUzPQTtK4q9kvaXr49F5ZplyLz5lox78cLZ0TxN2bIDQ1xhOkulQ==
-  /@types/cash/0.0.3:
-    dev: true
-    resolution:
-      integrity: sha512-gS24kdFuVwfo5h7IlStnXyBSIH4e9aFIhNHb4w+o5DwbYDeQJv+i9heh7u7nSvqnOP3v34tQMTe7VoJp2US08w==
   /@types/events/3.0.0:
     dev: false
     resolution:
@@ -955,27 +952,27 @@ packages:
     dev: true
     resolution:
       integrity: sha512-U6IdXYGkfUI42SR79vB2Spj+h1Ly3J3UZjpd8mi943lh126TK7CB+HZOxGh2nM3IySor7wqVQdemD/xtydsBKA==
-  /@types/leaflet/1.5.9:
+  /@types/leaflet/1.5.12:
     dependencies:
       '@types/geojson': 7946.0.7
     dev: true
     resolution:
-      integrity: sha512-vFj2Y764lC6PpmmoFTui3yEMAKf+Dy08eGIaFgM+efJoKNxDP/bsEr2UHloP6kkJqc+4VO9+KYea2ZhiZCnNrQ==
+      integrity: sha512-61HRMIng+bWvnnAIqUWLBlrd/TQZc4gU+gN1JL4K47EDtwIrcMEhWgi7PdcpbG1YmpH4F0EfOimkvV82gJIl9w==
   /@types/lokijs/1.5.3:
     dev: true
     resolution:
       integrity: sha512-ssiP6F7rpDqlaOzo+0Y/0dkVH2JiAjc+o7n6M4pFnfAMscf+7FthqS0cobvGJEJvxmzp4PWfMOfe0q3VETtrgQ==
-  /@types/materialize-css/1.0.7:
+  /@types/materialize-css/1.0.8:
     dependencies:
-      '@types/cash': 0.0.3
       '@types/jquery': 3.3.33
+      cash-dom: 8.0.0
     dev: true
     resolution:
-      integrity: sha512-nKsxFTAjUHK7gxnMcbd+Lynp1v8N+1mvrfleWmy5u0Bxd337l9O0U11FfKX3fKZlxE4hD7N4bw8BFhH5hxhXCQ==
-  /@types/mithril/2.0.2:
+      integrity: sha512-KEfzuNfftNWt4ULrwqu7YdRJLjk42LuKxeLJ8ek91w+L9rReIAAYAbpAghUwcfgMTdEN6ykJ718KAHapDZCndA==
+  /@types/mithril/2.0.3:
     dev: true
     resolution:
-      integrity: sha512-q0W5GGjWNxwmKPcfkkQJqSUIVr7yvMz1zH2enWDab8yDqvZuEgkR4+mcf1O70Wnreawg8OH4axfACDVdg2zskQ==
+      integrity: sha512-cZHOdO2IiXYeyjeDYdbOisSdfaJRzfmRo3zVzgu33IWTMA0KEQObp9fdvqcuYdPz93iJ1yCl19GcEjo/9yv+yA==
   /@types/node/13.7.4:
     dev: false
     resolution:
@@ -1195,21 +1192,19 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-  /autoprefixer/9.7.4:
+  /autoprefixer/9.8.4:
     dependencies:
-      browserslist: 4.8.7
-      caniuse-lite: 1.0.30001030
-      chalk: 2.4.2
+      browserslist: 4.12.0
+      caniuse-lite: 1.0.30001088
+      colorette: 1.2.0
       normalize-range: 0.1.2
       num2fraction: 1.2.2
-      postcss: 7.0.27
-      postcss-value-parser: 4.0.3
+      postcss: 7.0.32
+      postcss-value-parser: 4.1.0
     dev: true
-    engines:
-      node: '>=6.0.0'
     hasBin: true
     resolution:
-      integrity: sha512-g0Ya30YrMBAEZk60lp+qfX5YQllG+S5W3GYCFvyHTvhOki0AEQJLPEcIuGRsqVwLi8FvXPVtwTGhfr38hVpm0g==
+      integrity: sha512-84aYfXlpUe45lvmS+HoAWKCkirI/sw4JK0/bTeeqgHYco3dcsOn0NqdejISjptsYwNji/21dnkDri9PsYKk89A==
   /aws-sign2/0.7.0:
     dev: true
     resolution:
@@ -1416,6 +1411,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==
+  /browserslist/4.12.0:
+    dependencies:
+      caniuse-lite: 1.0.30001088
+      electron-to-chromium: 1.3.481
+      node-releases: 1.1.58
+      pkg-up: 2.0.0
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-UH2GkcEDSI0k/lRkuDSzFl9ZZ87skSy9w2XAn1MsZnL+4c4rqbBd3e82UWHbYDpztABrPBhZsTEeuxVfHppqDg==
   /browserslist/4.8.7:
     dependencies:
       caniuse-lite: 1.0.30001030
@@ -1531,10 +1536,18 @@ packages:
     dev: true
     resolution:
       integrity: sha512-QGK0W4Ft/Ac+zTjEiRJfwDNATvS3fodDczBXrH42784kcfqcDKpEPfN08N0HQjrAp8He/Jw8QiSS9QRn7XAbUw==
+  /caniuse-lite/1.0.30001088:
+    dev: true
+    resolution:
+      integrity: sha512-6eYUrlShRYveyqKG58HcyOfPgh3zb2xqs7NvT2VVtP3hEUeeWvc3lqhpeMTxYWBBeeaT9A4bKsrtjATm66BTHg==
   /caseless/0.12.0:
     dev: true
     resolution:
       integrity: sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
+  /cash-dom/8.0.0:
+    dev: true
+    resolution:
+      integrity: sha512-uUv7JX91CQeACoovHur8eGV8Z3rnd3jjvU1t2EQzW0kOd96VzOnjZCDjbC0FP3LgMpWLcweQjK2UZ1rQ6MbljA==
   /chalk/1.1.3:
     dependencies:
       ansi-styles: 2.2.1
@@ -1687,6 +1700,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vXTJhHebByxZn3lDvDJYw4lR5+uB3vuoHsuYA5AKuxRVn5wzzIfQKGLBmgdVRHKTJYeK5rvJcHnrd0Li49CFpg==
+  /colorette/1.2.0:
+    dev: true
+    resolution:
+      integrity: sha512-soRSroY+OF/8OdA3PTQXwaDJeMc7TfknKKrxeSCencL2a4+Tx5zhxmmv7hdpCjhKBjehzp8+bwe/T68K0hpIjw==
   /combined-stream/1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -1756,7 +1773,7 @@ packages:
       '0': node >= 0.8
     resolution:
       integrity: sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==
-  /concurrently/5.1.0:
+  /concurrently/5.2.0:
     dependencies:
       chalk: 2.4.2
       date-fns: 2.10.0
@@ -1772,7 +1789,7 @@ packages:
       node: '>=6.0.0'
     hasBin: true
     resolution:
-      integrity: sha512-9ViZMu3OOCID3rBgU31mjBftro2chOop0G2u1olq1OuwRBVRw/GxHTg80TVJBUTJfoswMmEUeuOg1g1yu1X2dA==
+      integrity: sha512-XxcDbQ4/43d6CxR7+iV8IZXhur4KbmEJk1CetVMUqCy34z9l0DkszbY+/9wvmSnToTej0SYomc2WSRH+L0zVJw==
   /console-browserify/1.2.0:
     dev: true
     resolution:
@@ -2312,6 +2329,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-RE1pv2sjQiDRRN1nI0fJ0eQHZ9le4oobu16OArnwEUV5ycAU5SNjFyvzjZ1gPUAqBa2Ud1XagtW8j3ZXfHuQHA==
+  /electron-to-chromium/1.3.481:
+    dev: true
+    resolution:
+      integrity: sha512-q2PeCP2PQXSYadDo9uNY+uHXjdB9PcsUpCVoGlY8TZOPHGlXdevlqW9PkKeqCxn2QBkGB8b6AcMO++gh8X82bA==
   /elliptic/6.5.2:
     dependencies:
       bn.js: 4.11.8
@@ -2629,6 +2650,14 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-6Tb2myMioCAgv5kfvP5/PkZZ/ntTpVK39fHY7WkWBgvbeE+VHd/tZuZ4mrC+bxh4cfOZeYKVPaJIZtZXV7GNCQ==
+  /find-up/2.1.0:
+    dependencies:
+      locate-path: 2.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-RdG35QbHF93UgndaK3eSCjwMV6c=
   /find-up/3.0.0:
     dependencies:
       locate-path: 3.0.0
@@ -3430,13 +3459,13 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=
-  /keycloak-js/9.0.0:
+  /keycloak-js/10.0.2:
     dependencies:
       base64-js: 1.3.1
       js-sha256: 0.9.0
     dev: false
     resolution:
-      integrity: sha512-YvxPWKScIrSWCdxfuibTN0HauscsnKJBFhjXk7WAHmcxuEMyR1wRmSjwfxErWlHknJPLNDON5yrK/FDv0CiXlw==
+      integrity: sha512-7nkg4Ob1khHGcNbuK36AMndKUEuIQFpNlWU9ygWs7nSBPCI9VZ8dJjjXfKJHm0ewgcqLFGPIJ6bxxRlfcQ6sLg==
   /keygrip/1.1.0:
     dependencies:
       tsscmp: 1.0.6
@@ -3595,6 +3624,15 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha1-OwmSTt+fCDwEkP3UwLxEIeBHZO4=
+  /locate-path/2.0.0:
+    dependencies:
+      p-locate: 2.0.0
+      path-exists: 3.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-K1aLJl7slExtnA3pw9u7ygNUzY4=
   /locate-path/3.0.0:
     dependencies:
       p-locate: 3.0.0
@@ -3786,18 +3824,18 @@ packages:
     dev: true
     resolution:
       integrity: sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
-  /mithril-leaflet/0.2.2_540248bce08b6daa8f39770dcc779455:
+  /mithril-leaflet/0.4.1_540248bce08b6daa8f39770dcc779455:
     dependencies:
       leaflet: 1.6.0
       leaflet-draw: 1.0.4
       mithril: 2.0.4
     dev: false
     peerDependencies:
-      leaflet: ^1.5.1
+      leaflet: ^1.6.0
       leaflet-draw: ^1.0.4
       mithril: ^2.0.4
     resolution:
-      integrity: sha512-wWJqp2mNHthMsIug9YG9BkCkixxJlffsaaB1jxgi6hrhn3o0OYOUHwQpzdo3Crnw9H9UXd1piAmMcXnQt1m3Pg==
+      integrity: sha512-5mwjg/zG4tKc4nDIJhhpFOkQMnhHzPNvjgH67UClB+QaMuS5pftdJiO+QX7KNX2qfJUP4VIZLLy7FM14AjYS2w==
   /mithril-materialized/0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca:
     dependencies:
       materialize-css: 1.0.0
@@ -3808,6 +3846,23 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-Y6r+X5spyE5SiTAiyKN2hdXqyfIw+ZV2t8Qg4usD50royGK8KDA5kDN979tR9JZphsIr3PYif5FUz/TGl1baSQ==
+  /mithril-ui-form/0.7.1_e7aaa12ac59af2eaa7ea791b802e2765:
+    dependencies:
+      leaflet: 1.6.0
+      leaflet-draw: 1.0.4
+      materialize-css: 1.0.0
+      mithril: 2.0.4
+      mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
+      slimdown-js: 0.2.1
+    dev: false
+    peerDependencies:
+      leaflet: ^1.5.1
+      leaflet-draw: ^1.0.4
+      materialize-css: ^1.0.0
+      mithril: ^2.0.4
+      mithril-materialized: ^0.16.1
+    resolution:
+      integrity: sha512-J89GM4NH+pD2m0yjiDpLhgVqtcUT3X2AJCWtZLLld9IJXtfI7/szFofOnit7Ev9zKmza7iz7pWlM7ludtQUEog==
   /mithril/2.0.4:
     dev: false
     hasBin: true
@@ -3922,6 +3977,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-lgAmPv9eYZ0bGwUYAKlr8MG6K4CvWliWqnkcT2P8mMAgVrH3lqfBPorFlxiG1pHQnqmavJZ9vbMXUTNyMLbrgQ==
+  /node-releases/1.1.58:
+    dev: true
+    resolution:
+      integrity: sha512-NxBudgVKiRh/2aPWMgPR7bPTX0VPmGx5QBwCtdHitnqFE5/O8DeBXuIMH1nwNnw/aMo6AjOrpsHzfY3UbUJ7yg==
   /normalize-html-whitespace/1.0.0:
     dev: true
     engines:
@@ -4124,6 +4183,14 @@ packages:
     dev: true
     resolution:
       integrity: sha1-hUNzx/XCMVkU/Jv8a9gjj92h7Cc=
+  /p-limit/1.3.0:
+    dependencies:
+      p-try: 1.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-vvcXsLAJ9Dr5rQOPk7toZQZJApBl2K4J6dANSsEuh6QI41JYcsS/qhTGa9ErIUUgK3WNQoJYvylxvjqmiqEA9Q==
   /p-limit/2.2.2:
     dependencies:
       p-try: 2.2.0
@@ -4132,6 +4199,14 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-WGR+xHecKTr7EbUEhyLSh5Dube9JtdiG78ufaeLxTgpudf/20KqyMioIUZJAezlTIi6evxuoUs9YXc11cU+yzQ==
+  /p-locate/2.0.0:
+    dependencies:
+      p-limit: 1.3.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-IKAQOyIqcMj9OcwuWAaA893l7EM=
   /p-locate/3.0.0:
     dependencies:
       p-limit: 2.2.2
@@ -4140,6 +4215,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-x+12w/To+4GFfgJhBEpiDcLozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ==
+  /p-try/1.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-y8ec26+P1CKOE/Yh8rGiN8GyB7M=
   /p-try/2.2.0:
     dev: true
     engines:
@@ -4330,6 +4411,14 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-5aSs0sEB/fPZpNB/DbxNtJ3SgXY=
+  /pkg-up/2.0.0:
+    dependencies:
+      find-up: 2.1.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-yBmscoBZpGHKscOImivjxJoATX8=
   /pn/1.1.0:
     dev: true
     resolution:
@@ -4667,6 +4756,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-N7h4pG+Nnu5BEIzyeaaIYWs0LI5XC40OrRh5L60z0QjFsqGWcHcbkBvpe1WYpcIS9yQ8sOi/vIPt1ejQCrMVrg==
+  /postcss-value-parser/4.1.0:
+    dev: true
+    resolution:
+      integrity: sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
   /postcss/6.0.1:
     dependencies:
       chalk: 1.1.3
@@ -4687,6 +4780,16 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-WuQETPMcW9Uf1/22HWUWP9lgsIC+KEHg2kozMflKjbeUtw9ujvFX6QmIfozaErDkmLWS9WEnEdEe6Uo9/BNTdQ==
+  /postcss/7.0.32:
+    dependencies:
+      chalk: 2.4.2
+      source-map: 0.6.1
+      supports-color: 6.1.0
+    dev: true
+    engines:
+      node: '>=6.0.0'
+    resolution:
+      integrity: sha512-03eXong5NLnNCD05xscnGKGDZ98CyzoqPSMjOe6SuoQY7Z2hIj0Ld1g/O/UQRuOle2aRtiIRDg9tDcTGAkLfKw==
   /posthtml-parser/0.4.2:
     dependencies:
       htmlparser2: 3.10.1
@@ -5295,6 +5398,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
+  /slimdown-js/0.2.1:
+    dev: false
+    resolution:
+      integrity: sha512-I5/5azjDOAA7EOgXGirmCMOfnPEP5qRzACnUDCuXGBcq5S0m9BK8s3UGP/RASw8jox4wA1IoZUgOoDvGJFq8xQ==
   /snapdragon-node/2.1.1:
     dependencies:
       define-property: 1.0.0
@@ -5848,13 +5955,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-  /typescript/3.8.3:
+  /typescript/3.9.5:
     dev: true
     engines:
       node: '>=4.2.0'
     hasBin: true
     resolution:
-      integrity: sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+      integrity: sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
   /typical/4.0.0:
     dev: false
     engines:
@@ -6252,25 +6359,25 @@ packages:
     resolution:
       integrity: sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 specifiers:
-  '@types/leaflet': ^1.5.9
+  '@types/leaflet': ^1.5.12
   '@types/lokijs': ^1.5.3
-  '@types/materialize-css': ^1.0.7
-  '@types/mithril': ^2.0.2
-  autoprefixer: ^9.7.4
+  '@types/materialize-css': ^1.0.8
+  '@types/mithril': ^2.0.3
+  autoprefixer: ^9.8.4
   base64-js: ^1.3.1
-  concurrently: ^5.1.0
+  concurrently: ^5.2.0
   cssnano: ^4.1.10
   js-sha256: ^0.9.0
-  keycloak-js: 9.0.0
+  keycloak-js: 10.0.2
   leaflet: ^1.6.0
   leaflet-draw: ^1.0.4
   material-icons: ^0.3.1
   materialize-css: ^1.0.0
   mithril: ^2.0.4
-  mithril-leaflet: ^0.2.2
+  mithril-leaflet: ^0.4.1
   mithril-materialized: ^0.16.1
-  mithril-ui-form: ^0.6.0
+  mithril-ui-form: ^0.7.1
   parcel-bundler: ^1.12.4
   rest-easy-loki: ^0.7.6
   rimraf: ^3.0.2
-  typescript: ^3.8.3
+  typescript: ^3.9.5
