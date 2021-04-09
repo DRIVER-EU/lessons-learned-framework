@@ -1,6 +1,6 @@
 import m from "mithril";
 import { SlimdownView } from "mithril-ui-form";
-import l3 from "url:../../assets/l3-schema.png";
+import l3 from "../../assets/l3-schema.png";
 
 const md = `<h4 class="primary-text">Explanation of the Lessons Learned Library</h4>
 <h5 class="primary-text">Objective</h5>

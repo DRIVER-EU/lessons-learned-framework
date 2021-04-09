@@ -1,6 +1,6 @@
 import m from "mithril";
 import { SlimdownView } from "mithril-ui-form";
-import driverLogo from "url:../../assets/driver-logo2.png";
+import driverLogo from "../../assets/driver-logo2.png";
 
 const md = `<h4 class="primary-text">About</h4>
 

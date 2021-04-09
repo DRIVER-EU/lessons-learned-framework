@@ -1,6 +1,6 @@
 import m, { Vnode } from "mithril";
 import { Icon } from "mithril-materialized";
-import logo from "url:../assets/logo_white.svg";
+import logo from "../assets/logo_white.svg";
 import { IDashboard } from "../models";
 import { dashboardSvc } from "../services/dashboard-service";
 

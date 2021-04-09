@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Capture, store and share your learned lessons in a simple to use web application.",
   "scripts": {
-    "clean": "rimraf ./public ./.parcel-cache ./dist",
+    "clean": "rimraf ./public ./.cache ./dist",
     "start": "concurrently \"npm run serve\" \"parcel ./src/index.html\"",
-    "build": "parcel build ./src/index.html --dist-dir public",
+    "build": "parcel build ./src/index.html --out-dir public",
     "build:domain": "npm run clean && npm run build",
     "link": "npm link mithril-ui-form",
     "serve": "rest-easy-loki",
@@ -42,7 +42,7 @@
     "keycloak-js": "12.0.4",
     "leaflet": "^1.7.1",
     "leaflet-draw": "^1.0.4",
-    "material-icons": "^0.5.4",
+    "material-icons": "^0.6.0",
     "materialize-css": "^1.0.0",
     "mithril": "^2.0.4",
     "mithril-leaflet": "^0.4.3",
@@ -52,28 +52,14 @@
     "slimdown-js": "^0.4.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@babel/preset-env": "^7.13.15",
-    "@babel/preset-typescript": "^7.13.0",
-    "@parcel/transformer-babel": "^2.0.0-alpha.3",
-    "@parcel/transformer-image": "^2.0.0-nightly.2260+ff1a55e8",
     "@types/leaflet": "^1.7.0",
     "@types/lokijs": "^1.5.4",
     "@types/materialize-css": "^1.0.8",
     "@types/mithril": "^2.0.7",
-    "concurrently": "^6.0.0",
-    "parcel": "^2.0.0-beta2",
+    "concurrently": "^6.0.1",
+    "cssnano": "^4.1.11",
+    "parcel-bundler": "1.12.5",
     "rimraf": "^3.0.2",
-    "typescript": "^4.2.3"
-  },
-  "targets": {
-    "default": {
-      "engines": {
-        "browsers": "> 0.25%"
-      },
-      "distDir": "public",
-      "publicUrl": "l3crisis.eu",
-      "sourceMap": false
-    }
+    "typescript": "^4.2.4"
   }
 }

@@ -1,10 +1,10 @@
 import m from "mithril";
 import { Button, Icon, Parallax } from "mithril-materialized";
 import { SlimdownView } from "mithril-ui-form";
-import background from "url:../../assets/background.jpg";
-import driverLogo from "url:../../assets/driver-logo-compact2.png";
-import euLogo from "url:../../assets/eu-flag-logo.png";
-import logo from "url:../../assets/logo_white.svg";
+import background from "../../assets/background.jpg";
+import driverLogo from "../../assets/driver-logo-compact2.png";
+import euLogo from "../../assets/eu-flag-logo.png";
+import logo from "../../assets/logo_white.svg";
 import { Dashboards, dashboardSvc } from "../../services/dashboard-service";
 
 export const HomePage = () => ({
