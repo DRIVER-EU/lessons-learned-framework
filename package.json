@@ -2,7 +2,7 @@
   "name": "lessons-learned-framework",
   "version": "0.0.1",
   "description": "Capture, store and share your learned lessons in a simple to use web application.",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "clean": "rimraf ./public ./.cache ./dist",
     "start": "concurrently \"npm run serve\" \"parcel index.html\"",
