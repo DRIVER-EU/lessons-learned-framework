@@ -2,11 +2,10 @@
   "name": "lessons-learned-framework",
   "version": "0.0.1",
   "description": "Capture, store and share your learned lessons in a simple to use web application.",
-  "main": "index.html",
   "scripts": {
     "clean": "rimraf ./public ./.parcel-cache ./dist",
-    "start": "concurrently \"npm run serve\" \"parcel index.html\"",
-    "build": "parcel build index.html",
+    "start": "concurrently \"npm run serve\" \"parcel ./src/index.html\"",
+    "build": "parcel build ./src/index.html --dist-dir public",
     "build:domain": "npm run clean && npm run build",
     "link": "npm link mithril-ui-form",
     "serve": "rest-easy-loki",
