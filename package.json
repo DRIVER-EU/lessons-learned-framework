@@ -4,9 +4,9 @@
   "description": "Capture, store and share your learned lessons in a simple to use web application.",
   "main": "index.html",
   "scripts": {
-    "clean": "rimraf ./public ./.cache ./dist",
+    "clean": "rimraf ./public ./.parcel-cache ./dist",
     "start": "concurrently \"npm run serve\" \"parcel index.html\"",
-    "build": "parcel build index.html --dist-dir ./public --public-url https://l3crisis.eu",
+    "build": "parcel build index.html",
     "build:domain": "npm run clean && npm run build",
     "link": "npm link mithril-ui-form",
     "serve": "rest-easy-loki",
@@ -54,6 +54,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-typescript": "^7.13.0",
+    "@parcel/transformer-babel": "^2.0.0-alpha.3",
     "@parcel/transformer-image": "^2.0.0-nightly.2260+ff1a55e8",
     "@types/leaflet": "^1.7.0",
     "@types/lokijs": "^1.5.4",
