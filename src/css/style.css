@@ -59,7 +59,7 @@ a,
 }
 .block-with-text:before {
   /* points in the end */
-  content: '...';
+  content: "...";
   /* absolute position */
   position: absolute;
   /* set position to right bottom corner of block */
@@ -68,7 +68,7 @@ a,
 }
 .block-with-text:after {
   /* points in the end */
-  content: '';
+  content: "";
   /* absolute position */
   position: absolute;
   /* set position to right bottom corner of text */
@@ -91,7 +91,8 @@ a,
 
 /* print styles */
 @media print {
-  html, body {
+  html,
+  body {
     font-size: 14px;
   }
   body {
@@ -99,8 +100,8 @@ a,
     color: #000;
     background-color: #fff;
   }
-  a[href^='http']::after {
-    content: ' (' attr(href) ')';
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
   }
   .leaflet-container,
   img,
@@ -112,7 +113,7 @@ a,
     page-break-inside: avoid; /* or 'auto' */
   }
   main::after {
-    content: 'Copyright DRIVER+';
+    content: "Copyright DRIVER+";
     display: block;
     text-align: center;
   }
@@ -145,4 +146,9 @@ a,
 
 .repeat-list .pagination {
   margin: 0;
+}
+
+/* For the options' label */
+.input-field.options > label {
+  top: -2.5rem;
 }
