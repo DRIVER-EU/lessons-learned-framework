@@ -53,6 +53,7 @@
     "slimdown-js": "^0.4.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@parcel/transformer-image": "^2.0.0-nightly.2260+ff1a55e8",
     "@types/leaflet": "^1.7.0",
     "@types/lokijs": "^1.5.4",
@@ -62,5 +63,15 @@
     "parcel": "^2.0.0-beta2",
     "rimraf": "^3.0.2",
     "typescript": "^4.2.3"
+  },
+  "targets": {
+    "default": {
+      "engines": {
+        "browsers": "> 0.25%"
+      },
+      "distDir": "public",
+      "publicUrl": "l3crisis.eu",
+      "sourceMap": false
+    }
   }
 }
