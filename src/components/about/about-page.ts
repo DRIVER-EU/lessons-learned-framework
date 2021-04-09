@@ -1,6 +1,6 @@
-import m from 'mithril';
-import { SlimdownView } from 'mithril-ui-form';
-import driverLogo from '../../assets/driver-logo2.png';
+import m from "mithril";
+import { SlimdownView } from "mithril-ui-form";
+import driverLogo from "url:../../assets/driver-logo2.png";
 
 const md = `<h4 class="primary-text">About</h4>
 
@@ -58,9 +58,17 @@ In case one is the user or editor of an event, he/she can decide to publish the 
 
 export const AboutPage = () => ({
   view: () =>
-    m('.row', [
+    m(".row", [
       m(SlimdownView, { md: md2 }),
       m(SlimdownView, { md }),
-      m('.row', m('img', { src: driverLogo, width: 300, height: 151, style: 'display: block; margin: 0 auto;' })),
+      m(
+        ".row",
+        m("img", {
+          src: driverLogo,
+          width: 300,
+          height: 151,
+          style: "display: block; margin: 0 auto;",
+        })
+      ),
     ]),
 });

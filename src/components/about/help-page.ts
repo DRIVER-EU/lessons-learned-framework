@@ -1,6 +1,6 @@
-import m from 'mithril';
-import { SlimdownView } from 'mithril-ui-form';
-import l3 from '../../assets/l3-schema.png';
+import m from "mithril";
+import { SlimdownView } from "mithril-ui-form";
+import l3 from "url:../../assets/l3-schema.png";
 
 const md = `<h4 class="primary-text">Explanation of the Lessons Learned Library</h4>
 <h5 class="primary-text">Objective</h5>
@@ -40,9 +40,12 @@ The L3 includes 24 **CM functions** to choose from. It concerns:
 
 export const HelpPage = () => ({
   view: () =>
-    m('.row', [
+    m(".row", [
       m(SlimdownView, { md }),
-      m('img.responsive-img', { src: l3, style: 'margin: 0 auto; padding: 0 10px' }),
+      m("img.responsive-img", {
+        src: l3,
+        style: "margin: 0 auto; padding: 0 10px",
+      }),
       m(SlimdownView, { md: md2 }),
     ]),
 });
