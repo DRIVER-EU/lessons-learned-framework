@@ -1,9 +1,9 @@
-# Creates the locatieregister.
+# Creates the l3.
 #
 # You can access the container using:
-#   docker run -it locatieregister sh
+#   docker run -it l3 sh
 # To start it stand-alone:
-#   docker run -it -p 8888:3210 locatieregister
+#   docker run -it -p 8888:3210 l3
 
 FROM node:alpine AS builder
 RUN apk add --no-cache --virtual .gyp python make g++
